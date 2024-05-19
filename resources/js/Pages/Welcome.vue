@@ -1,0 +1,67 @@
+<script setup lang="ts">
+import { Head, Link } from "@inertiajs/vue3";
+
+defineProps<{
+    canLogin?: boolean;
+    canRegister?: boolean;
+    laravelVersion: string;
+    phpVersion: string;
+}>();
+
+function handleImageError() {
+    document.getElementById("screenshot-container")?.classList.add("!hidden");
+    document.getElementById("docs-card")?.classList.add("!row-span-1");
+    document.getElementById("docs-card-content")?.classList.add("!flex-row");
+    document.getElementById("background")?.classList.add("!hidden");
+}
+</script>
+
+<template>
+    <div
+        class="flex flex-col h-screen items-center justify-center bg-green-300 text-black/50 dark:bg-black dark:text-white/50"
+    >
+        <header class="h-16 py-1 bg-white w-full">
+            <nav v-if="canLogin" class="flex flex-1 justify-end pr-8">
+                <Link
+                    v-if="$page.props.auth.user"
+                    :href="route('dashboard')"
+                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                >
+                    Dashboard
+                </Link>
+                <template v-else>
+                    <Link
+                        :href="route('login')"
+                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                    >
+                        <div
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        >
+                            Log in
+                        </div>
+                    </Link>
+                    <Link
+                        v-if="canRegister"
+                        :href="route('register')"
+                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                    >
+                        <div
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        >
+                            Register
+                        </div>
+                    </Link>
+                </template>
+            </nav>
+        </header>
+
+        <main class="flex-1 flex flex-col items-center justify-center">
+            <h1 class="text-center text-4xl font-bold">基幹システム</h1>
+        </main>
+        <footer
+            class="h-10 py-2 items-center bg-white w-full text-center flex justify-center"
+        >
+            © 2024 tomo. All rights reserved.
+        </footer>
+    </div>
+</template>
