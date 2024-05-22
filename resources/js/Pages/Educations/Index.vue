@@ -30,7 +30,7 @@ defineProps({
 
         <div class="flex items-center justify-between mb-4 bg-green-300">
             <div></div>
-            <div class="px-64 py-4">
+            <div class="p-4 2xl:px-64">
                 <Link
                     as="button"
                     :href="route('education.create')"
@@ -42,7 +42,7 @@ defineProps({
         </div>
 
         <div class="bg-[#FFFFFF] mx-4 my-2">
-            <table class="w-full text-sm text-left text-gray-500">
+            <table class="table-auto w-full text-left whitespace-no-wrap text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-[#F4F4F4]">
                     <tr>
                         <th scope="col" class="py-3 px-6">タイトル</th>
