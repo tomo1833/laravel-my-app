@@ -1,0 +1,29 @@
+// https://aka.ms/devcontainer.json
+{
+	"name": "Existing Docker Compose (Extend)",
+	"dockerComposeFile": [
+		"../docker-compose.yml"
+	],
+	"service": "laravel.test",
+	"workspaceFolder": "/var/www/html",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"junstyle.php-cs-fixer",
+				"mikestead.dotenv",
+				"amiralizadeh9480.laravel-extra-intellisense",
+				"ryannaddy.laravel-artisan",
+				"onecentlin.laravel5-snippets",
+				"onecentlin.laravel-blade"
+			],
+			"settings": {
+				"php-cs-fixer.executablePath": "/home/sail/.config/composer/vendor/bin/php-cs-fixer",
+				"php-cs-fixer.onsave": true,
+				"php-cs-fixer.rules": "@PSR12",
+				"php-cs-fixer.config": "/var/www/html/.php-cs-fixer.dist.php"
+			}
+		}
+	},
+	"remoteUser": "sail",
+	"postCreateCommand": "composer global require friendsofphp/php-cs-fixer && echo 'export PATH=\"$PATH:/home/sail/.config/composer/vendor/bin\"' >> ~/.bashrc && chown -R 1000:1000 /var/www/html 2>/dev/null || true"
+}

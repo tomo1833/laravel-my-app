@@ -37,7 +37,7 @@ const showingNavigationDropdown = ref(false);
                                     :href="route('dashboard')"
                                     :active="route().current('dashboard')"
                                 >
-                                    Dashboard
+                                    ダッシュボード
                                 </NavLink>
                                 <NavLink
                                     :href="route('attendance.index')"
@@ -164,7 +164,25 @@ const showingNavigationDropdown = ref(false);
                             :href="route('dashboard')"
                             :active="route().current('dashboard')"
                         >
-                            Dashboard
+                            ダッシュボード
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            :href="route('attendance.index')"
+                            :active="route().current('attendance.index')"
+                        >
+                            勤怠管理
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            :href="route('education.index')"
+                            :active="route().current('education.index')"
+                        >
+                            教育管理
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            :href="route('camera.index')"
+                            :active="route().current('camera.index')"
+                        >
+                            カメラ
                         </ResponsiveNavLink>
                     </div>
 
