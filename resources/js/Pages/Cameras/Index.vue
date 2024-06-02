@@ -8,12 +8,20 @@ const canvasRef = ref<HTMLCanvasElement | null>(null);
 const contextRef = ref<CanvasRenderingContext2D | null>(null);
 const animationFrameId = ref<number | null>(null);
 const effect = ref<string>("none");
-let particles: Array<{ x: number; y: number; vx: number; vy: number; alpha: number; color: string }> = [];
+let particles: Array<{
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+    alpha: number;
+    color: string;
+}> = [];
 
 const effects = {
     grayscale: (data: Uint8ClampedArray) => {
         for (let i = 0; i < data.length; i += 4) {
-            const gray = 0.3 * data[i] + 0.59 * data[i + 1] + 0.11 * data[i + 2];
+            const gray =
+                0.3 * data[i] + 0.59 * data[i + 1] + 0.11 * data[i + 2];
             data[i] = data[i + 1] = data[i + 2] = gray;
         }
     },
@@ -64,7 +72,9 @@ const effects = {
         const copy = new Uint8ClampedArray(data);
         for (let y = 1; y < height - 1; y++) {
             for (let x = 1; x < width - 1; x++) {
-                let r = 0, g = 0, b = 0;
+                let r = 0,
+                    g = 0,
+                    b = 0;
                 for (let ky = -1; ky <= 1; ky++) {
                     for (let kx = -1; kx <= 1; kx++) {
                         const i = ((y + ky) * width + (x + kx)) * 4;
@@ -86,7 +96,7 @@ const effects = {
             data[i + 1] = data[i + 1] > 128 ? 255 : 0;
             data[i + 2] = data[i + 2] > 128 ? 255 : 0;
         }
-    }
+    },
 };
 
 // エフェクトを設定するメソッド
@@ -141,10 +151,26 @@ const updateCanvas = () => {
         const video = videoRef.value;
 
         const render = () => {
-            ctx.clearRect(0, 0, canvasRef.value!.width, canvasRef.value!.height);
-            ctx.drawImage(video, 0, 0, canvasRef.value!.width, canvasRef.value!.height);
+            ctx.clearRect(
+                0,
+                0,
+                canvasRef.value!.width,
+                canvasRef.value!.height,
+            );
+            ctx.drawImage(
+                video,
+                0,
+                0,
+                canvasRef.value!.width,
+                canvasRef.value!.height,
+            );
 
-            let imageData = ctx.getImageData(0, 0, canvasRef.value!.width, canvasRef.value!.height);
+            let imageData = ctx.getImageData(
+                0,
+                0,
+                canvasRef.value!.width,
+                canvasRef.value!.height,
+            );
             imageData = applyEffect(imageData);
             ctx.putImageData(imageData, 0, 0);
 
@@ -198,7 +224,9 @@ const updateParticles = (ctx: CanvasRenderingContext2D) => {
 
 onMounted(() => {
     if (canvasRef.value) {
-        contextRef.value = canvasRef.value.getContext("2d", { willReadFrequently: true });
+        contextRef.value = canvasRef.value.getContext("2d", {
+            willReadFrequently: true,
+        });
     }
 });
 

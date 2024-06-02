@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { reactive } from "vue";
 import { Head } from "@inertiajs/vue3";
-import { Inertia } from "@inertiajs/inertia";
-import { useForm } from "laravel-precognition-vue-inertia";
 
 const props = defineProps({
     education: Object,

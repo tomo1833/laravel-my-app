@@ -1,19 +1,29 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import { Head, Link } from "@inertiajs/vue3";
+import { defineProps } from "vue";
 
-defineProps<{
+const props = defineProps<{
     canLogin?: boolean;
     canRegister?: boolean;
     laravelVersion: string;
     phpVersion: string;
 }>();
 
-function handleImageError() {
-    document.getElementById("screenshot-container")?.classList.add("!hidden");
-    document.getElementById("docs-card")?.classList.add("!row-span-1");
-    document.getElementById("docs-card-content")?.classList.add("!flex-row");
-    document.getElementById("background")?.classList.add("!hidden");
-}
+const handleImageError = () => {
+    const screenshotContainer = document.getElementById("screenshot-container");
+    const docsCard = document.getElementById("docs-card");
+    const docsCardContent = document.getElementById("docs-card-content");
+    const background = document.getElementById("background");
+
+    screenshotContainer?.classList.add("!hidden");
+    docsCard?.classList.add("!row-span-1");
+    docsCardContent?.classList.add("!flex-row");
+    background?.classList.add("!hidden");
+};
+
+const message = ref("");
+const chatMessages = ref([]);
 </script>
 
 <template>

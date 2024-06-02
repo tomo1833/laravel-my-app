@@ -1,34 +1,80 @@
 <script setup lang="ts">
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import { ref } from "vue";
 import { Head, Link } from "@inertiajs/vue3";
-defineProps({
-    attendances: Array<object>,
+import { Inertia } from "@inertiajs/inertia";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import LinkButton from "@/Components/Atoms/LinkButton.vue";
+import DefaultButton from "@/Components/Atoms/DefaultButton.vue";
+
+interface Attendance {
+    check_in: string | null;
+    check_out: string | null;
+    rest_period: string | null;
+    memo: string | null;
+    id: number | null;
+}
+
+/**
+ * プロパティの定義
+ * @type {{ attendances: Attendance[] }}
+ * @property {Attendance[]} attendances - 出勤情報の配列
+ */
+const props = defineProps({
+    attendances: Array<Attendance>,
+    year: Number,
+    month: Number,
 });
-const formatDateWithWeekdayName = (dateString: string) => {
-    // Convert date string to Date object
+
+const searchYearMonth = ref<String>(
+    `${props.year.toString()}-${props.month.toString().padStart(2, "0")}`,
+);
+
+/**
+ * 日付文字列を受け取り、曜日の名前を含むフォーマットされた日付文字列を返します。
+ *
+ * @param {string} dateString - 日付を表す文字列。
+ * @returns {string} 曜日の名前を含むフォーマットされた日付文字列。
+ */
+const formatDateWithWeekdayName = (dateString: string): string => {
+    // 日付文字列をDateオブジェクトに変換
     const date = new Date(dateString);
-    // Get the weekday as a number (0-6, Sunday-Saturday)
+    // 曜日を数値で取得 (0-6, 日曜日-土曜日)
     const weekdayNumber = date.getDay();
-    // Convert weekday number to weekday name
+    // 曜日番号を曜日名に変換
     const weekdays = ["日", "月", "火", "水", "木", "金", "土"];
     const weekdayName = weekdays[weekdayNumber];
-    // Format the output string
+    // 出力文字列をフォーマット
     const formattedDate = `${date.getDate().toString().padStart(2, "0")}（${weekdayName}）`;
+
     return formattedDate;
 };
-// 時刻をフォーマットするメソッド
-const formatTime = (timeString: any) => {
+
+/**
+ * 時刻文字列を受け取り、フォーマットされた時刻文字列を返します。
+ *
+ * @param {any} timeString - 時刻を表す文字列またはその他の形式の入力。
+ * @returns {string} フォーマットされた時刻文字列。入力が未定義の場合は"-"を返します。
+ */
+const formatTime = (timeString: any): string => {
     if (timeString === undefined) {
         return "-";
     }
 
-    // 時刻文字列を Date オブジェクトに変換
+    // 時刻文字列をDateオブジェクトに変換
     const time = new Date(timeString);
-    // 時と分を取得
-    const hours = time.getHours().toString().padStart(2, "0"); // 0埋めして2桁に
-    const minutes = time.getMinutes().toString().padStart(2, "0"); // 0埋めして2桁に
-    // 時刻を返す
+    // 時と分を取得 0埋めして2桁
+    const hours = time.getHours().toString().padStart(2, "0");
+    const minutes = time.getMinutes().toString().padStart(2, "0");
+
     return `${hours}:${minutes}`;
+};
+
+// 検索処理を実行する関数
+const search = () => {
+    // ここに検索処理を実装します
+    const [year, month] = searchYearMonth.value.split("-").map(Number);
+
+    Inertia.get("/attendance", { year: year, month: month });
 };
 </script>
 
@@ -55,19 +101,36 @@ const formatTime = (timeString: any) => {
             {{ $page.props.flash.message }}
         </div>
 
-        <div class="flex items-center justify-between mb-4 bg-green-300">
-            <div></div>
-            <div class="px-64 py-4">
-                <Link
-                    as="button"
-                    :href="route('attendance.create')"
-                    class="bg-[#5568FE] text-white px-4 py-2 rounded"
+        <!-- リスト ナビ -->
+        <div class="flex items-center justify-around py-2 bg-green-300">
+            <div class="flex">
+                <div
+                    class="relative mr-4 lg:w-full xl:w-1/2 w-2/4 md:w-full text-left"
                 >
-                    登録
-                </Link>
+                    <label
+                        for="search-month"
+                        class="leading-7 text-sm text-gray-600"
+                        >年月</label
+                    >
+                    <input
+                        type="month"
+                        id="search-month"
+                        name="searchYearMonth"
+                        v-model="searchYearMonth"
+                        class="w-40 bg-withe bg-opacity-50 rounded focus:ring-2 focus:ring-indigo-200 focus:bg-transparent border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    />
+                </div>
+                <div class="pt-7">
+                    <DefaultButton @clickEvent="search" text="検索" />
+                </div>
+            </div>
+
+            <div class="px-64 py-4">
+                <LinkButton routePath="attendance.create" text="登録" />
             </div>
         </div>
 
+        <!-- リスト -->
         <div class="bg-[#FFFFFF] mx-4 my-2">
             <table
                 class="w-full text-sm text-left text-gray-500 h-[500px] overflow-auto"
