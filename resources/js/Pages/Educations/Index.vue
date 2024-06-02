@@ -42,7 +42,9 @@ defineProps({
         </div>
 
         <div class="bg-[#FFFFFF] mx-4 my-2">
-            <table class="table-auto w-full text-left whitespace-no-wrap text-gray-500">
+            <table
+                class="table-auto w-full text-left whitespace-no-wrap text-gray-500"
+            >
                 <thead class="text-xs text-gray-700 uppercase bg-[#F4F4F4]">
                     <tr>
                         <th scope="col" class="py-3 px-6">タイトル</th>
