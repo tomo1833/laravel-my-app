@@ -30,6 +30,7 @@
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-vue": "^9.25.0",
         "laravel-precognition-vue-inertia": "^0.5.4",
-        "three": "^0.164.1"
+        "three": "^0.164.1",
+        "ziggy-js": "^2.2.1"
     }
 }
