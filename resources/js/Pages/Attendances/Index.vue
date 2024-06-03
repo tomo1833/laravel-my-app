@@ -71,13 +71,13 @@ const formatTime = (timeString: any): string => {
 
 // 検索処理を実行する関数
 const search = () => {
-console.log('--log.log')
+    console.log("--log.log");
 
     // ここに検索処理を実装します
     const [year, month] = searchYearMonth.value.split("-").map(Number);
-console.log('---hoge')
-console.log(year)
-console.log(month)
+    console.log("---hoge");
+    console.log(year);
+    console.log(month);
     Inertia.get("/attendance", { year: year, month: month });
 };
 </script>

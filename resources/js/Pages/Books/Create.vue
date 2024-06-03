@@ -1,30 +1,32 @@
 <script setup lang="ts">
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head } from "@inertiajs/vue3";
-import { useForm } from "laravel-precognition-vue-inertia";
-const form = useForm("post", "/anime", {
-    id: null,
-    title: null,
-    body: null,
-});
-const storeAnime = () => {
-    form.submit({
-        preserveScroll: true,
-        onSuccess: () => form.reset(),
-    });
-};
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue"
+import { Head, Link } from "@inertiajs/vue3"
+import { reactive } from "vue"
+import { Inertia } from "@inertiajs/inertia"
+import { useForm } from "laravel-precognition-vue-inertia"
+const form = useForm("post", "/book", {
+  id: null,
+  title: null,
+  body: null,
+})
+const storeBook = () => {
+  form.submit({
+    preserveScroll: true,
+    onSuccess: () => form.reset(),
+  })
+}
 </script>
 
 <template>
-    <Head title="アニメ" />
+    <Head title="本" />
     <AuthenticatedLayout>
         <section class="text-gray-600 body-font py-24 relative">
-            <form @submit.prevent="storeAnime">
+            <form @submit.prevent="storeBook">
                 <div class="container px-5 py-8 mx-auto bg-white">
                     <h1
                         class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
                     >
-                        アニメ
+                        本
                     </h1>
                 </div>
 

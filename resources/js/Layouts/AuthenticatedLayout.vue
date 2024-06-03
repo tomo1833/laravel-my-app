@@ -52,6 +52,10 @@ const showingNavigationDropdown = ref(false);
                                     text="アニメ"
                                 />
                                 <DefaultNaviLink
+                                    routePath="book.index"
+                                    text="本"
+                                />
+                                <DefaultNaviLink
                                     routePath="camera.index"
                                     text="カメラ"
                                 />
@@ -171,6 +175,10 @@ const showingNavigationDropdown = ref(false);
                         <DefaultResponsiveNavLink
                             routePath="anime.index"
                             text="アニメ"
+                        />
+                        <DefaultResponsiveNavLink
+                            routePath="book.index"
+                            text="本"
                         />
                         <DefaultResponsiveNavLink
                             routePath="camera.index"
