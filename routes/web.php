@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\AnimeController;
 use App\Http\Controllers\CameraController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ProfileController;
@@ -34,6 +35,9 @@ Route::resource('camera', CameraController::class)
 ->middleware(['auth', 'verified']);
 
 Route::post('/chatgpt', [ChatGPTController::class, 'chat']);
+
+Route::resource('anime', AnimeController::class)
+->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

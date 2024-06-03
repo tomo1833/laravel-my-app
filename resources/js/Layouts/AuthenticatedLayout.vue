@@ -3,8 +3,10 @@ import { ref } from "vue";
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
-import NavLink from "@/Components/NavLink.vue";
-import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
+
+import DefaultNaviLink from "@/Components/Atoms/DefaultNaviLink.vue";
+import DefaultResponsiveNavLink from "@/Components/Atoms/DefaultResponsiveNavLink.vue";
+
 import { Link } from "@inertiajs/vue3";
 
 const showingNavigationDropdown = ref(false);
@@ -33,32 +35,26 @@ const showingNavigationDropdown = ref(false);
                             <div
                                 class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
                             >
-                                <NavLink
-                                    :href="route('dashboard')"
-                                    :active="route().current('dashboard')"
-                                >
-                                    ダッシュボード
-                                </NavLink>
-                                <NavLink
-                                    :href="route('attendance.index')"
-                                    :active="
-                                        route().current('attendance.index')
-                                    "
-                                >
-                                    勤怠管理
-                                </NavLink>
-                                <NavLink
-                                    :href="route('education.index')"
-                                    :active="route().current('education.index')"
-                                >
-                                    教育管理
-                                </NavLink>
-                                <NavLink
-                                    :href="route('camera.index')"
-                                    :active="route().current('camera.index')"
-                                >
-                                    カメラ
-                                </NavLink>
+                                <DefaultNaviLink
+                                    routePath="dashboard"
+                                    text="ダッシュボード"
+                                />
+                                <DefaultNaviLink
+                                    routePath="attendance.index"
+                                    text="勤怠管理"
+                                />
+                                <DefaultNaviLink
+                                    routePath="education.index"
+                                    text="教育管理"
+                                />
+                                <DefaultNaviLink
+                                    routePath="anime.index"
+                                    text="アニメ"
+                                />
+                                <DefaultNaviLink
+                                    routePath="camera.index"
+                                    text="カメラ"
+                                />
                             </div>
                         </div>
 
@@ -160,30 +156,26 @@ const showingNavigationDropdown = ref(false);
                     class="sm:hidden"
                 >
                     <div class="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink
-                            :href="route('dashboard')"
-                            :active="route().current('dashboard')"
-                        >
-                            ダッシュボード
-                        </ResponsiveNavLink>
-                        <ResponsiveNavLink
-                            :href="route('attendance.index')"
-                            :active="route().current('attendance.index')"
-                        >
-                            勤怠管理
-                        </ResponsiveNavLink>
-                        <ResponsiveNavLink
-                            :href="route('education.index')"
-                            :active="route().current('education.index')"
-                        >
-                            教育管理
-                        </ResponsiveNavLink>
-                        <ResponsiveNavLink
-                            :href="route('camera.index')"
-                            :active="route().current('camera.index')"
-                        >
-                            カメラ
-                        </ResponsiveNavLink>
+                        <DefaultResponsiveNavLink
+                            routePath="dashboard"
+                            text="ダッシュボード"
+                        />
+                        <DefaultResponsiveNavLink
+                            routePath="attendance.index"
+                            text="勤怠管理"
+                        />
+                        <DefaultResponsiveNavLink
+                            routePath="education.index"
+                            text="教育管理"
+                        />
+                        <DefaultResponsiveNavLink
+                            routePath="anime.index"
+                            text="アニメ"
+                        />
+                        <DefaultResponsiveNavLink
+                            routePath="camera.index"
+                            text="カメラ"
+                        />
                     </div>
 
                     <!-- Responsive Settings Options -->
