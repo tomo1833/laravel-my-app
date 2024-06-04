@@ -4,12 +4,12 @@ import { Head, Link } from "@inertiajs/vue3";
 import { reactive } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import { useForm } from "laravel-precognition-vue-inertia";
-const form = useForm("post", "/book", {
+const form = useForm("post", "/blog", {
     id: null,
     title: null,
     body: null,
 });
-const storeBook = () => {
+const storeBlog = () => {
     form.submit({
         preserveScroll: true,
         onSuccess: () => form.reset(),
@@ -18,15 +18,15 @@ const storeBook = () => {
 </script>
 
 <template>
-    <Head title="本" />
+    <Head title="ブログ" />
     <AuthenticatedLayout>
         <section class="text-gray-600 body-font py-24 relative">
-            <form @submit.prevent="storeBook">
+            <form @submit.prevent="storeBlog">
                 <div class="container px-5 py-8 mx-auto bg-white">
                     <h1
                         class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
                     >
-                        本
+                        ブログ
                     </h1>
                 </div>
 

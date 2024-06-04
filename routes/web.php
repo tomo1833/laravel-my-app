@@ -3,10 +3,12 @@
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AnimeController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CameraController;
+use App\Http\Controllers\ChatGPTController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ChatGPTController;
+use App\Http\Controllers\WikiController;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +43,12 @@ Route::resource('anime', AnimeController::class)
 ->middleware(['auth', 'verified']);
 
 Route::resource('book', BookController::class)
+->middleware(['auth', 'verified']);
+
+Route::resource('blog', BlogController::class)
+->middleware(['auth', 'verified']);
+
+Route::resource('wiki', WikiController::class)
 ->middleware(['auth', 'verified']);
 
 

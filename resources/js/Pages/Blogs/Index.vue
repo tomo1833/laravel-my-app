@@ -2,16 +2,16 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/vue3";
 defineProps({
-    books: Array<object>,
+    blogs: Array<object>,
 });
 </script>
 
 <template>
-    <Head title="本" />
+    <Head title="ブログ" />
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                本
+                ブログ
             </h2>
         </template>
         <div
@@ -31,7 +31,7 @@ defineProps({
             <div class="p-4 2xl:px-64">
                 <Link
                     as="button"
-                    :href="route('book.create')"
+                    :href="route('blog.create')"
                     class="bg-[#5568FE] text-white px-4 py-2 rounded"
                 >
                     登録
@@ -49,16 +49,16 @@ defineProps({
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="book in books" class="bg-white border-b">
+                    <tr v-for="blog in blogs" class="bg-white border-b">
                         <td class="py-4 px-6">
-                            {{ book.title }}
+                            {{ blog.title }}
                         </td>
                         <td class="py-4 px-6">
                             <Link
                                 as="button"
                                 :href="
-                                    route('book.show', {
-                                        book: book.id,
+                                    route('blog.show', {
+                                        blog: blog.id,
                                     })
                                 "
                                 class="bg-[#F5F5F5] text-[#394264] px-3 py-1 rounded"
@@ -69,8 +69,8 @@ defineProps({
                             <Link
                                 as="button"
                                 :href="
-                                    route('book.show', {
-                                        book: book.id,
+                                    route('blog.edit', {
+                                        blog: blog.id,
                                     })
                                 "
                                 class="bg-[#F5F5F5] text-[#394264] px-3 py-1 rounded"

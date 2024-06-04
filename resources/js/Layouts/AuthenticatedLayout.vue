@@ -56,6 +56,14 @@ const showingNavigationDropdown = ref(false);
                                     text="本"
                                 />
                                 <DefaultNaviLink
+                                    routePath="blog.index"
+                                    text="ブログ"
+                                />
+                                <DefaultNaviLink
+                                    routePath="wiki.index"
+                                    text="ウィキ"
+                                />
+                                <DefaultNaviLink
                                     routePath="camera.index"
                                     text="カメラ"
                                 />
@@ -179,6 +187,14 @@ const showingNavigationDropdown = ref(false);
                         <DefaultResponsiveNavLink
                             routePath="book.index"
                             text="本"
+                        />
+                        <DefaultResponsiveNavLink
+                            routePath="blog.index"
+                            text="ブログ"
+                        />
+                        <DefaultResponsiveNavLink
+                            routePath="wiki.index"
+                            text="ウィキ"
                         />
                         <DefaultResponsiveNavLink
                             routePath="camera.index"
