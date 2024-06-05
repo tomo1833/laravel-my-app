@@ -13,11 +13,17 @@ const props = defineProps({
 </template>
 
 <style scoped>
-#education-area ::v-deep h1 {
+#education-area ::deep(h1) {
     font-size: 32px;
 }
-#education-area ::v-deep h1,
-#education-area ::v-deep p {
+#education-area :deep(h1),
+#education-area :deep(p),
+#education-area :deep(ul),
+#education-area :deep(li) {
     text-align: left;
+}
+
+#education-area :deep(ul li::marker) {
+    font-size: 100%;
 }
 </style>
