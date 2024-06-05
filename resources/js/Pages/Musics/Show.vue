@@ -3,12 +3,12 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 
 const props = defineProps({
-    wiki: Object,
+    music: Object,
 });
 </script>
 
 <template>
-    <Head title="wiki" />
+    <Head title="music" />
 
     <AuthenticatedLayout>
         <section
@@ -19,13 +19,13 @@ const props = defineProps({
                     <h1
                         class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
                     >
-                        {{ props.wiki.title }}
+                        {{ props.music.title }}
                     </h1>
                 </div>
 
                 <div
                     class="p-8 bg-gray-100 grow h-full overflow-y-auto"
-                    v-html="props.wiki.body"
+                    v-html="props.music.body"
                 ></div>
             </div>
         </section>

@@ -64,6 +64,10 @@ const showingNavigationDropdown = ref(false);
                                     text="ウィキ"
                                 />
                                 <DefaultNaviLink
+                                    routePath="music.index"
+                                    text="音楽"
+                                />
+                                <DefaultNaviLink
                                     routePath="camera.index"
                                     text="カメラ"
                                 />
@@ -192,9 +196,14 @@ const showingNavigationDropdown = ref(false);
                             routePath="blog.index"
                             text="ブログ"
                         />
+
                         <DefaultResponsiveNavLink
                             routePath="wiki.index"
                             text="ウィキ"
+                        />
+                        <DefaultResponsiveNavLink
+                            routePath="music.index"
+                            text="音楽"
                         />
                         <DefaultResponsiveNavLink
                             routePath="camera.index"

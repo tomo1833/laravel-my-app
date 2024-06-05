@@ -2,16 +2,16 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/vue3";
 defineProps({
-    books: Array<object>,
+    musics: Array<object>,
 });
 </script>
 
 <template>
-    <Head title="本" />
+    <Head title="音楽" />
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                本
+                音楽
             </h2>
         </template>
         <div
@@ -31,7 +31,7 @@ defineProps({
             <div class="p-4 2xl:px-64">
                 <Link
                     as="button"
-                    :href="route('book.create')"
+                    :href="route('music.create')"
                     class="bg-[#5568FE] text-white px-4 py-2 rounded"
                 >
                     登録
@@ -49,16 +49,16 @@ defineProps({
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="book in books" class="bg-white border-b">
+                    <tr v-for="music in musics" class="bg-white border-b">
                         <td class="py-4 px-6">
-                            {{ book.title }}
+                            {{ music.title }}
                         </td>
                         <td class="py-4 px-6">
                             <Link
                                 as="button"
                                 :href="
-                                    route('book.show', {
-                                        book: book.id,
+                                    route('music.show', {
+                                        music: music.id,
                                     })
                                 "
                                 class="bg-[#F5F5F5] text-[#394264] px-3 py-1 rounded"
@@ -69,8 +69,8 @@ defineProps({
                             <Link
                                 as="button"
                                 :href="
-                                    route('book.edit', {
-                                        book: book.id,
+                                    route('music.edit', {
+                                        music: music.id,
                                     })
                                 "
                                 class="bg-[#F5F5F5] text-[#394264] px-3 py-1 rounded"

@@ -7,8 +7,10 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CameraController;
 use App\Http\Controllers\ChatGPTController;
 use App\Http\Controllers\EducationController;
+use App\Http\Controllers\MusicController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WikiController;
+
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +48,9 @@ Route::resource('book', BookController::class)
 ->middleware(['auth', 'verified']);
 
 Route::resource('blog', BlogController::class)
+->middleware(['auth', 'verified']);
+
+Route::resource('music', MusicController::class)
 ->middleware(['auth', 'verified']);
 
 Route::resource('wiki', WikiController::class)

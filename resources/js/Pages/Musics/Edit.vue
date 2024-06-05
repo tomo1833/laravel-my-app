@@ -6,41 +6,41 @@ import { useForm } from "laravel-precognition-vue-inertia";
 import { QuillEditor } from "@vueup/vue-quill";
 
 const props = defineProps({
-    wiki: Object,
+    music: Object,
 });
 
-const form = useForm("put", "/wiki/" + props.wiki.id, {
-    id: props.wiki.id,
-    title: props.wiki.title,
-    body: props.wiki.body,
+const form = useForm("put", "/music/" + props.music.id, {
+    id: props.music.id,
+    title: props.music.title,
+    body: props.music.body,
 });
 
-const updateWiki = () => {
+const updateMusic = () => {
     form.submit({
         preserveScroll: true,
         onSuccess: () => form.reset(),
     });
 };
 
-const deleteWiki = (id) => {
-    Inertia.delete(route("wiki.destroy", { wiki: id }), {
+const deleteMusic = (id) => {
+    Inertia.delete(route("music.destroy", { music: id }), {
         onBefore: () => confirm("削除しますか？"),
     });
 };
 </script>
 
 <template>
-    <Head title="ウィキ" />
+    <Head title="音楽" />
 
     <AuthenticatedLayout>
         <section class="text-gray-600 body-font py-24 relative">
-            <form @submit.prevent="updateWiki">
+            <form @submit.prevent="updateMusic">
                 <div class="container px-5 py-8 mx-auto bg-white">
                     <div class="flex flex-col text-center w-full mb-12 h-full">
                         <h1
                             class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
                         >
-                            ウィキ
+                            音楽
                         </h1>
                     </div>
 
@@ -77,7 +77,7 @@ const deleteWiki = (id) => {
                         </button>
                         <button
                             type="button"
-                            @click="deleteWiki(form.id)"
+                            @click="deleteMusic(form.id)"
                             class="mx-auto text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg"
                         >
                             削除
