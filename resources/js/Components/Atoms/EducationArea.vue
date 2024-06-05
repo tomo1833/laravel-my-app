@@ -13,7 +13,7 @@ const props = defineProps({
 </template>
 
 <style scoped>
-#education-area ::deep(h1) {
+#education-area :deep(h1) {
     font-size: 32px;
 }
 #education-area :deep(h1),
