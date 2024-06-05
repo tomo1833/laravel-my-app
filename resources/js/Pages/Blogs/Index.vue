@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/vue3";
+import LinkButton from "@/Components/Atoms/LinkButton.vue";
+
 defineProps({
     blogs: Array<object>,
 });

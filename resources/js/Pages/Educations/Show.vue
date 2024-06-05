@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
+import EducationArea from "@/Components/Atoms/EducationArea.vue";
 
 const props = defineProps({
     education: Object,
@@ -21,10 +22,7 @@ const props = defineProps({
                     >
                         {{ props.education.title }}
                     </h1>
-                    <div
-                        class="p-8 bg-gray-100 grow h-full overflow-y-auto"
-                        v-html="props.education.body_html"
-                    ></div>
+                    <EducationArea :body="props.education.body_html" />
                 </div>
             </div>
         </section>

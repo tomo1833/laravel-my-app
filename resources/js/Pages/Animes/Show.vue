@@ -22,7 +22,6 @@ const props = defineProps({
                         {{ props.anime.title }}
                     </h1>
                 </div>
-
                 <div
                     class="p-8 bg-gray-100 grow h-full overflow-y-auto"
                     v-html="props.anime.body"
