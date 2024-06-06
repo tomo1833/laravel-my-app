@@ -62,7 +62,7 @@ const storeMusic = () => {
                         <label class="block mb-2">備考</label>
                         <QuillEditor
                             theme="snow"
-                            v-model:content="form.body_html"
+                            v-model:content="form.body"
                             contentType="html"
                         />
                         <div v-if="form.invalid('body')" class="text-red-500">
