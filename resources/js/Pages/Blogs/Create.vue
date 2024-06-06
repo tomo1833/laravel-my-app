@@ -2,6 +2,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/vue3";
 import { useForm } from "laravel-precognition-vue-inertia";
+import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
 import { QuillEditor } from "@vueup/vue-quill";
 
 const form = useForm("post", "/blog", {
