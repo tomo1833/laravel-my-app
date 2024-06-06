@@ -16,7 +16,7 @@ class EducationController extends Controller
     public function index()
     {
         return Inertia::render('Educations/Index', [
-            'educations' => Education::select()->get(),
+            'educations' => Education::orderBy('order', 'asc')->get(),
         ]);
     }
 
