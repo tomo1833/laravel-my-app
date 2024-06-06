@@ -29,6 +29,7 @@ defineProps({
         <div class="flex items-center justify-between mb-4 bg-green-300">
             <div></div>
             <div class="p-4 2xl:px-64">
+                
                 <Link
                     as="button"
                     :href="route('music.create')"
@@ -45,6 +46,7 @@ defineProps({
                 <thead class="text-xs text-gray-700 uppercase bg-[#F4F4F4]">
                     <tr>
                         <th scope="col" class="py-3 px-6">タイトル</th>
+                        <th scope="col" class="py-3 px-6">アーティスト</th>
                         <th scope="col" class="py-3 px-6"></th>
                     </tr>
                 </thead>
@@ -52,6 +54,9 @@ defineProps({
                     <tr v-for="music in musics" class="bg-white border-b">
                         <td class="py-4 px-6">
                             {{ music.title }}
+                        </td>
+                        <td class="py-4 px-6">
+                            {{ music.artist }}
                         </td>
                         <td class="py-4 px-6">
                             <Link

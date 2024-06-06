@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
+import CommonArea from "@/Components/Atoms/CommonArea.vue";
 
 const props = defineProps({
     music: Object,
@@ -22,11 +23,14 @@ const props = defineProps({
                         {{ props.music.title }}
                     </h1>
                 </div>
-
-                <div
-                    class="p-8 bg-gray-100 grow h-full overflow-y-auto"
-                    v-html="props.music.body"
-                ></div>
+                <div class="flex flex-col text-center w-full mb-12 h-full">
+                    <h2
+                        class="sm:text-2xl text-xl font-medium title-font mb-4 text-gray-900"
+                    >
+                        {{ props.music.artist }}
+                    </h2>
+                </div>
+                <CommonArea :body="props.music.body" />
             </div>
         </section>
     </AuthenticatedLayout>

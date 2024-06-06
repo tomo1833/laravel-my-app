@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
+import CommonArea from "@/Components/Atoms/CommonArea.vue";
 
 const props = defineProps({
     anime: Object,
@@ -22,10 +23,7 @@ const props = defineProps({
                         {{ props.anime.title }}
                     </h1>
                 </div>
-                <div
-                    class="p-8 bg-gray-100 grow h-full overflow-y-auto"
-                    v-html="props.anime.body"
-                ></div>
+                <CommonArea :body="props.anime.body" />
             </div>
         </section>
     </AuthenticatedLayout>

@@ -4,6 +4,7 @@ import { reactive } from "vue";
 import { Head } from "@inertiajs/vue3";
 import { Inertia } from "@inertiajs/inertia";
 import { useForm } from "laravel-precognition-vue-inertia";
+import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
 
 const form = useForm("post", "/attendance", {
     id: null,
@@ -107,12 +108,7 @@ const storeAttendence = () => {
                             {{ form.errors.memo }}
                         </div>
                     </div>
-                    <button
-                        type="submit"
-                        class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-                    >
-                        登録
-                    </button>
+                    <CommonSubmitButton text="登録" />
                 </div>
             </form>
         </section>

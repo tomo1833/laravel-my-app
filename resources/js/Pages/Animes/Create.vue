@@ -2,6 +2,9 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import { useForm } from "laravel-precognition-vue-inertia";
+import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
+import { QuillEditor } from "@vueup/vue-quill";
+
 const form = useForm("post", "/anime", {
     id: null,
     title: null,
@@ -26,38 +29,32 @@ const storeAnime = () => {
                     >
                         アニメ
                     </h1>
-                </div>
 
-                <div class="mb-4">
-                    <label class="block mb-2">タイトル</label>
-                    <input
-                        type="text"
-                        name="title"
-                        v-model="form.title"
-                        class="p-2 border rounded w-full"
-                    />
-                    <div v-if="form.invalid('title')" class="text-red-500">
-                        {{ form.errors.title }}
+                    <div class="mb-4">
+                        <label class="block mb-2">タイトル</label>
+                        <input
+                            type="text"
+                            name="title"
+                            v-model="form.title"
+                            class="p-2 border rounded w-full"
+                        />
+                        <div v-if="form.invalid('title')" class="text-red-500">
+                            {{ form.errors.title }}
+                        </div>
                     </div>
-                </div>
-                <div class="mb-4">
-                    <label class="block mb-2"></label>
-                    <input
-                        type="text"
-                        name="body"
-                        v-model="form.body"
-                        class="p-2 border rounded w-full"
-                    />
-                    <div v-if="form.invalid('body')" class="text-red-500">
-                        {{ form.errors.body }}
+                    <div class="mb-4">
+                        <label class="block mb-2">本文</label>
+                        <QuillEditor
+                            theme="snow"
+                            v-model:content="form.body_html"
+                            contentType="html"
+                        />
+                        <div v-if="form.invalid('body')" class="text-red-500">
+                            {{ form.errors.body }}
+                        </div>
                     </div>
+                    <CommonSubmitButton text="登録" />
                 </div>
-                <button
-                    type="submit"
-                    tclass="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-                >
-                    登録
-                </button>
             </form>
         </section>
     </AuthenticatedLayout>

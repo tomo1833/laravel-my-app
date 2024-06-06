@@ -37,13 +37,14 @@ class MusicController extends Controller
         Music::create([
             'title' => $request->title,
             'body' => $request->body,
+            'artist' => $request->artist,
         ]);
-    
+
         return to_route('music.index')->with([
-             'message' => '登録しました。',
-             'status' => 'sucess',
+            'message' => '登録しました。',
+            'status' => 'sucess',
         ]);
-   
+
     }
 
     /**
@@ -74,6 +75,7 @@ class MusicController extends Controller
     {
         $music->title = $request->title;
         $music->body = $request->body;
+        $music->artist = $request->artist;
         $music->save();
 
         return to_route('music.index')->with([

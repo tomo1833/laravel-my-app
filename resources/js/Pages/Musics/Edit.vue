@@ -13,6 +13,7 @@ const form = useForm("put", "/music/" + props.music.id, {
     id: props.music.id,
     title: props.music.title,
     body: props.music.body,
+    artist: props.artist,
 });
 
 const updateMusic = () => {
@@ -45,7 +46,7 @@ const deleteMusic = (id) => {
                     </div>
 
                     <div class="mb-4">
-                        <label class="block mb-2"></label>
+                        <label class="block mb-2">タイトル</label>
                         <input
                             type="text"
                             name="title"
@@ -57,12 +58,23 @@ const deleteMusic = (id) => {
                         </div>
                     </div>
                     <div class="mb-4">
-                        <label class="block mb-2"></label>
+                        <label class="block mb-2">アーティスト</label>
                         <input
                             type="text"
-                            name="body"
-                            v-model="form.body"
+                            name="artist"
+                            v-model="form.artist"
                             class="p-2 border rounded w-full"
+                        />
+                        <div v-if="form.invalid('artist')" class="text-red-500">
+                            {{ form.errors.artist }}
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block mb-2">備考</label>
+                        <QuillEditor
+                            theme="snow"
+                            v-model:content="form.body"
+                            contentType="html"
                         />
                         <div v-if="form.invalid('body')" class="text-red-500">
                             {{ form.errors.body }}

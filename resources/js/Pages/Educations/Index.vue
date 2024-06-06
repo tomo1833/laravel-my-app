@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/vue3";
+import LinkButton from "@/Components/Atoms/LinkButton.vue";
+
 defineProps({
     educations: Array<object>,
 });
@@ -31,13 +33,7 @@ defineProps({
         <div class="flex items-center justify-between mb-4 bg-green-300">
             <div></div>
             <div class="p-4 2xl:px-64">
-                <Link
-                    as="button"
-                    :href="route('education.create')"
-                    class="bg-[#5568FE] text-white px-4 py-2 rounded"
-                >
-                    登録
-                </Link>
+                <LinkButton routePath="education.create" text="登録" />
             </div>
         </div>
 

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/vue3";
-import { reactive } from "vue";
-import { Inertia } from "@inertiajs/inertia";
 import { useForm } from "laravel-precognition-vue-inertia";
+import { QuillEditor } from "@vueup/vue-quill";
+
 const form = useForm("post", "/blog", {
     id: null,
     title: null,
@@ -28,38 +28,32 @@ const storeBlog = () => {
                     >
                         ブログ
                     </h1>
-                </div>
+                    <div class="mb-4">
+                        <label class="block mb-2">タイトル</label>
+                        <input
+                            type="text"
+                            name="title"
+                            v-model="form.title"
+                            class="p-2 border rounded w-full"
+                        />
+                        <div v-if="form.invalid('title')" class="text-red-500">
+                            {{ form.errors.title }}
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block mb-2">本文</label>
+                        <QuillEditor
+                            theme="snow"
+                            v-model:content="form.body"
+                            contentType="html"
+                        />
 
-                <div class="mb-4">
-                    <label class="block mb-2">タイトル</label>
-                    <input
-                        type="text"
-                        name="title"
-                        v-model="form.title"
-                        class="p-2 border rounded w-full"
-                    />
-                    <div v-if="form.invalid('title')" class="text-red-500">
-                        {{ form.errors.title }}
+                        <div v-if="form.invalid('body')" class="text-red-500">
+                            {{ form.errors.body }}
+                        </div>
                     </div>
+                    <CommonSubmitButton text="登録" />
                 </div>
-                <div class="mb-4">
-                    <label class="block mb-2"></label>
-                    <input
-                        type="text"
-                        name="body"
-                        v-model="form.body"
-                        class="p-2 border rounded w-full"
-                    />
-                    <div v-if="form.invalid('body')" class="text-red-500">
-                        {{ form.errors.body }}
-                    </div>
-                </div>
-                <button
-                    type="submit"
-                    tclass="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-                >
-                    登録
-                </button>
             </form>
         </section>
     </AuthenticatedLayout>

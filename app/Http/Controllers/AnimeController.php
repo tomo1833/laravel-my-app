@@ -40,8 +40,8 @@ class AnimeController extends Controller
         ]);
 
         return to_route('anime.index')->with([
-             'message' => '登録しました。',
-             'status' => 'sucess',
+            'message' => '登録しました。',
+            'status' => 'sucess',
         ]);
 
     }
@@ -72,6 +72,7 @@ class AnimeController extends Controller
     public function update(UpdateanimeRequest $request, anime $anime)
     {
         $anime->title = $request->title;
+        $anime->body = $request->body;
         $anime->body = $request->body;
         $anime->save();
 

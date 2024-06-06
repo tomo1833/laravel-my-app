@@ -57,12 +57,11 @@ const deleteAnime = (id) => {
                         </div>
                     </div>
                     <div class="mb-4">
-                        <label class="block mb-2"></label>
-                        <input
-                            type="text"
-                            name="body"
-                            v-model="form.body"
-                            class="p-2 border rounded w-full"
+                        <label class="block mb-2">本文</label>
+                        <QuillEditor
+                            theme="snow"
+                            v-model:content="form.body"
+                            contentType="html"
                         />
                         <div v-if="form.invalid('body')" class="text-red-500">
                             {{ form.errors.body }}

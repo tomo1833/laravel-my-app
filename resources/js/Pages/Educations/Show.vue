@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
-import EducationArea from "@/Components/Atoms/EducationArea.vue";
+import CommonArea from "@/Components/Atoms/CommonArea.vue";
 
 const props = defineProps({
     education: Object,
@@ -22,7 +22,7 @@ const props = defineProps({
                     >
                         {{ props.education.title }}
                     </h1>
-                    <EducationArea :body="props.education.body_html" />
+                    <CommonArea :body="props.education.body_html" />
                 </div>
             </div>
         </section>

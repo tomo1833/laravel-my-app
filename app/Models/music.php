@@ -12,6 +12,7 @@ class music extends Model
     protected $fillable = [
         'title',
         'body',
+        'artist',
     ];
-    
+
 }
