@@ -46,7 +46,7 @@ const storeAnime = () => {
                         <label class="block mb-2">本文</label>
                         <QuillEditor
                             theme="snow"
-                            v-model:content="form.body_html"
+                            v-model:content="form.body"
                             contentType="html"
                         />
                         <div v-if="form.invalid('body')" class="text-red-500">
