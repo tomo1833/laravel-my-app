@@ -57,6 +57,7 @@ const storeEduations = () => {
                             theme="snow"
                             v-model:content="form.body_html"
                             contentType="html"
+                            toolbar="full"
                         />
                         <div
                             v-if="form.invalid('body_html')"
