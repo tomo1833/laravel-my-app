@@ -35,7 +35,7 @@ const props = defineProps({
                         theme="snow"
                         v-model:content="props.education.body_html"
                         contentType="html"
-                        :toolbar="false"
+                        :toolbar=""
                         :readOnly="true"
                     />
                 </div>
