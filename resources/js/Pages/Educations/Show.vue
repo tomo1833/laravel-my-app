@@ -3,6 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import CommonArea from "@/Components/Atoms/CommonArea.vue";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
+import { QuillEditor } from "@vueup/vue-quill";
 
 const props = defineProps({
     education: Object,
@@ -18,19 +19,25 @@ const props = defineProps({
         >
             <div class="container sm:px-1 px-5 py-8 mx-auto bg-white h-full">
                 <div class="px-4">
-                <CommonLinkButton
-                    routePath="education.index"
-                    text="戻る"
-                    styleType="primary"
-                />
-            </div>
+                    <CommonLinkButton
+                        routePath="education.index"
+                        text="戻る"
+                        styleType="primary"
+                    />
+                </div>
                 <div class="flex flex-col text-center w-full mb-12 h-full">
                     <h1
                         class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
                     >
                         {{ props.education.title }}
                     </h1>
-                    <CommonArea :body="props.education.body_html" />
+                    <QuillEditor
+                        theme="snow"
+                        v-model:content="props.education.body_html"
+                        contentType="html"
+                        :toolbar="false"
+                        :readOnly="true"
+                    />
                 </div>
             </div>
         </section>
