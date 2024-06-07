@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/vue3";
-import LinkButton from "@/Components/Atoms/LinkButton.vue";
+import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 
 defineProps({
     wikis: Array<object>,
@@ -31,7 +31,11 @@ defineProps({
         <div class="flex items-center justify-between mb-4 bg-green-300">
             <div></div>
             <div class="p-4 2xl:px-64">
-                <LinkButton routePath="wiki.create" text="登録" />
+                <CommonLinkButton
+                    routePath="wiki.create"
+                    text="登録"
+                    styleType="primary"
+                />
             </div>
         </div>
         <div class="bg-[#FFFFFF] mx-4 my-2">
@@ -50,29 +54,19 @@ defineProps({
                             {{ wiki.title }}
                         </td>
                         <td class="py-4 px-6">
-                            <Link
-                                as="button"
-                                :href="
-                                    route('wiki.show', {
-                                        wiki: wiki.id,
-                                    })
-                                "
-                                class="bg-[#F5F5F5] text-[#394264] px-3 py-1 rounded"
-                            >
-                                詳細
-                            </Link>
+                            <CommonLinkButton
+                                routePath="wiki.show"
+                                text="詳細"
+                                styleType="table"
+                                :params="{ wiki: wiki.id }"
+                            />
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <Link
-                                as="button"
-                                :href="
-                                    route('wiki.edit', {
-                                        wiki: wiki.id,
-                                    })
-                                "
-                                class="bg-[#F5F5F5] text-[#394264] px-3 py-1 rounded"
-                            >
-                                編集
-                            </Link>
+                            <CommonLinkButton
+                                routePath="wiki.edit"
+                                text="編集"
+                                styleType="table"
+                                :params="{ wiki: wiki.id }"
+                            />
                         </td>
                     </tr>
                 </tbody>

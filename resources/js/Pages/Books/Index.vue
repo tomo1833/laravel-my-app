@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link } from "@inertiajs/vue3";
-import LinkButton from "@/Components/Atoms/LinkButton.vue";
+import { Head } from "@inertiajs/vue3";
+import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 
 defineProps({
     books: Array<object>,
@@ -31,7 +31,11 @@ defineProps({
         <div class="flex items-center justify-between mb-4 bg-green-300">
             <div></div>
             <div class="p-4 2xl:px-64">
-                <LinkButton routePath="book.create" text="登録" />
+                <CommonLinkButton
+                    routePath="book.create"
+                    text="登録"
+                    styleType="primary"
+                />
             </div>
         </div>
         <div class="bg-[#FFFFFF] mx-4 my-2">
@@ -50,29 +54,19 @@ defineProps({
                             {{ book.title }}
                         </td>
                         <td class="py-4 px-6">
-                            <Link
-                                as="button"
-                                :href="
-                                    route('book.show', {
-                                        book: book.id,
-                                    })
-                                "
-                                class="bg-[#F5F5F5] text-[#394264] px-3 py-1 rounded"
-                            >
-                                詳細
-                            </Link>
+                            <CommonLinkButton
+                                routePath="book.show"
+                                text="詳細"
+                                styleType="table"
+                                :params="{ book: book.id }"
+                            />
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <Link
-                                as="button"
-                                :href="
-                                    route('book.edit', {
-                                        book: book.id,
-                                    })
-                                "
-                                class="bg-[#F5F5F5] text-[#394264] px-3 py-1 rounded"
-                            >
-                                編集
-                            </Link>
+                            <CommonLinkButton
+                                routePath="book.edit"
+                                text="編集"
+                                styleType="table"
+                                :params="{ book: book.id }"
+                            />
                         </td>
                     </tr>
                 </tbody>

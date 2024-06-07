@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { Head, Link } from "@inertiajs/vue3";
 import { Inertia } from "@inertiajs/inertia";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import LinkButton from "@/Components/Atoms/LinkButton.vue";
+import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 import DefaultButton from "@/Components/Atoms/DefaultButton.vue";
 
 interface Attendance {
@@ -130,7 +130,11 @@ const search = () => {
             </div>
 
             <div class="px-64 py-4">
-                <LinkButton routePath="attendance.create" text="登録" />
+                <CommonLinkButton
+                    routePath="attendance.create"
+                    text="登録"
+                    styleType="primary"
+                />
             </div>
         </div>
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/vue3";
-import LinkButton from "@/Components/Atoms/LinkButton.vue";
+import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 
 defineProps({
     educations: Array<object>,
@@ -33,7 +33,11 @@ defineProps({
         <div class="flex items-center justify-between mb-4 bg-green-300">
             <div></div>
             <div class="p-4 2xl:px-64">
-                <LinkButton routePath="education.create" text="登録" />
+                <CommonLinkButton
+                    routePath="education.create"
+                    text="登録"
+                    styleType="primary"
+                />
             </div>
         </div>
 
@@ -56,29 +60,19 @@ defineProps({
                             {{ education.title }}
                         </td>
                         <td class="py-4 px-6">
-                            <Link
-                                as="button"
-                                :href="
-                                    route('education.show', {
-                                        education: education.id,
-                                    })
-                                "
-                                class="bg-[#F5F5F5] text-[#394264] px-3 py-1 rounded"
-                            >
-                                詳細
-                            </Link>
+                            <CommonLinkButton
+                                routePath="education.show"
+                                text="詳細"
+                                styleType="table"
+                                :params="{ education: education.id }"
+                            />
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <Link
-                                as="button"
-                                :href="
-                                    route('education.edit', {
-                                        education: education.id,
-                                    })
-                                "
-                                class="bg-[#F5F5F5] text-[#394264] px-4 py-1 rounded"
-                            >
-                                編集
-                            </Link>
+                            <CommonLinkButton
+                                routePath="education.edit"
+                                text="編集"
+                                styleType="table"
+                                :params="{ education: education.id }"
+                            />
                         </td>
                     </tr>
                 </tbody>
