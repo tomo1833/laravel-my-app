@@ -19,7 +19,8 @@ const props = defineProps({
 #education-area :deep(h1),
 #education-area :deep(p),
 #education-area :deep(ul),
-#education-area :deep(li) {
+#education-area :deep(li),
+#education-area :deep(pre) {
     text-align: left;
 }
 
