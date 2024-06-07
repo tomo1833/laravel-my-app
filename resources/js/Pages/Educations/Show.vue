@@ -3,7 +3,6 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import CommonArea from "@/Components/Atoms/CommonArea.vue";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
-import { QuillEditor } from "@vueup/vue-quill";
 
 const props = defineProps({
     education: Object,
@@ -31,13 +30,7 @@ const props = defineProps({
                     >
                         {{ props.education.title }}
                     </h1>
-                    <QuillEditor
-                        theme="snow"
-                        v-model:content="props.education.body_html"
-                        contentType="html"
-                        :toolbar=""
-                        :readOnly="true"
-                    />
+                    <CommonArea :body="props.education.body_html" />
                 </div>
             </div>
         </section>
