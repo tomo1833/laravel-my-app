@@ -66,7 +66,12 @@ const chatMessages = ref([]);
         </header>
 
         <main class="flex-1 flex flex-col items-center justify-center">
-            <h1 class="text-center text-4xl font-bold">基幹システム</h1>
+            <h1 class="text-center text-4xl font-bold">
+                パーソナルオーガナイザーシステム
+            </h1>
+            <p>
+                あなたの生活を一括管理するウェブページ。スケジュール、趣味、勉強、勤怠の全てを効率的に整理し、目標達成をサポートします。シンプルな操作で日々の生活をより豊かに、計画的に。
+            </p>
         </main>
         <footer
             class="h-10 py-2 items-center bg-white w-full text-center flex justify-center"
