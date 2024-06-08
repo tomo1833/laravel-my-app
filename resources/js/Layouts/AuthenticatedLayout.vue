@@ -72,6 +72,18 @@ const showingNavigationDropdown = ref(false);
                                     routePath="camera.index"
                                     text="カメラ"
                                 />
+                                <DefaultNaviLink
+                                    routePath="shougi.index"
+                                    text="将棋"
+                                />
+                                <DefaultNaviLink
+                                    routePath="manga.index"
+                                    text="漫画"
+                                />
+                                <DefaultNaviLink
+                                    routePath="movie.index"
+                                    text="映画"
+                                />
                             </div>
                         </div>
 
@@ -209,6 +221,18 @@ const showingNavigationDropdown = ref(false);
                         <DefaultResponsiveNavLink
                             routePath="camera.index"
                             text="カメラ"
+                        />
+                        <DefaultResponsiveNavLink
+                            routePath="shougi.index"
+                            text="将棋"
+                        />
+                        <DefaultResponsiveNavLink
+                            routePath="manga.index"
+                            text="漫画"
+                        />
+                        <DefaultResponsiveNavLink
+                            routePath="movie.index"
+                            text="映画"
                         />
                     </div>
 

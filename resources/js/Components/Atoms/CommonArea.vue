@@ -16,6 +16,9 @@ const props = defineProps({
 #education-area :deep(h1) {
     font-size: 32px;
 }
+#education-area :deep(h2) {
+    font-size: 24px;
+}
 #education-area :deep(h1),
 #education-area :deep(p),
 #education-area :deep(ul),

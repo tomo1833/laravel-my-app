@@ -10,7 +10,9 @@ use App\Http\Controllers\EducationController;
 use App\Http\Controllers\MusicController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WikiController;
-
+use App\Http\Controllers\ShougiController;
+use App\Http\Controllers\MangaController;
+use App\Http\Controllers\MovieController;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -56,6 +58,14 @@ Route::resource('music', MusicController::class)
 Route::resource('wiki', WikiController::class)
 ->middleware(['auth', 'verified']);
 
+Route::resource('shougi', ShougiController::class)
+->middleware(['auth', 'verified']);
+
+Route::resource('manga', MangaController::class)
+->middleware(['auth', 'verified']);
+
+Route::resource('movie', MovieController::class)
+->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

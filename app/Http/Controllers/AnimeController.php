@@ -73,7 +73,6 @@ class AnimeController extends Controller
     {
         $anime->title = $request->title;
         $anime->body = $request->body;
-        $anime->body = $request->body;
         $anime->save();
 
         return to_route('anime.index')->with([
