@@ -39,13 +39,6 @@ const props = defineProps({
                         allowfullscreen
                     ></iframe>
                 </div>
-                <div class="flex flex-col text-center w-full mb-12 h-full">
-                    <h2
-                        class="sm:text-2xl text-xl font-medium title-font mb-4 text-gray-900"
-                    >
-                        {{ props.music.artist }}
-                    </h2>
-                </div>
 
                 <CommonArea :body="props.music.body" />
             </div>

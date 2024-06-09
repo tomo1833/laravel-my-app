@@ -20,4 +20,8 @@ import CommonResNaviLink from "@/Components/Atoms/CommonResNaviLink.vue";
         routePath="educationMiddle.index"
         text="教育中項目"
     />
+    <CommonResponsiveNaviLink
+        routePath="educationSmall.index"
+        text="教育小項目"
+    />
 </template>

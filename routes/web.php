@@ -9,13 +9,14 @@ use App\Http\Controllers\ChatGPTController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\EducationLargeController;
+use App\Http\Controllers\EducationMiddleController;
+use App\Http\Controllers\EducationSmallController;
 use App\Http\Controllers\MangaController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MusicController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShougiController;
 use App\Http\Controllers\WikiController;
-use App\Http\Controllers\EducationMiddleController;
 
 
 use Illuminate\Foundation\Application;
@@ -75,6 +76,9 @@ Route::resource('educationLarge', EducationLargeController::class)
 ->middleware(['auth', 'verified']);
 
 Route::resource('educationMiddle', EducationMiddleController::class)
+->middleware(['auth', 'verified']);
+
+Route::resource('educationSmall', EducationSmallController::class)
 ->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {

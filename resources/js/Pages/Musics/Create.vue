@@ -10,7 +10,7 @@ const form = useForm("post", "/music", {
     id: null,
     title: null,
     artist: null,
-    youtubu_url: null,
+    youtube_url: null,
     body: null,
 });
 
