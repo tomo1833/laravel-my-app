@@ -6,7 +6,7 @@ use App\Http\Requests\StoreanimeRequest;
 use App\Http\Requests\UpdateanimeRequest;
 use App\Models\anime;
 
-use Illuminate\Support\Facades\Storage; 
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class AnimeController extends Controller

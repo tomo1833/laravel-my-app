@@ -16,7 +16,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        
+
         $education = Education::count();
         $animeCount = Anime::count();
         $musicCount = Music::count();

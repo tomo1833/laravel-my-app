@@ -38,12 +38,12 @@ class WikiController extends Controller
             'title' => $request->title,
             'body' => $request->body,
         ]);
-    
+
         return to_route('wiki.index')->with([
              'message' => '登録しました。',
              'status' => 'create',
         ]);
-    
+
     }
 
     /**
@@ -53,7 +53,7 @@ class WikiController extends Controller
     {
         return Inertia::render('Wikis/Show', [
             'wiki' => $wiki,
-         ]); 
+         ]);
     }
 
     /**
@@ -63,7 +63,7 @@ class WikiController extends Controller
     {
         return Inertia::render('Wikis/Edit', [
             'wiki' => $wiki,
-         ]); 
+         ]);
     }
 
     /**

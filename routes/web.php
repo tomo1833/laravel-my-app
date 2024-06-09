@@ -15,6 +15,8 @@ use App\Http\Controllers\MusicController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShougiController;
 use App\Http\Controllers\WikiController;
+use App\Http\Controllers\EducationMiddleController;
+
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -70,6 +72,9 @@ Route::resource('movie', MovieController::class)
 ->middleware(['auth', 'verified']);
 
 Route::resource('educationLarge', EducationLargeController::class)
+->middleware(['auth', 'verified']);
+
+Route::resource('educationMiddle', EducationMiddleController::class)
 ->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {

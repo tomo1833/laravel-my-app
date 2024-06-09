@@ -12,23 +12,23 @@ class MangaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()	
-    {	
-	
-        $mangas = Manga::get();	
-	
-        return Inertia::render('Mangas/Index', [	
-            'mangas' => $mangas,	
-        ]);	
-    }	
+    public function index()
+    {
+
+        $mangas = Manga::get();
+
+        return Inertia::render('Mangas/Index', [
+            'mangas' => $mangas,
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()		
-    {		
-        return Inertia::render('Mangas/Create');		
-    }		
+    public function create()
+    {
+        return Inertia::render('Mangas/Create');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -39,23 +39,23 @@ class MangaController extends Controller
             'title' => $request->title,
             'body' => $request->body,
         ]);
-    
+
         return to_route('manga.index')->with([
              'message' => '登録しました。',
              'status' => 'create',
         ]);
-    
+
     }
 
     /**
      * Display the specified resource.
      */
     public function show(manga $manga)
-    {	
-        return Inertia::render('Mangas/Show', [	
-          'manga' => $manga,	
-        ]);	
-    }	
+    {
+        return Inertia::render('Mangas/Show', [
+          'manga' => $manga,
+        ]);
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -66,7 +66,7 @@ class MangaController extends Controller
             'manga' => $manga,
         ]);
     }
-    
+
 
     /**
      * Update the specified resource in storage.
@@ -77,7 +77,7 @@ class MangaController extends Controller
             $manga->title = $request->title;
             $manga->body = $request->body;
             $manga->save();
-    
+
             return to_route('manga.index')->with([
                'message' => '登録しました。',
                'status' => 'create',
@@ -90,13 +90,13 @@ class MangaController extends Controller
      */
     public function destroy(manga $manga)
     {
-        {	
-            $manga->delete();	
-        
-            return to_route('manga.index')->with([	
-               'message' => '削除しました。',	
-               'status' => damger,	
-            ]);	
-        }	
+        {
+            $manga->delete();
+
+            return to_route('manga.index')->with([
+               'message' => '削除しました。',
+               'status' => damger,
+            ]);
+        }
     }
 }

@@ -16,7 +16,7 @@ class CameraController extends Controller
     public function index()
     {
         // Inertia.jsにデータを渡す
-        return Inertia::render('Cameras/Index', []);       
+        return Inertia::render('Cameras/Index', []);
     }
 
     /**

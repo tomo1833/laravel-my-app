@@ -62,7 +62,7 @@ class EducationLargeController extends Controller
         return Inertia::render('Educationlarges/Edit', [
             'educationLarge' => $educationLarge,
          ]);
- 
+
     }
 
     /**

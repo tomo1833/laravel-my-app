@@ -54,7 +54,7 @@ class BookController extends Controller
     {
         return Inertia::render('Books/Show', [
             'book' => $book,
-          ]);  
+          ]);
     }
 
     /**
@@ -64,7 +64,7 @@ class BookController extends Controller
     {
         return Inertia::render('Books/Edit', [
             'book' => $book,
-          ]);  
+          ]);
     }
 
     /**
@@ -72,14 +72,14 @@ class BookController extends Controller
      */
     public function update(UpdatebookRequest $request, book $book)
     {
-        $book->title = $request->title;	
-        $book->body = $request->body;	
-        $book->save();	
-	
-        return to_route('book.index')->with([	
-           'message' => '登録しました。',	
-           'status' => 'create',	
-        ]);	
+        $book->title = $request->title;
+        $book->body = $request->body;
+        $book->save();
+
+        return to_route('book.index')->with([
+           'message' => '登録しました。',
+           'status' => 'create',
+        ]);
 
     }
 
@@ -88,10 +88,10 @@ class BookController extends Controller
      */
     public function destroy(book $book)
     {
-        return to_route('book.index')->with([	
-            'message' => '削除しました。',	
-            'status' => 'damger',	
-         ]);	
- 
+        return to_route('book.index')->with([
+            'message' => '削除しました。',
+            'status' => 'damger',
+         ]);
+
     }
 }

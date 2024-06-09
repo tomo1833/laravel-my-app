@@ -34,6 +34,11 @@ const menuItems = ref<MenuItem[]>([
                 routePath: "educationLarge.index",
                 isLink: true,
             },
+            {
+                text: "教育中項目",
+                routePath: "educationMiddle.index",
+                isLink: true,
+            },
         ],
     },
     {
