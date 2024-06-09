@@ -44,12 +44,14 @@ defineProps({
             >
                 <thead class="text-xs text-gray-700 uppercase bg-[#F4F4F4]">
                     <tr>
+                        <th scope="col" class="py-3 px-6"></th>
                         <th scope="col" class="py-3 px-6">タイトル</th>
                         <th scope="col" class="py-3 px-6"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="anime in animes" class="bg-white border-b">
+                        <img :src="`/storage/${anime.path}`" alt="props.anime.title" class="w-64">
                         <td class="py-4 px-6">
                             {{ anime.title }}
                         </td>
