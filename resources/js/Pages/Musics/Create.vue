@@ -64,15 +64,15 @@ const storeMusic = () => {
                         <label class="block mb-2">YouTube URL</label>
                         <input
                             type="text"
-                            name="youtubu_url"
-                            v-model="form.youtubu_url"
+                            name="youtube_url"
+                            v-model="form.youtube_url"
                             class="p-2 border rounded w-full"
                         />
                         <div
-                            v-if="form.invalid('youtubu_url')"
+                            v-if="form.invalid('youtube_url')"
                             class="text-red-500"
                         >
-                            {{ form.errors.youtubu_url }}
+                            {{ form.errors.youtube_url }}
                         </div>
                     </div>
 

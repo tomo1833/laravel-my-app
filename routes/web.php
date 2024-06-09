@@ -6,14 +6,15 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CameraController;
 use App\Http\Controllers\ChatGPTController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EducationController;
-use App\Http\Controllers\MusicController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\WikiController;
-use App\Http\Controllers\ShougiController;
+use App\Http\Controllers\EducationLargeController;
 use App\Http\Controllers\MangaController;
 use App\Http\Controllers\MovieController;
-use App\Http\Controllers\EducationLargeController;
+use App\Http\Controllers\MusicController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShougiController;
+use App\Http\Controllers\WikiController;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -29,9 +30,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('dashboard', [DashboardController::class, 'index'])
+    ->name('dashboard')
+    ->middleware(['auth', 'verified']);
 
 Route::resource('attendance', AttendanceController::class)
 ->middleware(['auth', 'verified']);

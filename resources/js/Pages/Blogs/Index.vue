@@ -31,13 +31,11 @@ defineProps({
         <div class="flex items-center justify-between mb-4 bg-green-300">
             <div></div>
             <div class="p-4 2xl:px-64">
-                <div class="p-4 2xl:px-64">
-                    <CommonLinkButton
-                        routePath="blog.create"
-                        text="登録"
-                        styleType="primary"
-                    />
-                </div>
+                <CommonLinkButton
+                    routePath="blog.create"
+                    text="登録"
+                    styleType="primary"
+                />
             </div>
         </div>
         <div class="bg-[#FFFFFF] mx-4 my-2">
