@@ -5,8 +5,8 @@ import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
 
-import DefaultNaviLink from "@/Components/Atoms/DefaultNaviLink.vue";
-import DefaultResponsiveNavLink from "@/Components/Atoms/DefaultResponsiveNavLink.vue";
+import NaviiLink from "@/Components/Organisms/NaviLink.vue";
+import ResNavLink from "@/Components/Organisms/ResNavLink.vue";
 
 import { Link } from "@inertiajs/vue3";
 
@@ -36,54 +36,7 @@ const showingNavigationDropdown = ref(false);
                             <div
                                 class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
                             >
-                                <DefaultNaviLink
-                                    routePath="dashboard"
-                                    text="ダッシュボード"
-                                />
-                                <DefaultNaviLink
-                                    routePath="attendance.index"
-                                    text="勤怠管理"
-                                />
-                                <DefaultNaviLink
-                                    routePath="education.index"
-                                    text="教育管理"
-                                />
-                                <DefaultNaviLink
-                                    routePath="anime.index"
-                                    text="アニメ"
-                                />
-                                <DefaultNaviLink
-                                    routePath="book.index"
-                                    text="本"
-                                />
-                                <DefaultNaviLink
-                                    routePath="blog.index"
-                                    text="ブログ"
-                                />
-                                <DefaultNaviLink
-                                    routePath="wiki.index"
-                                    text="ウィキ"
-                                />
-                                <DefaultNaviLink
-                                    routePath="music.index"
-                                    text="音楽"
-                                />
-                                <DefaultNaviLink
-                                    routePath="camera.index"
-                                    text="カメラ"
-                                />
-                                <DefaultNaviLink
-                                    routePath="shougi.index"
-                                    text="将棋"
-                                />
-                                <DefaultNaviLink
-                                    routePath="manga.index"
-                                    text="漫画"
-                                />
-                                <DefaultNaviLink
-                                    routePath="movie.index"
-                                    text="映画"
-                                />
+                                <NaviiLink />
                             </div>
                         </div>
 
@@ -185,55 +138,7 @@ const showingNavigationDropdown = ref(false);
                     class="sm:hidden"
                 >
                     <div class="pt-2 pb-3 space-y-1">
-                        <DefaultResponsiveNavLink
-                            routePath="dashboard"
-                            text="ダッシュボード"
-                        />
-                        <DefaultResponsiveNavLink
-                            routePath="attendance.index"
-                            text="勤怠管理"
-                        />
-                        <DefaultResponsiveNavLink
-                            routePath="education.index"
-                            text="教育管理"
-                        />
-                        <DefaultResponsiveNavLink
-                            routePath="anime.index"
-                            text="アニメ"
-                        />
-                        <DefaultResponsiveNavLink
-                            routePath="book.index"
-                            text="本"
-                        />
-                        <DefaultResponsiveNavLink
-                            routePath="blog.index"
-                            text="ブログ"
-                        />
-
-                        <DefaultResponsiveNavLink
-                            routePath="wiki.index"
-                            text="ウィキ"
-                        />
-                        <DefaultResponsiveNavLink
-                            routePath="music.index"
-                            text="音楽"
-                        />
-                        <DefaultResponsiveNavLink
-                            routePath="camera.index"
-                            text="カメラ"
-                        />
-                        <DefaultResponsiveNavLink
-                            routePath="shougi.index"
-                            text="将棋"
-                        />
-                        <DefaultResponsiveNavLink
-                            routePath="manga.index"
-                            text="漫画"
-                        />
-                        <DefaultResponsiveNavLink
-                            routePath="movie.index"
-                            text="映画"
-                        />
+                        <ResNavLink />
                     </div>
 
                     <!-- Responsive Settings Options -->
