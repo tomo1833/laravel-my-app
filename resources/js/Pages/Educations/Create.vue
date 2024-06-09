@@ -13,6 +13,7 @@ const form = useForm("post", "/education", {
     body: null,
     body_html: null,
     order: null,
+    large_kbn: null,
 });
 
 const toolbarOptions = [
@@ -36,8 +37,6 @@ const toolbarOptions = [
 ];
 
 const storeEducations = () => {
-    console.log("----------");
-    console.log(form.body_html);
     form.submit({
         preserveScroll: true,
         onSuccess: () => form.reset(),
@@ -59,7 +58,21 @@ const storeEducations = () => {
                             教育ページ登録
                         </h1>
                     </div>
-
+                    <div class="mb-4">
+                        <label class="block mb-2">大項目</label>
+                        <input
+                            type="text"
+                            name="large_kbn"
+                            v-model="form.large_kbn"
+                            class="p-2 border rounded w-full"
+                        />
+                        <div
+                            v-if="form.invalid('large_kbn')"
+                            class="text-red-500"
+                        >
+                            {{ form.errors.large_kbn }}
+                        </div>
+                    </div>
                     <div class="mb-4">
                         <label class="block mb-2">タイトル</label>
                         <input

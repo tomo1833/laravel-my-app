@@ -16,6 +16,7 @@ class education extends Model
         'title',
         'body',
         'body_html',
+        'large_kbn',
         'order',
     ];
 }

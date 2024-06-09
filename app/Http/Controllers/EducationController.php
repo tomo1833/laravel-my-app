@@ -16,7 +16,12 @@ class EducationController extends Controller
     public function index()
     {
         return Inertia::render('Educations/Index', [
-            'educations' => Education::orderBy('order', 'asc')->get(),
+
+            'educations' => Education::leftJoin('education_larges', 'educations.large_kbn', '=', 'education_larges.id')
+            ->orderBy('educations.order', 'asc')
+            ->select('educations.id', 'educations.title', 'educations.body', 'educations.body_html', 'educations.order', 'educations.large_kbn', 'education_larges.name as large_name', )
+            ->get(),
+
         ]);
     }
 
@@ -38,6 +43,7 @@ class EducationController extends Controller
             'body' => $request->body_html,
             'body_html' => $request->body_html,
             'order' => $request->order,
+            'large_kbn' => $request->large_kbn,
         ]);
 
         return to_route('education.index')->with([
@@ -75,6 +81,7 @@ class EducationController extends Controller
         $education->body = $request->body;
         $education->body_html = $request->body_html;
         $education->order = $request->order;
+        $education->large_kbn = $request->large_kbn;
         $education->save();
 
 

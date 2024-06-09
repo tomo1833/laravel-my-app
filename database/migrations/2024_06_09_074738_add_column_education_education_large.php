@@ -10,8 +10,8 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::table('music', function (Blueprint $table) {
-            $table->string('artist', length: 100)->nullable();
+        Schema::table('educations', function (Blueprint $table) {
+            $table->integer('large_kbn');
         });
     }
 
@@ -20,8 +20,8 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::table('music', function (Blueprint $table) {
-            $table->dropColumn('artist');
+        Schema::table('educations', function (Blueprint $table) {
+            $table->dropColumn('large_kbn');
         });
     }
 };

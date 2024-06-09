@@ -2,7 +2,8 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/vue3";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
-
+import CommonHeaderTitl from "@/Components/Atoms/CommonHeaderTitl.vue";
+import FlashMessage from "@/Components/Atoms/CommonFlashMessage.vue";
 defineProps({
     educations: Array<object>,
 });
@@ -11,24 +12,13 @@ defineProps({
 <template>
     <Head title="教育管理" />
     <AuthenticatedLayout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                教育管理
-            </h2>
-        </template>
+        <CommonHeaderTitl text="教育管理" />
 
-        <div
-            v-if="$page.props.flash.status === 'create'"
-            class="w-full p-8 bg-blue-300 text-white"
-        >
-            {{ $page.props.flash.message }}
-        </div>
-        <div
-            v-if="$page.props.flash.status === 'delete'"
-            class="w-full p-8 bg-red-300 text-white"
-        >
-            {{ $page.props.flash.message }}
-        </div>
+        <FlashMessage
+            v-if="$page.props.flash.status"
+            :status="$page.props.flash.status"
+            :message="$page.props.flash.message"
+        />
 
         <div class="flex items-center justify-between mb-4 bg-green-300">
             <div></div>
@@ -47,6 +37,7 @@ defineProps({
             >
                 <thead class="text-xs text-gray-700 uppercase bg-[#F4F4F4]">
                     <tr>
+                        <th scope="col" class="py-3 px-6">大項目</th>
                         <th scope="col" class="py-3 px-6">タイトル</th>
                         <th scope="col" class="py-3 px-6">操作</th>
                     </tr>
@@ -56,7 +47,10 @@ defineProps({
                         v-for="education in educations"
                         class="bg-white border-b"
                     >
-                        <td class="py-4 px-6">
+                        <td class="py-4 px-2">
+                            {{ education.large_name }}
+                        </td>
+                        <td class="py-4 px-2">
                             {{ education.title }}
                         </td>
                         <td class="py-4 px-6">

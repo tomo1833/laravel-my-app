@@ -15,6 +15,7 @@ const form = useForm("put", "/education/" + props.education.id, {
     body: props.education.body,
     body_html: props.education.body_html,
     order: props.education.order,
+    large_kbn: props.education.large_kbn,
 });
 
 const updateEduation = () => {
@@ -65,7 +66,21 @@ const toolbarOptions = [
                             教育ページ登録
                         </h1>
                     </div>
-
+                    <div class="mb-4">
+                        <label class="block mb-2">大項目</label>
+                        <input
+                            type="text"
+                            name="large_kbn"
+                            v-model="form.large_kbn"
+                            class="p-2 border rounded w-full"
+                        />
+                        <div
+                            v-if="form.invalid('large_kbn')"
+                            class="text-red-500"
+                        >
+                            {{ form.errors.large_kbn }}
+                        </div>
+                    </div>
                     <div class="mb-4">
                         <label class="block mb-2">タイトル</label>
                         <input
