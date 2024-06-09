@@ -1,15 +1,33 @@
 <script setup lang="ts">
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import { ref } from "vue";
 import { Head } from "@inertiajs/vue3";
 import { useForm } from "laravel-precognition-vue-inertia";
-import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
 import { QuillEditor } from "@vueup/vue-quill";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
+
+const imageUrl = ref<string | null>(null);
+const selectedFile = ref<File | null>(null);
 
 const form = useForm("post", "/anime", {
     id: null,
     title: null,
     body: null,
+    image: null,
 });
+
+const handleFileChange = (event: Event) => {
+    const file = (event.target as HTMLInputElement).files?.[0] || null;
+    if (file) {
+        selectedFile.value = file;
+        imageUrl.value = URL.createObjectURL(file);
+        form.image = file; // 画像ファイルをフォームデータに追加
+    } else {
+        selectedFile.value = null;
+        imageUrl.value = null;
+    }
+};
+
 const storeAnime = () => {
     form.submit({
         preserveScroll: true,
@@ -43,6 +61,18 @@ const storeAnime = () => {
                         </div>
                     </div>
                     <div class="mb-4">
+                        <label class="block mb-2">画像</label>
+                        <input
+                            type="file"
+                            @change="handleFileChange"
+                            class="p-2 border rounded w-full"
+                        />
+                        <div v-if="form.invalid('image')" class="text-red-500">
+                            {{ form.errors.image }}
+                        </div>
+                        <img v-if="imageUrl" :src="imageUrl" class="mt-4" />
+                    </div>
+                    <div class="mb-4">
                         <label class="block mb-2">本文</label>
                         <QuillEditor
                             theme="snow"
@@ -53,6 +83,7 @@ const storeAnime = () => {
                             {{ form.errors.body }}
                         </div>
                     </div>
+
                     <CommonSubmitButton text="登録" />
                 </div>
             </form>

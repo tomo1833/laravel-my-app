@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import { Inertia } from "@inertiajs/inertia";
@@ -9,14 +10,40 @@ const props = defineProps({
     anime: Object,
 });
 
+const imageUrl = ref<string | null>(props.anime.path ? `/storage/${props.anime.path}` : null);
+const selectedFile = ref<File | null>(null);
+
 const form = useForm("put", "/anime/" + props.anime.id, {
     id: props.anime.id,
     title: props.anime.title,
     body: props.anime.body,
+    path: props.anime.path,
+    image: null,
 });
 
+const handleFileChange = (event: Event) => {
+    const file = (event.target as HTMLInputElement).files?.[0] || null;
+    if (file) {
+        selectedFile.value = file;
+        imageUrl.value = URL.createObjectURL(file);
+        form.image = file;
+    } else {
+        selectedFile.value = null;
+        imageUrl.value = null;
+        form.image = null;
+    }
+};
+
 const updateAnime = () => {
-    form.submit({
+    const formData = new FormData();
+    formData.append('_method', 'PUT'); // PUTメソッドを指定
+    formData.append('title', form.title);
+    formData.append('body', form.body);
+    if (selectedFile.value) {
+        formData.append('image', selectedFile.value);
+    }
+
+    Inertia.post("/anime/" + props.anime.id, formData, {
         preserveScroll: true,
         onSuccess: () => form.reset(),
     });
@@ -45,7 +72,7 @@ const deleteAnime = (id) => {
                     </div>
 
                     <div class="mb-4">
-                        <label class="block mb-2"></label>
+                        <label class="block mb-2">タイトル</label>
                         <input
                             type="text"
                             name="title"
@@ -55,6 +82,14 @@ const deleteAnime = (id) => {
                         <div v-if="form.invalid('title')" class="text-red-500">
                             {{ form.errors.title }}
                         </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block mb-2">画像</label>
+                        <input type="file" @change="handleFileChange" class="p-2 border rounded w-full" />
+                        <div v-if="form.invalid('image')" class="text-red-500">
+                            {{ form.errors.image }}
+                        </div>
+                        <img v-if="imageUrl" :src="imageUrl" class="mt-4" />
                     </div>
                     <div class="mb-4">
                         <label class="block mb-2">本文</label>

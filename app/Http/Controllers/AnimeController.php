@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreanimeRequest;
 use App\Http\Requests\UpdateanimeRequest;
 use App\Models\anime;
+
+use Illuminate\Support\Facades\Storage; 
 use Inertia\Inertia;
 
 class AnimeController extends Controller
@@ -34,8 +36,11 @@ class AnimeController extends Controller
      */
     public function store(StoreanimeRequest $request)
     {
+        $path = $request->file('image')->store('images', 'public');
+
         Anime::create([
             'title' => $request->title,
+            'path' => $path,
             'body' => $request->body,
         ]);
 
@@ -73,11 +78,22 @@ class AnimeController extends Controller
     {
         $anime->title = $request->title;
         $anime->body = $request->body;
+
+        if ($request->hasFile('image')) {
+            // 古い画像があれば削除
+            if ($anime->path) {
+                Storage::disk('public')->delete($anime->path);
+            }
+            // 新しい画像を保存
+            $path = $request->file('image')->store('images', 'public');
+            $anime->path = $path;
+        }
+
         $anime->save();
 
         return to_route('anime.index')->with([
-           'message' => '登録しました。',
-           'status' => 'create',
+            'message' => '更新しました。',
+            'status' => 'update',
         ]);
 
     }

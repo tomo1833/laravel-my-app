@@ -22,6 +22,7 @@ const props = defineProps({
                     >
                         {{ props.anime.title }}
                     </h1>
+                    <img :src="`/storage/${props.anime.path}`" alt="props.anime.title">
                     <CommonArea :body="props.anime.body" />
                 </div>
             </div>

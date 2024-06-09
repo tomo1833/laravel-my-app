@@ -11,7 +11,8 @@ class anime extends Model
 
     protected $fillable = [
         'title',
+        'path',
         'body',
     ];
-    
+
 }
