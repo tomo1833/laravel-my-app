@@ -44,7 +44,7 @@ class ShougiController extends Controller
 
         return to_route('shougi.index')->with([
              'message' => '登録しました。',
-             'status' => 'sucess',
+             'status' => 'create',
         ]);
     }
 
@@ -81,7 +81,7 @@ class ShougiController extends Controller
 
         return to_route('shougi.index')->with([
            'message' => '登録しました。',
-           'status' => 'sucess',
+           'status' => 'create',
         ]);
     }
 

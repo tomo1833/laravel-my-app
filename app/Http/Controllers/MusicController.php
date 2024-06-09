@@ -42,7 +42,7 @@ class MusicController extends Controller
 
         return to_route('music.index')->with([
             'message' => '登録しました。',
-            'status' => 'sucess',
+            'status' => 'create',
         ]);
 
     }
@@ -80,7 +80,7 @@ class MusicController extends Controller
 
         return to_route('music.index')->with([
            'message' => '登録しました。',
-           'status' => 'sucess',
+           'status' => 'create',
         ]);
 
     }

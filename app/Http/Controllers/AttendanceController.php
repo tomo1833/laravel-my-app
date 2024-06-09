@@ -73,7 +73,7 @@ class AttendanceController extends Controller
 
         return to_route('attendance.index')->with([
             'message' => '登録しました。',
-            'status' => 'sucess',
+            'status' => 'create',
         ]);
     }
 
@@ -108,7 +108,7 @@ class AttendanceController extends Controller
 
         return to_route('attendance.index')->with([
             'message' => '更新しました。',
-            'status' => 'sucess',
+            'status' => 'create',
         ]);
     }
 
@@ -120,7 +120,7 @@ class AttendanceController extends Controller
         $attendance->delete();
         return to_route('attendance.index')->with([
             'message' => '削除しました。',
-            'status' => 'danger',
+            'status' => 'delete',
         ]);
 
     }

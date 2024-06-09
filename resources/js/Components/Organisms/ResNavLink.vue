@@ -1,18 +1,19 @@
 <script setup lang="ts">
-import CommonResponsiveNavLink from "@/Components/Atoms/CommonResponsiveNavLink.vue";
+import CommonResNaviLink from "@/Components/Atoms/CommonResNaviLink.vue";
 </script>
 
 <template>
-    <CommonResponsiveNavLink routePath="dashboard" text="ダッシュボード" />
-    <CommonResponsiveNavLink routePath="attendance.index" text="勤怠管理" />
-    <CommonResponsiveNavLink routePath="education.index" text="教育管理" />
-    <CommonResponsiveNavLink routePath="anime.index" text="アニメ" />
-    <CommonResponsiveNavLink routePath="book.index" text="本" />
-    <CommonResponsiveNavLink routePath="blog.index" text="ブログ" />
-    <CommonResponsiveNavLink routePath="wiki.index" text="ウィキ" />
-    <CommonResponsiveNavLink routePath="music.index" text="音楽" />
-    <CommonResponsiveNavLink routePath="camera.index" text="カメラ" />
-    <CommonResponsiveNavLink routePath="shougi.index" text="将棋" />
-    <CommonResponsiveNavLink routePath="manga.index" text="漫画" />
-    <CommonResponsiveNavLink routePath="movie.index" text="映画" />
+    <CommonResNaviLink routePath="dashboard" text="ダッシュボード" />
+    <CommonResNaviLink routePath="attendance.index" text="勤怠管理" />
+    <CommonResNaviLink routePath="education.index" text="教育管理" />
+    <CommonResNaviLink routePath="anime.index" text="アニメ" />
+    <CommonResNaviLink routePath="book.index" text="本" />
+    <CommonResNaviLink routePath="blog.index" text="ブログ" />
+    <CommonResNaviLink routePath="wiki.index" text="ウィキ" />
+    <CommonResNaviLink routePath="music.index" text="音楽" />
+    <CommonResNaviLink routePath="camera.index" text="カメラ" />
+    <CommonResNaviLink routePath="shougi.index" text="将棋" />
+    <CommonResNaviLink routePath="manga.index" text="漫画" />
+    <CommonResNaviLink routePath="movie.index" text="映画" />
+    <CommonResNaviLink routePath="educationLarge.index" text="教育大項目" />
 </template>

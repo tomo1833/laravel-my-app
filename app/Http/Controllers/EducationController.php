@@ -42,7 +42,7 @@ class EducationController extends Controller
 
         return to_route('education.index')->with([
             'message' => '登録しました。',
-            'status' => 'sucess',
+            'status' => 'create',
         ]);
     }
 
@@ -80,7 +80,7 @@ class EducationController extends Controller
 
         return to_route('education.index')->with([
             'message' => '更新しました。',
-            'status' => 'sucess',
+            'status' => 'create',
         ]);
     }
 
@@ -92,7 +92,7 @@ class EducationController extends Controller
         $education->delete();
         return to_route('education.index')->with([
             'message' => '削除しました。',
-            'status' => 'danger',
+            'status' => 'delete',
         ]);
     }
 }

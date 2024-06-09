@@ -41,7 +41,7 @@ class WikiController extends Controller
     
         return to_route('wiki.index')->with([
              'message' => '登録しました。',
-             'status' => 'sucess',
+             'status' => 'create',
         ]);
     
     }
@@ -77,7 +77,7 @@ class WikiController extends Controller
 
         return to_route('wiki.index')->with([
            'message' => '登録しました。',
-           'status' => 'sucess',
+           'status' => 'create',
         ]);
     }
 

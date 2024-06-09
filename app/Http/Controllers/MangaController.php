@@ -42,7 +42,7 @@ class MangaController extends Controller
     
         return to_route('manga.index')->with([
              'message' => '登録しました。',
-             'status' => 'sucess',
+             'status' => 'create',
         ]);
     
     }
@@ -80,7 +80,7 @@ class MangaController extends Controller
     
             return to_route('manga.index')->with([
                'message' => '登録しました。',
-               'status' => 'sucess',
+               'status' => 'create',
             ]);
         }
     }

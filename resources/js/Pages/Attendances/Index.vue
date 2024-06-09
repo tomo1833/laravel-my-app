@@ -92,14 +92,14 @@ const search = () => {
         </template>
 
         <div
-            v-if="$page.props.flash.status === 'sucess'"
+            v-if="$page.props.flash.status === 'create'"
             class="w-full p-8 bg-blue-300 text-white"
         >
             {{ $page.props.flash.message }}
         </div>
 
         <div
-            v-if="$page.props.flash.status === 'danger'"
+            v-if="$page.props.flash.status === 'delete'"
             class="w-full p-8 bg-red-300 text-white"
         >
             {{ $page.props.flash.message }}

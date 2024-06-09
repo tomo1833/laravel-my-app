@@ -17,7 +17,7 @@ defineProps({
             </h2>
         </template>
         <div
-            v-if="$page.props.flash.status === 'sucess'"
+            v-if="$page.props.flash.status === 'create'"
             class="w-full p-8 bg-blue-300 text-white"
         >
             {{ $page.props.flash.message }}

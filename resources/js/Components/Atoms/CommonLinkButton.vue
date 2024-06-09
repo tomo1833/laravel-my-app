@@ -9,7 +9,7 @@ import { Link } from "@inertiajs/vue3";
 const buttonStyles = {
     default: "w-32 bg-green-600 text-white px-4 py-2 rounded",
     primary: "w-32 bg-blue-600 text-white px-4 py-2 rounded",
-    danger: "w-32 bg-red-600 text-white px-4 py-2 rounded",
+    delete: "w-32 bg-red-600 text-white px-4 py-2 rounded",
     table: "w-20 bg-gray-600 text-white px-2 py-1 rounded",
 };
 

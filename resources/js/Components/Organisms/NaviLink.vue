@@ -15,4 +15,5 @@ import CommonNaviLink from "@/Components/Atoms/CommonNaviLink.vue";
     <CommonNaviLink routePath="shougi.index" text="将棋" />
     <CommonNaviLink routePath="manga.index" text="漫画" />
     <CommonNaviLink routePath="movie.index" text="映画" />
+    <CommonNaviLink routePath="educationLarge.index" text="教育大項目" />
 </template>

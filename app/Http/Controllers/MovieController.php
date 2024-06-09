@@ -43,7 +43,7 @@ class MovieController extends Controller
 
         return to_route('movie.index')->with([
              'message' => '登録しました。',
-             'status' => 'sucess',
+             'status' => 'create',
         ]);
     }
 
@@ -79,7 +79,7 @@ class MovieController extends Controller
 
             return to_route('movie.index')->with([
                'message' => '登録しました。',
-               'status' => 'sucess',
+               'status' => 'create',
             ]);
         }
     }

@@ -43,7 +43,7 @@ class BlogController extends Controller
 
         return to_route('blog.index')->with([
              'message' => '登録しました。',
-             'status' => 'sucess',
+             'status' => 'create',
         ]);
 
     }
@@ -79,7 +79,7 @@ class BlogController extends Controller
 
         return to_route('blog.index')->with([
            'message' => '登録しました。',
-           'status' => 'sucess',
+           'status' => 'create',
         ]);
 
     }

@@ -1,39 +1,33 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link } from "@inertiajs/vue3";
+import { Head } from "@inertiajs/vue3";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
-
+import CommonHeaderTitl from "@/Components/Atoms/CommonHeaderTitl.vue";
+import FlashMessage from "@/Components/Atoms/CommonFlashMessage.vue";
 defineProps({
-    mangas: Array<object>,
+    educationLarges: Array<object>,
 });
 </script>
 
 <template>
-    <Head title="漫画" />
+    <Head title="教育大項目" />
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                漫画
-            </h2>
+            <CommonHeaderTitl text="教育大項目" />
         </template>
-        <div
-            v-if="$page.props.flash.status === 'create'"
-            class="w-full p-8 bg-blue-300 text-white"
-        >
-            {{ $page.props.flash.message }}
-        </div>
-        <div
-            v-if="$page.props.flash.status === 'denger'"
-            class="w-full p-8 bg-blue-300 text-white"
-        >
-            {{ $page.props.flash.message }}
-        </div>
+
+        <FlashMessage
+            v-if="$page.props.flash.status"
+            :status="$page.props.flash.status"
+            :message="$page.props.flash.message"
+        />
+
         <div class="flex items-center justify-between mb-4 bg-green-300">
             <div></div>
             <div class="p-4 2xl:px-64">
                 <CommonLinkButton
-                    routePath="manga.create"
-                    text="登録"
+                    routePath="educationLarge.create"
+                    text="教育大項目"
                     styleType="primary"
                 />
             </div>
@@ -44,28 +38,25 @@ defineProps({
             >
                 <thead class="text-xs text-gray-700 uppercase bg-[#F4F4F4]">
                     <tr>
-                        <th scope="col" class="py-3 px-6">タイトル</th>
+                        <th scope="col" class="py-3 px-6">名称</th>
                         <th scope="col" class="py-3 px-6"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="manga in mangas" class="bg-white border-b">
+                    <tr
+                        v-for="educationLarge in educationLarges"
+                        class="bg-white border-b"
+                    >
                         <td class="py-4 px-6">
-                            {{ manga.title }}
+                            {{ educationLarge.name }}
                         </td>
                         <td class="py-4 px-6">
-                            <CommonLinkButton
-                                routePath="manga.show"
-                                text="詳細"
-                                styleType="table"
-                                :params="{ manga: manga.id }"
-                            />
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <CommonLinkButton
-                                routePath="manga.edit"
+                                routePath="educationLarge.edit"
                                 text="編集"
                                 styleType="table"
-                                :params="{ manga: manga.id }"
+                                :params="{ educationLarge: educationLarge.id }"
                             />
                         </td>
                     </tr>

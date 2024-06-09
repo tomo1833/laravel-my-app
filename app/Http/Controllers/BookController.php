@@ -42,7 +42,7 @@ class BookController extends Controller
 
         return to_route('book.index')->with([
              'message' => '登録しました。',
-             'status' => 'sucess',
+             'status' => 'create',
         ]);
 
     }
@@ -78,7 +78,7 @@ class BookController extends Controller
 	
         return to_route('book.index')->with([	
            'message' => '登録しました。',	
-           'status' => 'sucess',	
+           'status' => 'create',	
         ]);	
 
     }
