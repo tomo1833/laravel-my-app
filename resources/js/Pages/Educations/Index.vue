@@ -39,6 +39,8 @@ defineProps({
                     <thead class="text-xs text-gray-700 uppercase bg-[#F4F4F4]">
                         <tr>
                             <th scope="col" class="py-3 px-6">大項目</th>
+                            <th scope="col" class="py-3 px-6">中項目</th>
+                            <th scope="col" class="py-3 px-6">小項目</th>
                             <th scope="col" class="py-3 px-6">タイトル</th>
                             <th scope="col" class="py-3 px-6">操作</th>
                         </tr>
@@ -50,6 +52,12 @@ defineProps({
                         >
                             <td class="py-4 px-2">
                                 {{ education.large_name }}
+                            </td>
+                            <td class="py-4 px-2">
+                                {{ education.midlle_name }}
+                            </td>
+                            <td class="py-4 px-2">
+                                {{ education.small_name }}
                             </td>
                             <td class="py-4 px-2">
                                 {{ education.title }}

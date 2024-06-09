@@ -16,6 +16,8 @@ const form = useForm("put", "/education/" + props.education.id, {
     body_html: props.education.body_html,
     order: props.education.order,
     large_kbn: props.education.large_kbn,
+    middle_kbn: props.education.middle_kbn,
+    small_kbn: props.education.small_kbn,
 });
 
 const updateEduation = () => {
@@ -66,19 +68,51 @@ const toolbarOptions = [
                             教育ページ登録
                         </h1>
                     </div>
-                    <div class="mb-4">
-                        <label class="block mb-2">大項目</label>
-                        <input
-                            type="text"
-                            name="large_kbn"
-                            v-model="form.large_kbn"
-                            class="p-2 border rounded w-full"
-                        />
-                        <div
-                            v-if="form.invalid('large_kbn')"
-                            class="text-red-500"
-                        >
-                            {{ form.errors.large_kbn }}
+                    <div class="mb-4 flex justify-between">
+                        <div>
+                            <label class="block mb-2">大項目</label>
+                            <input
+                                type="text"
+                                name="large_kbn"
+                                v-model="form.large_kbn"
+                                class="p-2 border rounded w-full"
+                            />
+                            <div
+                                v-if="form.invalid('large_kbn')"
+                                class="text-red-500"
+                            >
+                                {{ form.errors.large_kbn }}
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block mb-2">中項目</label>
+                            <input
+                                type="text"
+                                name="middle_kbn"
+                                v-model="form.middle_kbn"
+                                class="p-2 border rounded w-full"
+                            />
+                            <div
+                                v-if="form.invalid('middle_kbn')"
+                                class="text-red-500"
+                            >
+                                {{ form.errors.middle_kbn }}
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block mb-2">小項目</label>
+                            <input
+                                type="text"
+                                name="small_kbn"
+                                v-model="form.small_kbn"
+                                class="p-2 border rounded w-full"
+                            />
+                            <div
+                                v-if="form.invalid('small_kbn')"
+                                class="text-red-500"
+                            >
+                                {{ form.errors.small_kbn }}
+                            </div>
                         </div>
                     </div>
                     <div class="mb-4">
