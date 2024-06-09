@@ -32,45 +32,47 @@ defineProps({
         </div>
 
         <div class="bg-[#FFFFFF] mx-4 my-2">
-            <table
-                class="table-auto w-full text-left whitespace-no-wrap text-gray-500"
-            >
-                <thead class="text-xs text-gray-700 uppercase bg-[#F4F4F4]">
-                    <tr>
-                        <th scope="col" class="py-3 px-6">大項目</th>
-                        <th scope="col" class="py-3 px-6">タイトル</th>
-                        <th scope="col" class="py-3 px-6">操作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr
-                        v-for="education in educations"
-                        class="bg-white border-b"
-                    >
-                        <td class="py-4 px-2">
-                            {{ education.large_name }}
-                        </td>
-                        <td class="py-4 px-2">
-                            {{ education.title }}
-                        </td>
-                        <td class="py-4 px-6">
-                            <CommonLinkButton
-                                routePath="education.show"
-                                text="詳細"
-                                styleType="table"
-                                :params="{ education: education.id }"
-                            />
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <CommonLinkButton
-                                routePath="education.edit"
-                                text="編集"
-                                styleType="table"
-                                :params="{ education: education.id }"
-                            />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="overflow-y-auto h-[calc(100vh-250px)]">
+                <table
+                    class="table-auto w-full text-left whitespace-no-wrap text-gray-500"
+                >
+                    <thead class="text-xs text-gray-700 uppercase bg-[#F4F4F4]">
+                        <tr>
+                            <th scope="col" class="py-3 px-6">大項目</th>
+                            <th scope="col" class="py-3 px-6">タイトル</th>
+                            <th scope="col" class="py-3 px-6">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            v-for="education in educations"
+                            class="bg-white border-b"
+                        >
+                            <td class="py-4 px-2">
+                                {{ education.large_name }}
+                            </td>
+                            <td class="py-4 px-2">
+                                {{ education.title }}
+                            </td>
+                            <td class="py-4 px-6">
+                                <CommonLinkButton
+                                    routePath="education.show"
+                                    text="詳細"
+                                    styleType="table"
+                                    :params="{ education: education.id }"
+                                />
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <CommonLinkButton
+                                    routePath="education.edit"
+                                    text="編集"
+                                    styleType="table"
+                                    :params="{ education: education.id }"
+                                />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </AuthenticatedLayout>
 </template>

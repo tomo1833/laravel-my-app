@@ -11,8 +11,9 @@ class music extends Model
 
     protected $fillable = [
         'title',
-        'body',
         'artist',
+        'youtube_url',
+        'body',
     ];
 
 }

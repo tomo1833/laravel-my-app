@@ -10,7 +10,9 @@ const props = defineProps({
     anime: Object,
 });
 
-const imageUrl = ref<string | null>(props.anime.path ? `/storage/${props.anime.path}` : null);
+const imageUrl = ref<string | null>(
+    props.anime.path ? `/storage/${props.anime.path}` : null,
+);
 const selectedFile = ref<File | null>(null);
 
 const form = useForm("put", "/anime/" + props.anime.id, {
@@ -36,11 +38,11 @@ const handleFileChange = (event: Event) => {
 
 const updateAnime = () => {
     const formData = new FormData();
-    formData.append('_method', 'PUT'); // PUTメソッドを指定
-    formData.append('title', form.title);
-    formData.append('body', form.body);
+    formData.append("_method", "PUT"); // PUTメソッドを指定
+    formData.append("title", form.title);
+    formData.append("body", form.body);
     if (selectedFile.value) {
-        formData.append('image', selectedFile.value);
+        formData.append("image", selectedFile.value);
     }
 
     Inertia.post("/anime/" + props.anime.id, formData, {
@@ -85,7 +87,11 @@ const deleteAnime = (id) => {
                     </div>
                     <div class="mb-4">
                         <label class="block mb-2">画像</label>
-                        <input type="file" @change="handleFileChange" class="p-2 border rounded w-full" />
+                        <input
+                            type="file"
+                            @change="handleFileChange"
+                            class="p-2 border rounded w-full"
+                        />
                         <div v-if="form.invalid('image')" class="text-red-500">
                             {{ form.errors.image }}
                         </div>

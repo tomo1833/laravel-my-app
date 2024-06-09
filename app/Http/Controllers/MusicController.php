@@ -36,8 +36,9 @@ class MusicController extends Controller
     {
         Music::create([
             'title' => $request->title,
-            'body' => $request->body,
             'artist' => $request->artist,
+            'youtube_url' => $request->youtube_url,
+            'body' => $request->body,
         ]);
 
         return to_route('music.index')->with([
@@ -74,8 +75,9 @@ class MusicController extends Controller
     public function update(UpdatemusicRequest $request, music $music)
     {
         $music->title = $request->title;
-        $music->body = $request->body;
         $music->artist = $request->artist;
+        $music->youtube_url = $request->youtube_url;
+        $music->body = $request->body;
         $music->save();
 
         return to_route('music.index')->with([

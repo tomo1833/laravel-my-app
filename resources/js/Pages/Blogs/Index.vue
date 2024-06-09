@@ -41,38 +41,40 @@ defineProps({
             </div>
         </div>
         <div class="bg-[#FFFFFF] mx-4 my-2">
-            <table
-                class="table-auto w-full text-left whitespace-no-wrap text-gray-500"
-            >
-                <thead class="text-xs text-gray-700 uppercase bg-[#F4F4F4]">
-                    <tr>
-                        <th scope="col" class="py-3 px-6">タイトル</th>
-                        <th scope="col" class="py-3 px-6"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="blog in blogs" class="bg-white border-b">
-                        <td class="py-4 px-6">
-                            {{ blog.title }}
-                        </td>
-                        <td class="py-4 px-6">
-                            <CommonLinkButton
-                                routePath="blog.show"
-                                text="詳細"
-                                styleType="table"
-                                :params="{ blog: blog.id }"
-                            />
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <CommonLinkButton
-                                routePath="blog.edit"
-                                text="編集"
-                                styleType="table"
-                                :params="{ blog: blog.id }"
-                            />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="overflow-y-auto h-[calc(100vh-250px)]">
+                <table
+                    class="table-auto w-full text-left whitespace-no-wrap text-gray-500"
+                >
+                    <thead class="text-xs text-gray-700 uppercase bg-[#F4F4F4]">
+                        <tr>
+                            <th scope="col" class="py-3 px-6">タイトル</th>
+                            <th scope="col" class="py-3 px-6"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="blog in blogs" class="bg-white border-b">
+                            <td class="py-4 px-6">
+                                {{ blog.title }}
+                            </td>
+                            <td class="py-4 px-6">
+                                <CommonLinkButton
+                                    routePath="blog.show"
+                                    text="詳細"
+                                    styleType="table"
+                                    :params="{ blog: blog.id }"
+                                />
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <CommonLinkButton
+                                    routePath="blog.edit"
+                                    text="編集"
+                                    styleType="table"
+                                    :params="{ blog: blog.id }"
+                                />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </AuthenticatedLayout>
 </template>

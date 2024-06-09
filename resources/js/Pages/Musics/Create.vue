@@ -9,8 +9,9 @@ import { QuillEditor } from "@vueup/vue-quill";
 const form = useForm("post", "/music", {
     id: null,
     title: null,
-    body: null,
     artist: null,
+    youtubu_url: null,
+    body: null,
 });
 
 const storeMusic = () => {
@@ -58,6 +59,23 @@ const storeMusic = () => {
                             {{ form.errors.artist }}
                         </div>
                     </div>
+
+                    <div class="mb-4">
+                        <label class="block mb-2">YouTube URL</label>
+                        <input
+                            type="text"
+                            name="youtubu_url"
+                            v-model="form.youtubu_url"
+                            class="p-2 border rounded w-full"
+                        />
+                        <div
+                            v-if="form.invalid('youtubu_url')"
+                            class="text-red-500"
+                        >
+                            {{ form.errors.youtubu_url }}
+                        </div>
+                    </div>
+
                     <div class="mb-4">
                         <label class="block mb-2">備考</label>
                         <QuillEditor

@@ -30,6 +30,23 @@ const props = defineProps({
                         {{ props.music.artist }}
                     </h2>
                 </div>
+                <div class="relative w-[1280px] h-[720px] mx-auto">
+                    <iframe
+                        class="absolute top-0 left-0 w-full h-full"
+                        :src="props.music.youtube_url"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                    ></iframe>
+                </div>
+                <div class="flex flex-col text-center w-full mb-12 h-full">
+                    <h2
+                        class="sm:text-2xl text-xl font-medium title-font mb-4 text-gray-900"
+                    >
+                        {{ props.music.artist }}
+                    </h2>
+                </div>
+
                 <CommonArea :body="props.music.body" />
             </div>
         </section>

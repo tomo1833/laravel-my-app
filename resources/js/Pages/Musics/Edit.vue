@@ -12,8 +12,9 @@ const props = defineProps({
 const form = useForm("put", "/music/" + props.music.id, {
     id: props.music.id,
     title: props.music.title,
+    artist: props.music.artist,
+    youtube_url: props.music.youtube_url,
     body: props.music.body,
-    artist: props.artist,
 });
 
 const updateMusic = () => {
@@ -57,6 +58,7 @@ const deleteMusic = (id) => {
                             {{ form.errors.title }}
                         </div>
                     </div>
+
                     <div class="mb-4">
                         <label class="block mb-2">アーティスト</label>
                         <input
@@ -69,6 +71,23 @@ const deleteMusic = (id) => {
                             {{ form.errors.artist }}
                         </div>
                     </div>
+
+                    <div class="mb-4">
+                        <label class="block mb-2">YouTubu URL</label>
+                        <input
+                            type="text"
+                            name="youtube_url"
+                            v-model="form.youtube_url"
+                            class="p-2 border rounded w-full"
+                        />
+                        <div
+                            v-if="form.invalid('youtube_url')"
+                            class="text-red-500"
+                        >
+                            {{ form.errors.youtube_url }}
+                        </div>
+                    </div>
+
                     <div class="mb-4">
                         <label class="block mb-2">備考</label>
                         <QuillEditor

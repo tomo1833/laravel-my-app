@@ -22,10 +22,14 @@ const props = defineProps({
                     >
                         {{ props.anime.title }}
                     </h1>
-                    <div class="flex items-center justify-center">                      
-                        <img :src="`/storage/${props.anime.path}`" alt="props.anime.title" class="w-96">
+                    <div class="flex items-center justify-center">
+                        <img
+                            :src="`/storage/${props.anime.path}`"
+                            alt="props.anime.title"
+                            class="w-96"
+                        />
                     </div>
-                    
+
                     <CommonArea :body="props.anime.body" />
                 </div>
             </div>
