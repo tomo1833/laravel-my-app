@@ -39,7 +39,7 @@ const props = defineProps({
                     </h2>
                 </div>
                 <div
-                    class="relative w-[426px] h-[240px] sm:w-[640px] sm:h-[360px] 2xl:w-[1280px] 2xl:h-[720px] mx-auto"
+                    class="relative w-[256px] h-[144px] sm:w-[640px] sm:h-[360px] 2xl:w-[1280px] 2xl:h-[720px] mx-auto"
                 >
                     <iframe
                         class="absolute top-0 left-0 w-full h-full"
