@@ -2,7 +2,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import { useForm } from "laravel-precognition-vue-inertia";
-
+import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
 import { QuillEditor } from "@vueup/vue-quill";
 
@@ -24,16 +24,24 @@ const storeMusic = () => {
 
 <template>
     <Head title="音楽" />
+
     <AuthenticatedLayout>
-        <section class="text-gray-600 body-font py-24 relative">
+        <section class="text-gray-600 body-font py-4 relative">
             <form @submit.prevent="storeMusic">
                 <div class="container px-5 py-8 mx-auto bg-white">
+                    <div class="pb-10">
+                        <CommonLinkButton
+                            routePath="music.index"
+                            text="戻る"
+                            styleType="primary"
+                        />
+                    </div>
+
                     <h1
-                        class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
+                        class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900 text-center"
                     >
                         音楽
                     </h1>
-
                     <div class="mb-4">
                         <label class="block mb-2">タイトル</label>
                         <input
@@ -87,6 +95,7 @@ const storeMusic = () => {
                             {{ form.errors.body }}
                         </div>
                     </div>
+
                     <CommonSubmitButton text="登録" />
                 </div>
             </form>

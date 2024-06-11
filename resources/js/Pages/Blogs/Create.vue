@@ -4,6 +4,7 @@ import { Head, Link } from "@inertiajs/vue3";
 import { useForm } from "laravel-precognition-vue-inertia";
 import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
 import { QuillEditor } from "@vueup/vue-quill";
+import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 
 const form = useForm("post", "/blog", {
     id: null,
@@ -24,8 +25,15 @@ const storeBlog = () => {
         <section class="text-gray-600 body-font py-24 relative">
             <form @submit.prevent="storeBlog">
                 <div class="container px-5 py-8 mx-auto bg-white">
+                    <div class="pb-10">
+                        <CommonLinkButton
+                            routePath="blog.index"
+                            text="戻る"
+                            styleType="primary"
+                        />
+                    </div>
                     <h1
-                        class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
+                        class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900 text-center"
                     >
                         ブログ
                     </h1>

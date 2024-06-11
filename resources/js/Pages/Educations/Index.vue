@@ -4,15 +4,48 @@ import { Head, Link } from "@inertiajs/vue3";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 import CommonHeaderTitl from "@/Components/Atoms/CommonHeaderTitl.vue";
 import FlashMessage from "@/Components/Atoms/CommonFlashMessage.vue";
-defineProps({
+import { ref, computed } from "vue";
+
+const props = defineProps({
     educations: Array<object>,
+});
+
+const searchQuery = ref("");
+
+const filteredEducations = computed(() => {
+    if (!searchQuery.value) {
+        return props.educations;
+    }
+    return props.educations.filter((education) => {
+        const largeName = education.large_name
+            ? education.large_name.toLowerCase()
+            : "";
+        const middleName = education.middle_name
+            ? education.middle_name.toLowerCase()
+            : "";
+        const smallName = education.small_name
+            ? education.small_name.toLowerCase()
+            : "";
+        const title = education.title ? education.title.toLowerCase() : "";
+        const query = searchQuery.value.toLowerCase();
+        return (
+            largeName.includes(query) ||
+            middleName.includes(query) ||
+            smallName.includes(query) ||
+            title.includes(query)
+        );
+    });
 });
 </script>
 
 <template>
     <Head title="教育管理" />
     <AuthenticatedLayout>
-        <CommonHeaderTitl text="教育管理" />
+        <template #header>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                教育管理
+            </h2>
+        </template>
 
         <FlashMessage
             v-if="$page.props.flash.status"
@@ -21,7 +54,14 @@ defineProps({
         />
 
         <div class="flex items-center justify-between mb-4 bg-green-300">
-            <div></div>
+            <div class="p-4">
+                <input
+                    type="text"
+                    v-model="searchQuery"
+                    placeholder="検索..."
+                    class="p-2 border border-gray-300 rounded"
+                />
+            </div>
             <div class="p-4 2xl:px-64">
                 <CommonLinkButton
                     routePath="education.create"
@@ -47,14 +87,15 @@ defineProps({
                     </thead>
                     <tbody>
                         <tr
-                            v-for="education in educations"
+                            v-for="education in filteredEducations"
+                            :key="education.id"
                             class="bg-white border-b"
                         >
                             <td class="py-4 px-2">
                                 {{ education.large_name }}
                             </td>
                             <td class="py-4 px-2">
-                                {{ education.midlle_name }}
+                                {{ education.middle_name }}
                             </td>
                             <td class="py-4 px-2">
                                 {{ education.small_name }}

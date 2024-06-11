@@ -1,10 +1,25 @@
 <script setup lang="ts">
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link } from "@inertiajs/vue3";
+import { ref, computed } from "vue";
+import { Head } from "@inertiajs/vue3";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
+import FlashMessage from "@/Components/Atoms/CommonFlashMessage.vue";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 
-defineProps({
+const props = defineProps({
     animes: Array<object>,
+});
+
+const searchQuery = ref<string>("");
+
+const filteredAnimes = computed(() => {
+    if (!searchQuery.value) {
+        return props.animes;
+    }
+    return props.animes.filter((anime) => {
+        const title = anime.title ? anime.title.toLowerCase() : "";
+        const query = searchQuery.value.toLowerCase();
+        return title.includes(query);
+    });
 });
 </script>
 
@@ -16,20 +31,22 @@ defineProps({
                 アニメ
             </h2>
         </template>
-        <div
-            v-if="$page.props.flash.status === 'create'"
-            class="w-full p-8 bg-blue-300 text-white"
-        >
-            {{ $page.props.flash.message }}
-        </div>
-        <div
-            v-if="$page.props.flash.status === 'denger'"
-            class="w-full p-8 bg-blue-300 text-white"
-        >
-            {{ $page.props.flash.message }}
-        </div>
+
+        <FlashMessage
+            v-if="$page.props.flash.status"
+            :status="$page.props.flash.status"
+            :message="$page.props.flash.message"
+        />
+
         <div class="flex items-center justify-between mb-4 bg-green-300">
-            <div></div>
+            <div class="px-4">
+                <input
+                    type="text"
+                    v-model="searchQuery"
+                    placeholder="検索..."
+                    class="p-2 border border-gray-300 rounded"
+                />
+            </div>
             <div class="p-4 2xl:px-64">
                 <CommonLinkButton
                     routePath="anime.create"
@@ -38,29 +55,47 @@ defineProps({
                 />
             </div>
         </div>
-        <div class="bg-[#FFFFFF] mx-4 my-2">
+        <div class="bg-[#FFFFFF] mx-0 sm:mx-2 2xl:mx-4 my-2">
             <div class="overflow-y-auto h-[calc(100vh-250px)]">
                 <table
                     class="table-auto w-full text-left whitespace-no-wrap text-gray-500"
                 >
                     <thead class="text-xs text-gray-700 uppercase bg-[#F4F4F4]">
                         <tr>
-                            <th scope="col" class="py-3 px-6"></th>
-                            <th scope="col" class="py-3 px-6">タイトル</th>
-                            <th scope="col" class="py-3 px-6"></th>
+                            <th
+                                scope="col"
+                                class="py-3 px-2 sm:px-4 2xl:px-6"
+                            ></th>
+                            <th scope="col" class="py-3 px-2 sm:px-4 2xl:px-6">
+                                タイトル
+                            </th>
+                            <th
+                                scope="col"
+                                class="py-3 px-2 sm:px-4 2xl:px-6"
+                            ></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="anime in animes" class="bg-white border-b">
-                            <img
-                                :src="`/storage/${anime.path}`"
-                                alt="props.anime.title"
-                                class="w-64 p-4"
-                            />
-                            <td class="py-4 px-6">
+                        <tr
+                            v-for="anime in filteredAnimes"
+                            :key="anime.id"
+                            class="bg-white border-b"
+                        >
+                            <td
+                                class="py-4: sm:py-4 2xl:py-4 px-2 sm:px-4 2xl:px-6"
+                            >
+                                <img
+                                    :src="`/storage/${anime.path}`"
+                                    alt="props.anime.title"
+                                    class="w-32 sm:w-32 2xl:w-64 px-2 sm:px-4 2xl:px-6"
+                                />
+                            </td>
+                            <td
+                                class="py-16: sm:py-4 2xl:py-4 px-1 sm:px-4 2xl:px-6"
+                            >
                                 {{ anime.title }}
                             </td>
-                            <td class="py-4 px-6">
+                            <td class="py-4 px-1 sm:px-4 2xl:px-6">
                                 <CommonLinkButton
                                     routePath="anime.show"
                                     text="詳細"

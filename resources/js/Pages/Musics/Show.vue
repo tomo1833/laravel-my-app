@@ -14,9 +14,9 @@ const props = defineProps({
 
     <AuthenticatedLayout>
         <section
-            class="text-gray-600 body-font py-24 relative h-[calc(100vh-68px)]"
+            class="text-gray-600 body-font py-2 sm:py-24 relative h-[calc(100vh-68px)]"
         >
-            <div class="container px-5 py-8 mx-auto bg-white">
+            <div class="container px-0 sm:px-5 py-8 mx-auto bg-white">
                 <div class="px-4">
                     <CommonLinkButton
                         routePath="music.index"
@@ -38,7 +38,9 @@ const props = defineProps({
                         {{ props.music.artist }}
                     </h2>
                 </div>
-                <div class="relative w-[1280px] h-[720px] mx-auto">
+                <div
+                    class="relative w-[426px] h-[240px] sm:w-[640px] sm:h-[360px] 2xl:w-[1280px] 2xl:h-[720px] mx-auto"
+                >
                     <iframe
                         class="absolute top-0 left-0 w-full h-full"
                         :src="props.music.youtube_url"

@@ -5,6 +5,7 @@ import { useForm } from "laravel-precognition-vue-inertia";
 import { QuillEditor } from "@vueup/vue-quill";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
+import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 
 const imageUrl = ref<string | null>(null);
 const selectedFile = ref<File | null>(null);
@@ -42,8 +43,15 @@ const storeAnime = () => {
         <section class="text-gray-600 body-font py-24 relative">
             <form @submit.prevent="storeAnime">
                 <div class="container px-5 py-8 mx-auto bg-white">
+                    <div class="pb-10">
+                        <CommonLinkButton
+                            routePath="anime.index"
+                            text="戻る"
+                            styleType="primary"
+                        />
+                    </div>
                     <h1
-                        class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
+                        class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900 text-center"
                     >
                         アニメ
                     </h1>

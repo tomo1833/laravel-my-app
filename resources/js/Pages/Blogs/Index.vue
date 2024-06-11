@@ -2,9 +2,23 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/vue3";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
+import { ref, computed } from "vue";
 
-defineProps({
+const props = defineProps({
     blogs: Array<object>,
+});
+
+const searchQuery = ref("");
+
+const filteredBlogs = computed(() => {
+    if (!searchQuery.value) {
+        return props.blogs;
+    }
+    return props.blogs.filter((blog) => {
+        const title = blog.title ? blog.title.toLowerCase() : "";
+        const query = searchQuery.value.toLowerCase();
+        return title.includes(query);
+    });
 });
 </script>
 
@@ -29,7 +43,14 @@ defineProps({
             {{ $page.props.flash.message }}
         </div>
         <div class="flex items-center justify-between mb-4 bg-green-300">
-            <div></div>
+            <div class="p-4">
+                <input
+                    type="text"
+                    v-model="searchQuery"
+                    placeholder="検索..."
+                    class="p-2 border border-gray-300 rounded"
+                />
+            </div>
             <div class="p-4 2xl:px-64">
                 <CommonLinkButton
                     routePath="blog.create"
@@ -50,7 +71,11 @@ defineProps({
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="blog in blogs" class="bg-white border-b">
+                        <tr
+                            v-for="blog in filteredBlogs"
+                            :key="blog.id"
+                            class="bg-white border-b"
+                        >
                             <td class="py-4 px-6">
                                 {{ blog.title }}
                             </td>
