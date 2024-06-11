@@ -15,6 +15,10 @@ const props = defineProps({
 <style scoped>
 #education-area :deep(h1) {
     font-size: 32px;
+    padding: 0.5em;
+    color: #494949;
+    background: #fffaf4;
+    border-left: solid 5px #ffaf58;
 }
 #education-area :deep(h2) {
     font-size: 24px;
@@ -23,6 +27,8 @@ const props = defineProps({
     font-size: 16px;
 }
 #education-area :deep(h1),
+#education-area :deep(h2),
+#education-area :deep(h3),
 #education-area :deep(p),
 #education-area :deep(ul),
 #education-area :deep(li),
