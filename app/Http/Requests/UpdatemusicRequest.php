@@ -22,7 +22,10 @@ class UpdatemusicRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => ['required'],
+            'artist' => ['required'],
+            'youtube_url' => ['required'],
+            'body' => ['required'],
         ];
     }
 }
