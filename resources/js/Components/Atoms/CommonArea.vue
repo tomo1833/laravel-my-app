@@ -13,22 +13,68 @@ const props = defineProps({
 </template>
 
 <style scoped>
-#education-area :deep(h1) {
-    font-size: 32px;
-    padding: 0.5em;
-    color: #494949;
-    background: #fffaf4;
-    border-left: solid 5px #ffaf58;
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 20px 0;
+    line-height: 1.2;
+    font-weight: bold;
 }
-#education-area :deep(h2) {
-    font-size: 24px;
-}
-#education-area :deep(h3) {
-    font-size: 16px;
-}
+
+
 #education-area :deep(h1),
 #education-area :deep(h2),
 #education-area :deep(h3),
+#education-area :deep(h4),
+#education-area :deep(h5),
+#education-area :deep(h6) {
+    margin: 20px 0;
+    line-height: 1.2;
+    font-weight: bold;
+    text-align: left;
+}
+
+#education-area :deep(h1) {
+    font-size: 2.5em;
+    color: #2c3e50;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+}
+
+#education-area :deep(h2) {
+    font-size: 2em;
+    color: #34495e;
+    border-bottom: 2px solid #2980b9;
+    padding-bottom: 8px;
+}
+
+#education-area :deep(h3) {
+    font-size: 2em;
+    color: #34495e;
+    border-bottom: 2px solid #2980b9;
+    padding-bottom: 8px;
+}
+
+#education-area :deep(h4) {
+    font-size: 1.5em;
+    color: #415868;
+    border-left: 4px solid #2980b9;
+    padding-left: 8px;
+}
+
+#education-area :deep(h5) {
+    font-size: 1.25em;
+    color: #2c3e50;
+    background-color: #ecf0f1;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+#education-area :deep(h6) {
+    font-size: 1em;
+    color: #7f8c8d;
+    font-style: italic;
+}
+
 #education-area :deep(p),
 #education-area :deep(ul),
 #education-area :deep(li),
