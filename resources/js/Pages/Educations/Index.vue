@@ -91,19 +91,19 @@ const filteredEducations = computed(() => {
                             :key="education.id"
                             class="bg-white border-b"
                         >
-                            <td class="py-4 px-2">
+                            <td class="py-2 px-2">
                                 {{ education.large_name }}
                             </td>
-                            <td class="py-4 px-2">
+                            <td class="py-2 px-2">
                                 {{ education.middle_name }}
                             </td>
-                            <td class="py-4 px-2">
+                            <td class="py-2 px-2">
                                 {{ education.small_name }}
                             </td>
-                            <td class="py-4 px-2">
+                            <td class="py-2 px-2">
                                 {{ education.title }}
                             </td>
-                            <td class="py-4 px-6">
+                            <td class="py-2 px-6">
                             <div class="flex">
                             <div class="px-2">
                                 <CommonLinkButton
