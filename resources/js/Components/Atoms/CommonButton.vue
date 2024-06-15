@@ -28,10 +28,12 @@ const handleClick = () => {
 </script>
 
 <template>
-    <button
-        @click="handleClick"
-        class="w-32 bg-blue-600 text-white px-4 py-2 rounded"
-    >
-        {{ props.text }}
-    </button>
+    <div>
+        <button
+            @click="handleClick"
+            class="select-none rounded-lg bg-blue-600 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-600/10 transition-all hover:shadow-lg hover:shadow-blue-600/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        >
+            {{ props.text }}
+        </button>
+    </div>
 </template>

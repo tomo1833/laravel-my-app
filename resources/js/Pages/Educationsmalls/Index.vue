@@ -27,7 +27,7 @@ defineProps({
             <div class="p-4 2xl:px-64">
                 <CommonLinkButton
                     routePath="educationSmall.create"
-                    text="教育小項目"
+                    text="登録"
                     styleType="primary"
                 />
             </div>

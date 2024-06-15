@@ -7,20 +7,12 @@ const props = defineProps({
 <template>
     <div
         id="education-area"
-        class="p-8 bg-white grow h-full overflow-y-auto"
+        class="p-1 bg-white grow h-full overflow-y-auto"
         v-html="props.body"
     ></div>
 </template>
 
 <style scoped>
-
-h1, h2, h3, h4, h5, h6 {
-    margin: 20px 0;
-    line-height: 1.2;
-    font-weight: bold;
-}
-
-
 #education-area :deep(h1),
 #education-area :deep(h2),
 #education-area :deep(h3),
@@ -80,6 +72,12 @@ h1, h2, h3, h4, h5, h6 {
 #education-area :deep(li),
 #education-area :deep(pre) {
     text-align: left;
+}
+
+#education-area :deep(p) {
+    margin: 20px 0;
+    font-size: 1.1em;
+    color: #555;
 }
 
 #education-area :deep(ul li::marker) {

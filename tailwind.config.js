@@ -15,8 +15,22 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            boxShadow: {
+                clay: '5px 5px 10px rgba(0, 0, 0, 0.2), -5px -5px 10px rgba(255, 255, 255, 0.5)',
+            },
+            transitionProperty: {
+                'box-shadow': 'box-shadow',
+            },
+            transitionProperty: {
+                'box-shadow': 'box-shadow',
+            },
+            transitionDuration: {
+                '200': '200ms',
+            },
+            transitionTimingFunction: {
+                'ease': 'ease',
+            }
         },
     },
-
     plugins: [forms],
 };

@@ -6,6 +6,7 @@ import { Inertia } from "@inertiajs/inertia";
 import { useForm } from "laravel-precognition-vue-inertia";
 import { QuillEditor } from "@vueup/vue-quill";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
+import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
 
 const props = defineProps({
     anime: Object,
@@ -116,20 +117,19 @@ const deleteAnime = (id) => {
                             {{ form.errors.body }}
                         </div>
                     </div>
-                    <div class="flex flex-row">
-                        <button
-                            type="submit"
-                            class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-                        >
-                            更新
-                        </button>
-                        <button
-                            type="button"
-                            @click="deleteAnime(form.id)"
-                            class="mx-auto text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg"
-                        >
-                            削除
-                        </button>
+                    <div class="flex flex-row justify-evenly">
+                        <div>
+                            <CommonSubmitButton text="更新" />
+                        </div>
+                        <div>
+                            <button
+                                type="button"
+                                @click="deleteAnime(form.id)"
+                                class="mx-auto text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg"
+                            >
+                                削除
+                            </button>
+                        </div>
                     </div>
                 </div>
             </form>

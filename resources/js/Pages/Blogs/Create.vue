@@ -61,8 +61,11 @@ const storeBlog = () => {
                             {{ form.errors.body }}
                         </div>
                     </div>
-                    <CommonSubmitButton text="登録" />
-                </div>
+                    <div class="flex flex-row justify-evenly">
+                        <div>
+                            <CommonSubmitButton text="登録" />
+                        </div>
+                    </div>
             </form>
         </section>
     </AuthenticatedLayout>

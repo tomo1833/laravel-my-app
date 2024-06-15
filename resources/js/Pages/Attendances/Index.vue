@@ -4,7 +4,7 @@ import { Head, Link } from "@inertiajs/vue3";
 import { Inertia } from "@inertiajs/inertia";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
-import DefaultButton from "@/Components/Atoms/DefaultButton.vue";
+import CommonButton from "@/Components/Atoms/CommonButton.vue";
 
 interface Attendance {
     check_in: string | null;
@@ -125,7 +125,7 @@ const search = () => {
                     />
                 </div>
                 <div class="pt-7">
-                    <DefaultButton @clickEvent="search" text="検索" />
+                    <CommonButton @clickEvent="search" text="検索" />
                 </div>
             </div>
 

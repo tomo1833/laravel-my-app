@@ -17,7 +17,7 @@ use App\Http\Controllers\MusicController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShougiController;
 use App\Http\Controllers\WikiController;
-
+use App\Http\Controllers\ImageController;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -80,6 +80,9 @@ Route::resource('educationMiddle', EducationMiddleController::class)
 
 Route::resource('educationSmall', EducationSmallController::class)
 ->middleware(['auth', 'verified']);
+
+Route::get('/image-upload', [ImageController::class, 'index'])->name('images.index');
+Route::post('/image-upload', [ImageController::class, 'store'])->name('images.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
