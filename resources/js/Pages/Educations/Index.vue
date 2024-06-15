@@ -112,8 +112,8 @@ const filteredEducations = computed(() => {
                                     styleType="table"
                                     :params="{ education: education.id }"
                                 />
-                                </div>
-                                <div>
+                            </div>
+                            <div>
 
                                 <CommonLinkButton
                                     routePath="education.edit"
@@ -122,6 +122,7 @@ const filteredEducations = computed(() => {
                                     :params="{ education: education.id }"
                                 />
                                 </div>
+                            </div>
                             </td>
                         </tr>
                     </tbody>
