@@ -66,6 +66,7 @@ const storeBlog = () => {
                             <CommonSubmitButton text="登録" />
                         </div>
                     </div>
+                </div>
             </form>
         </section>
     </AuthenticatedLayout>
