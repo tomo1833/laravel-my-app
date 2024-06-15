@@ -54,7 +54,6 @@ const storeEducations = () => {
                 <div
                     class="container px-5 py-8 mx-auto relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
                 >
-                    s
                     <div class="pb-10">
                         <CommonLinkButton
                             routePath="education.index"

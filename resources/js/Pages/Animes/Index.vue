@@ -5,9 +5,15 @@ import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 import FlashMessage from "@/Components/Atoms/CommonFlashMessage.vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 
-const props = defineProps({
-    animes: Array<object>,
-});
+interface Anime {
+    id: number;
+    title: string;
+    path: string;
+}
+
+const props = defineProps<{
+    animes: Anime[];
+}>();
 
 const searchQuery = ref<string>("");
 
@@ -16,7 +22,7 @@ const filteredAnimes = computed(() => {
         return props.animes;
     }
     return props.animes.filter((anime) => {
-        const title = anime.title ? anime.title.toLowerCase() : "";
+        const title = anime.title.toLowerCase();
         const query = searchQuery.value.toLowerCase();
         return title.includes(query);
     });
@@ -55,64 +61,47 @@ const filteredAnimes = computed(() => {
                 />
             </div>
         </div>
-        <div class="bg-[#FFFFFF] mx-0 sm:mx-2 2xl:mx-4 my-2">
-            <div class="overflow-y-auto h-[calc(100vh-250px)]">
-                <table
-                    class="table-auto w-full text-left whitespace-no-wrap text-gray-500"
-                >
-                    <thead class="text-xs text-gray-700 uppercase bg-[#F4F4F4]">
-                        <tr>
-                            <th
-                                scope="col"
-                                class="py-3 px-2 sm:px-4 2xl:px-6"
-                            ></th>
-                            <th scope="col" class="py-3 px-2 sm:px-4 2xl:px-6">
-                                タイトル
-                            </th>
-                            <th
-                                scope="col"
-                                class="py-3 px-2 sm:px-4 2xl:px-6"
-                            ></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr
-                            v-for="anime in filteredAnimes"
-                            :key="anime.id"
-                            class="bg-white border-b"
+        <div class="mx-0 sm:mx-2 2xl:mx-4 my-1">
+            <div class="overflow-y-auto h-[calc(100vh-250px)] flex flex-wrap">
+                <template v-for="anime in filteredAnimes" :key="anime.id">
+                    <div
+                        class="relative flex flex-col mx-2 mb-4 h-96 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-64"
+                    >
+                        <div
+                            class="relative h-32 mx-auto mt-4 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl"
                         >
-                            <td
-                                class="py-4: sm:py-4 2xl:py-4 px-2 sm:px-4 2xl:px-6"
-                            >
-                                <img
-                                    :src="`/storage/${anime.path}`"
-                                    alt="props.anime.title"
-                                    class="w-32 sm:w-32 2xl:w-64 px-2 sm:px-4 2xl:px-6"
-                                />
-                            </td>
-                            <td
-                                class="py-16: sm:py-4 2xl:py-4 px-1 sm:px-4 2xl:px-6"
+                            <img
+                                :src="`/storage/${anime.path}`"
+                                :alt="anime.title"
+                                class="object-cover w-full h-full"
+                            />
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h5
+                                class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900"
                             >
                                 {{ anime.title }}
-                            </td>
-                            <td class="py-4 px-1 sm:px-4 2xl:px-6">
+                            </h5>
+                            <p
+                                class="block font-sans text-base antialiased font-light leading-relaxed text-inherit mb-2"
+                            ></p>
+                            <div class="mt-auto flex space-x-2">
                                 <CommonLinkButton
                                     routePath="anime.show"
                                     text="詳細"
                                     styleType="table"
                                     :params="{ anime: anime.id }"
                                 />
-                                &nbsp;&nbsp;&nbsp;&nbsp;
                                 <CommonLinkButton
                                     routePath="anime.edit"
                                     text="編集"
                                     styleType="table"
                                     :params="{ anime: anime.id }"
                                 />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                            </div>
+                        </div>
+                    </div>
+                </template>
             </div>
         </div>
     </AuthenticatedLayout>
