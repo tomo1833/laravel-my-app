@@ -51,7 +51,10 @@ const storeEducations = () => {
     <AuthenticatedLayout>
         <section class="text-gray-600 body-font py-24 relative">
             <form @submit.prevent="storeEducations">
-                <div class="container px-5 py-8 mx-auto bg-white">
+                <div
+                    class="container px-5 py-8 mx-auto relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
+                >
+                    s
                     <div class="pb-10">
                         <CommonLinkButton
                             routePath="education.index"
@@ -155,12 +158,11 @@ const storeEducations = () => {
                         </div>
                     </div>
 
-                    <button
-                        type="submit"
-                        class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-                    >
-                        登録
-                    </button>
+                    <div class="flex flex-row justify-evenly">
+                        <div>
+                            <CommonSubmitButton text="登録" />
+                        </div>
+                    </div>
                 </div>
             </form>
         </section>

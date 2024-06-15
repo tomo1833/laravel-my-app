@@ -24,7 +24,9 @@ const storeBlog = () => {
     <AuthenticatedLayout>
         <section class="text-gray-600 body-font py-24 relative">
             <form @submit.prevent="storeBlog">
-                <div class="container px-5 py-8 mx-auto bg-white">
+                <div
+                    class="container px-5 py-8 mx-auto relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
+                >
                     <div class="pb-10">
                         <CommonLinkButton
                             routePath="blog.index"
