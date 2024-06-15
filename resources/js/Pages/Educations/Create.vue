@@ -5,6 +5,7 @@ import { QuillEditor } from "@vueup/vue-quill";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
+import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
 
 const form = useForm("post", "/education", {
     id: null,
