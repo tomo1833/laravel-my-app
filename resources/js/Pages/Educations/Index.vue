@@ -104,19 +104,24 @@ const filteredEducations = computed(() => {
                                 {{ education.title }}
                             </td>
                             <td class="py-4 px-6">
+                            <div class="flex">
+                            <div>
                                 <CommonLinkButton
                                     routePath="education.show"
                                     text="詳細"
                                     styleType="table"
                                     :params="{ education: education.id }"
                                 />
-                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                </div>
+                                <div>
+
                                 <CommonLinkButton
                                     routePath="education.edit"
                                     text="編集"
                                     styleType="table"
                                     :params="{ education: education.id }"
                                 />
+                                </div>
                             </td>
                         </tr>
                     </tbody>
