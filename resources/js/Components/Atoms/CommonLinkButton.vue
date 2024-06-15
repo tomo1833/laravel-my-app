@@ -9,7 +9,7 @@ import { Link } from "@inertiajs/vue3";
 const buttonStyles = {
     default: "w-32 bg-green-600 text-white px-4 py-2 rounded",
     primary:
-        "select-none rounded-lg bg-blue-600 w-24 2xl:w-32 py-1 2xl:py-3 px-4 2xl:px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-600/10 transition-all hover:shadow-lg hover:shadow-blue-600/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none",
+        "select-none rounded-lg bg-blue-600 w-24 2xl:w-32 py-2 2xl:py-3 px-2 2xl:px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-600/10 transition-all hover:shadow-lg hover:shadow-blue-600/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none",
     delete: "w-32 bg-red-600 text-white px-4 py-2 rounded",
     table: "w-20 bg-gray-600 text-white px-2 py-1 rounded",
 };
