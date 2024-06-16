@@ -91,7 +91,7 @@ const toggleVideo = (id: number) => {
                             <div v-else class="relative w-[256px] h-[144px] mx-auto">
                                 <iframe
                                     class="absolute top-0 left-0 w-full h-full"
-                                    :src="music.youtube_url + '?autoplay=1'"
+                                    :src="`https://www.youtube.com/embed/${getYoutubeId(music.youtube_url)}?autoplay=1`"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen
