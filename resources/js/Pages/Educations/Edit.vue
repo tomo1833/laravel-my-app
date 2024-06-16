@@ -5,6 +5,7 @@ import { Inertia } from "@inertiajs/inertia";
 import { useForm } from "laravel-precognition-vue-inertia";
 import { QuillEditor } from "@vueup/vue-quill";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
+import CommonQuill from "@/Components/Atoms/CommonQuill.vue";
 
 const props = defineProps({
     education: Object,
@@ -33,26 +34,6 @@ const deleteEducation = (id) => {
         onBefore: () => confirm("削除しますか？"),
     });
 };
-
-const toolbarOptions = [
-    ["bold", "italic", "underline", "strike"], // toggled buttons
-    ["blockquote", "code-block"],
-
-    [{ header: 1 }, { header: 2 }], // custom button values
-    [{ list: "ordered" }, { list: "bullet" }],
-    [{ script: "sub" }, { script: "super" }], // superscript/subscript
-    [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-    [{ direction: "rtl" }], // text direction
-
-    [{ size: ["small", false, "large", "huge"] }], // custom dropdown
-    [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
-    [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-    [{ font: [] }],
-    [{ align: [] }],
-
-    ["clean"], // remove formatting button
-];
 </script>
 
 <template>
@@ -139,11 +120,11 @@ const toolbarOptions = [
                     </div>
                     <div class="mb-4">
                         <label class="block mb-2">本文（HTML）</label>
-                        <QuillEditor
-                            theme="snow"
-                            v-model:content="form.body_html"
-                            contentType="html"
-                            :toolbar="toolbarOptions"
+                        <CommonQuill
+                            :content="form.body_html"
+                            @update:content="
+                                (newContent) => (form.body_html = newContent)
+                            "
                         />
                         <div
                             v-if="form.invalid('body_html')"

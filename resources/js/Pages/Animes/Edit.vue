@@ -4,9 +4,9 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import { Inertia } from "@inertiajs/inertia";
 import { useForm } from "laravel-precognition-vue-inertia";
-import { QuillEditor } from "@vueup/vue-quill";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
+import CommonQuill from "@/Components/Atoms/CommonQuill.vue";
 
 const props = defineProps({
     anime: Object,
@@ -110,10 +110,11 @@ const deleteAnime = (id) => {
                     </div>
                     <div class="mb-4">
                         <label class="block mb-2">本文</label>
-                        <QuillEditor
-                            theme="snow"
-                            v-model:content="form.body"
-                            contentType="html"
+                        <CommonQuill
+                            :content="form.body"
+                            @update:content="
+                                (newContent) => (form.body = newContent)
+                            "
                         />
                         <div v-if="form.invalid('body')" class="text-red-500">
                             {{ form.errors.body }}

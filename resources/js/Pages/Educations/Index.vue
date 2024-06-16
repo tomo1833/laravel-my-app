@@ -104,24 +104,28 @@ const filteredEducations = computed(() => {
                                 {{ education.title }}
                             </td>
                             <td class="py-2 px-6">
-                            <div class="flex">
-                            <div class="px-2">
-                                <CommonLinkButton
-                                    routePath="education.show"
-                                    text="詳細"
-                                    styleType="table"
-                                    :params="{ education: education.id }"
-                                />
-                            </div>
-                            <div class="px-2">
-                                <CommonLinkButton
-                                    routePath="education.edit"
-                                    text="編集"
-                                    styleType="table"
-                                    :params="{ education: education.id }"
-                                />
+                                <div class="flex">
+                                    <div class="px-2">
+                                        <CommonLinkButton
+                                            routePath="education.show"
+                                            text="詳細"
+                                            styleType="table"
+                                            :params="{
+                                                education: education.id,
+                                            }"
+                                        />
+                                    </div>
+                                    <div class="px-2">
+                                        <CommonLinkButton
+                                            routePath="education.edit"
+                                            text="編集"
+                                            styleType="table"
+                                            :params="{
+                                                education: education.id,
+                                            }"
+                                        />
+                                    </div>
                                 </div>
-                            </div>
                             </td>
                         </tr>
                     </tbody>

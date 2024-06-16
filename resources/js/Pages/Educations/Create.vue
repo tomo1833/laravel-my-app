@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { Head } from "@inertiajs/vue3";
 import { useForm } from "laravel-precognition-vue-inertia";
-import { QuillEditor } from "@vueup/vue-quill";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import "@vueup/vue-quill/dist/vue-quill.snow.css";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
+import CommonQuill from "@/Components/Atoms/CommonQuill.vue";
 
 const form = useForm("post", "/education", {
     id: null,
@@ -17,26 +16,6 @@ const form = useForm("post", "/education", {
     middle_kbn: null,
     small_kbn: null,
 });
-
-const toolbarOptions = [
-    ["bold", "italic", "underline", "strike"], // toggled buttons
-    ["blockquote", "code-block"],
-
-    [{ header: 1 }, { header: 2 }], // custom button values
-    [{ list: "ordered" }, { list: "bullet" }],
-    [{ script: "sub" }, { script: "super" }], // superscript/subscript
-    [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-    [{ direction: "rtl" }], // text direction
-
-    [{ size: ["small", false, "large", "huge"] }], // custom dropdown
-    [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
-    [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-    [{ font: [] }],
-    [{ align: [] }],
-
-    ["clean"], // remove formatting button
-];
 
 const storeEducations = () => {
     form.submit({
@@ -131,11 +110,11 @@ const storeEducations = () => {
 
                     <div class="mb-4">
                         <label class="block mb-2">本文（HTML）</label>
-                        <QuillEditor
-                            theme="snow"
-                            v-model:content="form.body_html"
-                            contentType="html"
-                            :toolbar="toolbarOptions"
+                        <CommonQuill
+                            :content="form.body_html"
+                            @update:content="
+                                (newContent) => (form.body_html = newContent)
+                            "
                         />
                         <div
                             v-if="form.invalid('body_html')"
