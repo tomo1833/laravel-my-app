@@ -28,6 +28,12 @@ const getYoutubeId = (url: string) => {
     const match = url.match(regExp);
     return (match && match[2].length === 11) ? match[2] : null;
 };
+
+const showVideo = ref<Record<number, boolean>>({});
+
+const toggleVideo = (id: number) => {
+    showVideo.value[id] = !showVideo.value[id];
+};
 </script>
 
 <template>
@@ -71,12 +77,12 @@ const getYoutubeId = (url: string) => {
                         <div
                             class="relative h-32 mx-auto mt-4 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl"
                         >
-                            <div v-if="!music.showVideo" class="relative w-[256px] h-[144px] mx-auto">
+                            <div v-if="!showVideo[music.id]" class="relative w-[256px] h-[144px] mx-auto">
                                 <img
                                     :src="`https://img.youtube.com/vi/${getYoutubeId(music.youtube_url)}/hqdefault.jpg`"
                                     alt="YouTube Thumbnail"
                                     class="absolute top-0 left-0 w-full h-full object-cover cursor-pointer"
-                                    @click="music.showVideo = true"
+                                    @click="toggleVideo(music.id)"
                                 />
                                 <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
                                     <i class="fas fa-play text-white text-3xl"></i>
