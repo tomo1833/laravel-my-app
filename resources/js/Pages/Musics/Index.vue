@@ -32,6 +32,7 @@ const getYoutubeId = (url: string) => {
 const showVideo = ref<Record<number, boolean>>({});
 
 const toggleVideo = (id: number) => {
+    console.log('----HOGE-----')
     showVideo.value[id] = !showVideo.value[id];
 };
 </script>
