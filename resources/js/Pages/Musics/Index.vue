@@ -22,6 +22,12 @@ const filteredMusics = computed(() => {
         return title.includes(query) || artist.includes(query);
     });
 });
+
+const getYoutubeId = (url: string) => {
+    const regExp = /^.*(youtu.be\/|v\/|\/u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+};
 </script>
 
 <template>
@@ -65,16 +71,28 @@ const filteredMusics = computed(() => {
                         <div
                             class="relative h-32 mx-auto mt-4 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl"
                         >
-                            <div class="relative w-[256px] h-[144px] mx-auto">
+                            <div v-if="!music.showVideo" class="relative w-[256px] h-[144px] mx-auto">
+                                <img
+                                    :src="`https://img.youtube.com/vi/${getYoutubeId(music.youtube_url)}/hqdefault.jpg`"
+                                    alt="YouTube Thumbnail"
+                                    class="absolute top-0 left-0 w-full h-full object-cover cursor-pointer"
+                                    @click="music.showVideo = true"
+                                />
+                                <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+                                    <i class="fas fa-play text-white text-3xl"></i>
+                                </div>
+                            </div>
+                            <div v-else class="relative w-[256px] h-[144px] mx-auto">
                                 <iframe
                                     class="absolute top-0 left-0 w-full h-full"
-                                    :src="music.youtube_url"
+                                    :src="music.youtube_url + '?autoplay=1'"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen
                                 ></iframe>
                             </div>
                         </div>
+                        
                         <div class="p-4 flex flex-col flex-grow">
                             <h5
                                 class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900"
