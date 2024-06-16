@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreanimeRequest extends FormRequest
+class StoreanimeGenresRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class StoreanimeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required',
+            //
         ];
     }
 }

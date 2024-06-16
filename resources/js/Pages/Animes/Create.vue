@@ -2,11 +2,11 @@
 import { ref } from "vue";
 import { Head } from "@inertiajs/vue3";
 import { useForm } from "laravel-precognition-vue-inertia";
-import { QuillEditor } from "@vueup/vue-quill";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 import CommonQuill from "@/Components/Atoms/CommonQuill.vue";
+import FormText from "@/Components/Molecuels/FormText.vue";
 
 const imageUrl = ref<string | null>(null);
 const selectedFile = ref<File | null>(null);
@@ -60,16 +60,14 @@ const storeAnime = () => {
                     </h1>
 
                     <div class="mb-4">
-                        <label class="block mb-2">タイトル</label>
-                        <input
-                            type="text"
+                        <FormText
+                            label="タイトル"
                             name="title"
-                            v-model="form.title"
-                            class="p-2 border rounded w-full"
+                            v-model:modelValue="form.title"
+                            :error="
+                                form.invalid('title') ? form.errors.title : ''
+                            "
                         />
-                        <div v-if="form.invalid('title')" class="text-red-500">
-                            {{ form.errors.title }}
-                        </div>
                     </div>
                     <div class="mb-4">
                         <label class="block mb-2">画像</label>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AnimeController;
+use App\Http\Controllers\AnimeGenresController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CameraController;
@@ -80,6 +81,10 @@ Route::resource('educationMiddle', EducationMiddleController::class)
 
 Route::resource('educationSmall', EducationSmallController::class)
 ->middleware(['auth', 'verified']);
+
+Route::resource('animeGenres', AnimeGenresController::class)
+->middleware(['auth', 'verified']);
+
 
 Route::get('/image-upload', [ImageController::class, 'index'])->name('images.index');
 Route::post('/image-upload', [ImageController::class, 'store'])->name('images.store');

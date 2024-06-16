@@ -16,6 +16,9 @@ import CommonResNaviLink from "@/Components/Atoms/CommonResNaviLink.vue";
     <CommonResNaviLink routePath="manga.index" text="漫画" />
     <CommonResNaviLink routePath="movie.index" text="映画" />
     <CommonResNaviLink routePath="educationLarge.index" text="教育大項目" />
+    <CommonResNaviLink routePath="educationMiddle.index" text="教育中項目" />
+    <CommonResNaviLink routePath="educationSmall.index" text="教育小項目" />
+    <CommonResNaviLink routePath="animeGenres.index" text="アニメジャンル" />
     <CommonResponsiveNaviLink
         routePath="educationMiddle.index"
         text="教育中項目"

@@ -16,7 +16,7 @@ class AnimeController extends Controller
      */
     public function index()
     {
-        $animes = Anime::get();
+        $animes = Anime::orderBy('title', 'asc')->get();
 
         return Inertia::render('Animes/Index', [
             'animes' => $animes,

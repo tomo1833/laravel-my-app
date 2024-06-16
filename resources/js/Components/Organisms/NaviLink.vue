@@ -29,21 +29,6 @@ const menuItems = ref<MenuItem[]>([
         isLink: false,
         children: [
             { text: "教育管理", routePath: "education.index", isLink: true },
-            {
-                text: "教育大項目",
-                routePath: "educationLarge.index",
-                isLink: true,
-            },
-            {
-                text: "教育中項目",
-                routePath: "educationMiddle.index",
-                isLink: true,
-            },
-            {
-                text: "教育小項目",
-                routePath: "educationSmall.index",
-                isLink: true,
-            },
         ],
     },
     {
@@ -63,6 +48,32 @@ const menuItems = ref<MenuItem[]>([
         text: "wiki",
         isLink: false,
         children: [{ text: "ウィキ", routePath: "wiki.index", isLink: true }],
+    },
+    {
+        text: "マスター",
+        isLink: false,
+        children: [
+            {
+                text: "教育大項目",
+                routePath: "educationLarge.index",
+                isLink: true,
+            },
+            {
+                text: "教育中項目",
+                routePath: "educationMiddle.index",
+                isLink: true,
+            },
+            {
+                text: "教育小項目",
+                routePath: "educationSmall.index",
+                isLink: true,
+            },
+            {
+                text: "アニメジャンル",
+                routePath: "animeGenres.index",
+                isLink: true,
+            },
+        ],
     },
     {
         text: "その他",
