@@ -19,7 +19,7 @@ const props = defineProps({
 #education-area :deep(h4),
 #education-area :deep(h5),
 #education-area :deep(h6) {
-    margin: 20px 0;
+    margin: 20px;
     line-height: 1.2;
     font-weight: bold;
     text-align: left;

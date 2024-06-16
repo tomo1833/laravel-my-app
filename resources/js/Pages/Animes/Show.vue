@@ -82,7 +82,7 @@ const props = defineProps({
                                     ></iframe>
                                 </div>
                             </div>
-                            <div>
+                            <div class="p-2">
                                 <div>
                                     <h3 class="text-lg mb-4 text-gray-900">
                                         1期EDタイトル:{{
