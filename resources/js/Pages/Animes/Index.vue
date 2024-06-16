@@ -8,6 +8,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 interface Anime {
     id: number;
     title: string;
+    genre_name: string;
     path: string;
 }
 
@@ -85,6 +86,9 @@ const filteredAnimes = computed(() => {
                             <p
                                 class="block font-sans text-base antialiased font-light leading-relaxed text-inherit mb-2"
                             ></p>
+                            <div class="mt-auto">
+                                {{ anime.genre_name }}
+                            </div>
                             <div class="mt-auto flex space-x-2">
                                 <CommonLinkButton
                                     routePath="anime.show"

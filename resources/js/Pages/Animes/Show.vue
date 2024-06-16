@@ -32,6 +32,7 @@ const props = defineProps({
                     >
                         {{ props.anime.title }}
                     </h1>
+
                     <div class="flex items-center justify-center">
                         <img
                             :src="`/storage/${props.anime.path}`"
@@ -40,7 +41,150 @@ const props = defineProps({
                         />
                     </div>
 
+                    <h2
+                        class="sm:text-xl text-2xl py-8 text-left text-gray-900"
+                    >
+                        ジャンル : {{ props.anime.genre_name }}
+                    </h2>
                     <CommonArea :body="props.anime.body" />
+                    <div
+                        v-if="
+                            props.anime.season_1_opening_title ||
+                            props.anime.season_2_opening_title
+                        "
+                        class="flex flex-col"
+                    >
+                        <div
+                            v-if="props.anime.season_1_opening_title"
+                            class="flex flex-row justify-evenly"
+                        >
+                            <div>
+                                <div>
+                                    <h3 class="text-lg mb-4 text-gray-900">
+                                        1期OPタイトル:{{
+                                            props.anime.season_1_opening_title
+                                        }}
+                                    </h3>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg mb-4 text-gray-900">
+                                        1期OPアーティスト:{{
+                                            props.anime.season_1_opening_artist
+                                        }}
+                                    </h3>
+                                </div>
+                                <div
+                                    class="relative w-[256px] h-[144px] mx-auto"
+                                >
+                                    <iframe
+                                        class="absolute top-0 left-0 w-full h-full"
+                                        :src="
+                                            props.anime
+                                                .season_1_opening_youtube_url
+                                        "
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                    ></iframe>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <h3 class="text-lg mb-4 text-gray-900">
+                                        1期EDタイトル:{{
+                                            props.anime.season_1_ending_title
+                                        }}
+                                    </h3>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg mb-4 text-gray-900">
+                                        1期EDアーティスト:{{
+                                            props.anime.season_1_ending_artist
+                                        }}
+                                    </h3>
+                                </div>
+                                <div
+                                    class="relative w-[256px] h-[144px] mx-auto"
+                                >
+                                    <iframe
+                                        class="absolute top-0 left-0 w-full h-full"
+                                        :src="
+                                            props.anime
+                                                .season_1_ending_youtube_url
+                                        "
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                    ></iframe>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            v-if="props.anime.season_2_opening_title"
+                            class="flex flex-row justify-evenly"
+                        >
+                            <div>
+                                <div>
+                                    <h3 class="text-lg mb-4 text-gray-900">
+                                        2期OPタイトル:{{
+                                            props.anime.season_2_opening_title
+                                        }}
+                                    </h3>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg mb-4 text-gray-900">
+                                        2期OPアーティスト:{{
+                                            props.anime.season_2_opening_artist
+                                        }}
+                                    </h3>
+                                </div>
+                                <div
+                                    class="relative w-[256px] h-[144px] mx-auto"
+                                >
+                                    <iframe
+                                        class="absolute top-0 left-0 w-full h-full"
+                                        :src="
+                                            props.anime
+                                                .season_2_opening_youtube_url
+                                        "
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                    ></iframe>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <h3 class="text-lg mb-4 text-gray-900">
+                                        2期EDタイトル:{{
+                                            props.anime.season_2_endign_title
+                                        }}
+                                    </h3>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg mb-4 text-gray-900">
+                                        2期EDアーティスト:{{
+                                            props.anime.season_2_ending_artist
+                                        }}
+                                    </h3>
+                                </div>
+                                <div
+                                    class="relative w-[256px] h-[144px] mx-auto"
+                                >
+                                    <iframe
+                                        class="absolute top-0 left-0 w-full h-full"
+                                        :src="
+                                            props.anime
+                                                .season_2_ending_youtube_url
+                                        "
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                    ></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

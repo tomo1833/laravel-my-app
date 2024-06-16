@@ -14,8 +14,14 @@ const selectedFile = ref<File | null>(null);
 const form = useForm("post", "/anime", {
     id: null,
     title: null,
-    body: null,
+    title_kana: null,
     image: null,
+    genre: null,
+    season_1_opening: null,
+    season_1_ending: null,
+    season_2_opening: null,
+    season_2_ending: null,
+    body: null,
 });
 
 const handleFileChange = (event: Event) => {
@@ -69,6 +75,20 @@ const storeAnime = () => {
                             "
                         />
                     </div>
+
+                    <div class="mb-4">
+                        <FormText
+                            label="タイトルカナ"
+                            name="title_kana"
+                            v-model:modelValue="form.title_kana"
+                            :error="
+                                form.invalid('title_kana')
+                                    ? form.errors.title_kana
+                                    : ''
+                            "
+                        />
+                    </div>
+
                     <div class="mb-4">
                         <label class="block mb-2">画像</label>
                         <input
@@ -81,6 +101,18 @@ const storeAnime = () => {
                         </div>
                         <img v-if="imageUrl" :src="imageUrl" class="mt-4" />
                     </div>
+
+                    <div class="mb-4">
+                        <FormText
+                            label="ジャンル"
+                            name="genre"
+                            v-model:modelValue="form.genre"
+                            :error="
+                                form.invalid('genre') ? form.errors.genre : ''
+                            "
+                        />
+                    </div>
+
                     <div class="mb-4">
                         <label class="block mb-2">本文</label>
                         <CommonQuill
@@ -92,6 +124,58 @@ const storeAnime = () => {
                         <div v-if="form.invalid('body')" class="text-red-500">
                             {{ form.errors.body }}
                         </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <FormText
+                            label="シーズン1:OP"
+                            name="season_1_opening"
+                            v-model:modelValue="form.season_1_opening"
+                            :error="
+                                form.invalid('season_1_opening')
+                                    ? form.errors.season_1_opening
+                                    : ''
+                            "
+                        />
+                    </div>
+
+                    <div class="mb-4">
+                        <FormText
+                            label="シーズン1:ED"
+                            name="season_1_ending"
+                            v-model:modelValue="form.season_1_ending"
+                            :error="
+                                form.invalid('season_1_ending')
+                                    ? form.errors.season_1_ending
+                                    : ''
+                            "
+                        />
+                    </div>
+
+                    <div class="mb-4">
+                        <FormText
+                            label="シーズン2:OP"
+                            name="season_2_opening"
+                            v-model:modelValue="form.season_2_opening"
+                            :error="
+                                form.invalid('season_2_opening')
+                                    ? form.errors.season_2_opening
+                                    : ''
+                            "
+                        />
+                    </div>
+
+                    <div class="mb-4">
+                        <FormText
+                            label="シーズン2:ED"
+                            name="season_2_ending"
+                            v-model:modelValue="form.season_2_ending"
+                            :error="
+                                form.invalid('season_2_ending')
+                                    ? form.errors.season_2_ending
+                                    : ''
+                            "
+                        />
                     </div>
 
                     <div class="flex flex-row justify-evenly">

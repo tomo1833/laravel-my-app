@@ -13,6 +13,13 @@ class anime extends Model
         'title',
         'path',
         'body',
+        'genre',
+        'title_kana',
+        'production_company',
+        'season_1_opening',
+        'season_1_ending',
+        'season_2_opening',
+        'season_2_ending',
+        'broadcast_period',
     ];
-
 }

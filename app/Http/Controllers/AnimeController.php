@@ -16,7 +16,17 @@ class AnimeController extends Controller
      */
     public function index()
     {
-        $animes = Anime::orderBy('title', 'asc')->get();
+        $animes = Anime::leftJoin('anime_genres', 'animes.genre', '=', 'anime_genres.id')
+        ->orderBy('animes.title', 'asc')
+        ->select(
+            'animes.id',
+            'animes.title',
+            'animes.genre',
+            'animes.path',
+            'animes.body',
+            'anime_genres.name as genre_name',
+        )
+        ->get();
 
         return Inertia::render('Animes/Index', [
             'animes' => $animes,
@@ -40,7 +50,13 @@ class AnimeController extends Controller
 
         Anime::create([
             'title' => $request->title,
+            'title_kana' => $request->title_kana,
+            'season_1_opening' => $request->season_1_opening,
+            'season_1_ending' => $request->season_1_ending,
+            'season_2_opening' => $request->season_2_opening,
+            'season_2_ending' => $request->season_2_ending,
             'path' => $path,
+            'genre' => $request->genre,
             'body' => $request->body,
         ]);
 
@@ -56,8 +72,37 @@ class AnimeController extends Controller
      */
     public function show(anime $anime)
     {
+
+        $animeEdit = Anime::leftJoin('anime_genres', 'animes.genre', '=', 'anime_genres.id')
+        ->leftJoin('music as season_1_opening_music', 'animes.season_1_opening', '=', 'season_1_opening_music.id')
+        ->leftJoin('music as season_1_ending_music', 'animes.season_1_ending', '=', 'season_1_ending_music.id')
+        ->leftJoin('music as season_2_opening_music', 'animes.season_2_opening', '=', 'season_2_opening_music.id')
+        ->leftJoin('music as season_2_ending_music', 'animes.season_2_ending', '=', 'season_2_ending_music.id')
+        ->where('animes.id', $anime->id)
+        ->select(
+            'animes.id',
+            'animes.title',
+            'animes.genre',
+            'animes.path',
+            'animes.body',
+            'anime_genres.name as genre_name',
+            'season_1_opening_music.title as season_1_opening_title',
+            'season_1_opening_music.artist as season_1_opening_artist',
+            'season_1_opening_music.youtube_url as season_1_opening_youtube_url',
+            'season_1_ending_music.title as season_1_ending_title',
+            'season_1_ending_music.artist as season_1_ending_artist',
+            'season_1_ending_music.youtube_url as season_1_ending_youtube_url',
+            'season_2_opening_music.title as season_2_opening_title',
+            'season_2_opening_music.artist as season_2_opening_artist',
+            'season_2_opening_music.youtube_url as season_2_opening_youtube_url',
+            'season_2_ending_music.title as season_2_ending_title',
+            'season_2_ending_music.artist as season_2_ending_artist',
+            'season_2_ending_music.youtube_url as season_2_ending_youtube_url',
+        )
+        ->firstOrFail();
+
         return Inertia::render('Animes/Show', [
-            'anime' => $anime,
+            'anime' => $animeEdit,
           ]);
     }
 
@@ -77,6 +122,12 @@ class AnimeController extends Controller
     public function update(UpdateanimeRequest $request, anime $anime)
     {
         $anime->title = $request->title;
+        $anime->title_kana = $request->title_kana;
+        $anime->genre = $request->genre;
+        $anime->season_1_opening = $request->season_1_opening;
+        $anime->season_1_ending = $request->season_1_ending;
+        $anime->season_2_opening = $request->season_2_opening;
+        $anime->season_2_ending = $request->season_2_ending;
         $anime->body = $request->body;
 
         if ($request->hasFile('image')) {

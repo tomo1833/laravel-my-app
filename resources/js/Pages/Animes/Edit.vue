@@ -20,8 +20,13 @@ const selectedFile = ref<File | null>(null);
 const form = useForm("put", "/anime/" + props.anime.id, {
     id: props.anime.id,
     title: props.anime.title,
+    genre: props.anime.genre,
     body: props.anime.body,
     path: props.anime.path,
+    season_1_opening: props.anime.season_1_opening,
+    season_1_ending: props.anime.season_1_ending,
+    season_2_opening: props.anime.season_2_opening,
+    season_2_ending: props.anime.season_2_ending,
     image: null,
 });
 
@@ -42,6 +47,11 @@ const updateAnime = () => {
     const formData = new FormData();
     formData.append("_method", "PUT"); // PUTメソッドを指定
     formData.append("title", form.title);
+    formData.append("genre", form.genre);
+    formData.append("season_1_opening", form.season_1_opening);
+    formData.append("season_1_ending", form.season_1_ending);
+    formData.append("season_2_opening", form.season_2_opening);
+    formData.append("season_2_ending", form.season_2_ending);
     formData.append("body", form.body);
     if (selectedFile.value) {
         formData.append("image", selectedFile.value);
@@ -96,6 +106,7 @@ const deleteAnime = (id) => {
                             {{ form.errors.title }}
                         </div>
                     </div>
+
                     <div class="mb-4">
                         <label class="block mb-2">画像</label>
                         <input
@@ -108,6 +119,20 @@ const deleteAnime = (id) => {
                         </div>
                         <img v-if="imageUrl" :src="imageUrl" class="mt-4" />
                     </div>
+
+                    <div class="mb-4">
+                        <label class="block mb-2">ジャンル</label>
+                        <input
+                            type="text"
+                            name="genre"
+                            v-model="form.genre"
+                            class="p-2 border rounded w-full"
+                        />
+                        <div v-if="form.invalid('genre')" class="text-red-500">
+                            {{ form.errors.genre }}
+                        </div>
+                    </div>
+
                     <div class="mb-4">
                         <label class="block mb-2">本文</label>
                         <CommonQuill
@@ -120,6 +145,73 @@ const deleteAnime = (id) => {
                             {{ form.errors.body }}
                         </div>
                     </div>
+
+                    <div class="mb-4">
+                        <label class="block mb-2">シーズン1:OP</label>
+                        <input
+                            type="text"
+                            name="season_1_opening"
+                            v-model="form.season_1_opening"
+                            class="p-2 border rounded w-full"
+                        />
+                        <div
+                            v-if="form.invalid('season_1_opening')"
+                            class="text-red-500"
+                        >
+                            {{ form.errors.season_1_opening }}
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block mb-2">シーズン1:ED</label>
+                        <input
+                            type="text"
+                            name="season_1_ending"
+                            v-model="form.season_1_ending"
+                            class="p-2 border rounded w-full"
+                        />
+                        <div
+                            v-if="form.invalid('season_1_ending')"
+                            class="text-red-500"
+                        >
+                            {{ form.errors.season_1_ending }}
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block mb-2">シーズン2:OP</label>
+                        <input
+                            type="text"
+                            name="season_2_opening"
+                            v-model="form.season_2_opening"
+                            class="p-2 border rounded w-full"
+                        />
+                        <div
+                            v-if="form.invalid('season_2_opening')"
+                            class="text-red-500"
+                        >
+                            {{ form.errors.season_2_opening }}
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block mb-2">シーズン2:ED</label>
+                        <input
+                            type="text"
+                            name="season_2_ending"
+                            v-model="form.season_2_ending"
+                            class="p-2 border rounded w-full"
+                        />
+                        <div
+                            v-if="
+                                form.invalid('season_2_season_1_endingopening')
+                            "
+                            class="text-red-500"
+                        >
+                            {{ form.errors.season_2_ending }}
+                        </div>
+                    </div>
+
                     <div class="flex flex-row justify-evenly">
                         <div>
                             <CommonSubmitButton text="更新" />
