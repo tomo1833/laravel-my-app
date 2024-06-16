@@ -66,6 +66,7 @@ const chatMessages = ref([]);
         </header>
 
         <main class="flex-1 flex flex-col items-center justify-center">
+            <img src="/images/logo.png" />
             <h1 class="text-center text-4xl font-bold">
                 パーソナルオーガナイザーシステム
             </h1>
