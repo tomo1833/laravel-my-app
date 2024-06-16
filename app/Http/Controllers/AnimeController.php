@@ -125,19 +125,19 @@ class AnimeController extends Controller
         if ($request->filled('title_kana')) {
             $anime->title_kana = $request->title_kana;
         }
-        if ($request->has('genre')) {
+        if (!is_null($request->genre)) {
             $anime->genre = $request->genre;
         }
-        if ($request->has('season_1_opening')) {
+        if (!is_null($request->season_1_opening)) {
             $anime->season_1_opening = $request->season_1_opening;
         }
-        if ($request->has('season_1_ending')) {
+        if (!is_null($request->season_1_ending)) {
             $anime->season_1_ending = $request->season_1_ending;
         }
-        if ($request->has('season_2_opening')) {
+        if (!is_null($request->season_2_opening)) {
             $anime->season_2_opening = $request->season_2_opening;
         }
-        if ($request->has('season_2_ending')) {
+        if (!is_null($request->season_2_ending)) {
             $anime->season_2_ending = $request->season_2_ending;
         }
 
