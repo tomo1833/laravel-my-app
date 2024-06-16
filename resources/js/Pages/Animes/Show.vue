@@ -52,7 +52,7 @@ const props = defineProps({
                             v-if="props.anime.season_1_opening_title"
                             class="flex flex-row justify-evenly"
                         >
-                            <div>
+                            <div class="p-1">
                                 <div>
                                     <h3 class="text-lg mb-4 text-gray-900">
                                         1期OPタイトル:{{
@@ -82,7 +82,7 @@ const props = defineProps({
                                     ></iframe>
                                 </div>
                             </div>
-                            <div class="p-2">
+                            <div class="p-1">
                                 <div>
                                     <h3 class="text-lg mb-4 text-gray-900">
                                         1期EDタイトル:{{
@@ -184,7 +184,7 @@ const props = defineProps({
 
 
                     <h2
-                        class="sm:text-xl text-2xl py-8 text-left text-gray-900"
+                        class="sm:text-xl text-2xl py-8 text-left text-gray-900 p-[20px]"
                     >
                         ジャンル : {{ props.anime.genre_name }}
                     </h2>
