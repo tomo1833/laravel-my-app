@@ -5,6 +5,7 @@ import { Head } from "@inertiajs/vue3";
 defineProps({
     educationCount: Number,
     animeCount: Number,
+    animeUserCount: Number,
     musicCount: Number,
 });
 </script>
@@ -63,6 +64,7 @@ defineProps({
                                             <h2
                                                 class="title-font font-medium text-3xl text-gray-900"
                                             >
+                                                {{ animeUserCount }} /
                                                 {{ animeCount }} 件
                                             </h2>
                                             <p class="leading-relaxed">

@@ -24,15 +24,19 @@ const props = defineProps<{
 }>();
 
 const searchQuery = ref<string>("");
+const watchedFilter = ref<string>("all"); // フィルタ用の変数
 
 const filteredAnimes = computed(() => {
-    if (!searchQuery.value) {
-        return props.animes;
-    }
     return props.animes.filter((anime) => {
-        const title = anime.title.toLowerCase();
-        const query = searchQuery.value.toLowerCase();
-        return title.includes(query);
+        const titleMatch =
+            !searchQuery.value ||
+            anime.title.toLowerCase().includes(searchQuery.value.toLowerCase());
+        const watchedMatch =
+            watchedFilter.value === "all" ||
+            (watchedFilter.value === "watched" && anime.watched) ||
+            (watchedFilter.value === "not_watched" && !anime.watched);
+
+        return titleMatch && watchedMatch;
     });
 });
 
@@ -68,13 +72,21 @@ const updateWatched = async (anime: Anime) => {
         />
 
         <div class="flex items-center justify-between mb-4 bg-green-300">
-            <div class="px-4">
+            <div class="px-4 flex space-x-4">
                 <input
                     type="text"
                     v-model="searchQuery"
                     placeholder="検索..."
                     class="p-2 border border-gray-300 rounded"
                 />
+                <select
+                    v-model="watchedFilter"
+                    class="p-2 border border-gray-300 rounded"
+                >
+                    <option value="all">すべて</option>
+                    <option value="watched">見た</option>
+                    <option value="not_watched">見てない</option>
+                </select>
             </div>
             <div class="p-4 2xl:px-64">
                 <CommonLinkButton

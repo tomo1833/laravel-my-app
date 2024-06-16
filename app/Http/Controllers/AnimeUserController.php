@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
-use App\Models\AnimeUser;
+use App\Models\animeUser;
 
 class AnimeUserController extends Controller
 {
