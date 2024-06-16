@@ -33,20 +33,14 @@ const props = defineProps({
                         {{ props.anime.title }}
                     </h1>
 
-                    <div class="flex items-center justify-center">
-                        <img
-                            :src="`/storage/${props.anime.path}`"
-                            alt="props.anime.title"
-                            class="w-96"
-                        />
-                    </div>
-
-                    <h2
-                        class="sm:text-xl text-2xl py-8 text-left text-gray-900"
-                    >
-                        ジャンル : {{ props.anime.genre_name }}
-                    </h2>
-                    <CommonArea :body="props.anime.body" />
+                    <div class="flex">
+                        <div class="flex items-center justify-center">
+                            <img
+                                :src="`/storage/${props.anime.path}`"
+                                alt="props.anime.title"
+                                class="w-96"
+                            />
+                        </div>
                     <div
                         v-if="
                             props.anime.season_1_opening_title ||
@@ -185,6 +179,17 @@ const props = defineProps({
                             </div>
                         </div>
                     </div>
+
+                    </div>
+
+
+                    <h2
+                        class="sm:text-xl text-2xl py-8 text-left text-gray-900"
+                    >
+                        ジャンル : {{ props.anime.genre_name }}
+                    </h2>
+                    <CommonArea :body="props.anime.body" />
+
                 </div>
             </div>
         </section>
