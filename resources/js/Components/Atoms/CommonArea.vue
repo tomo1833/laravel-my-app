@@ -75,8 +75,8 @@ const props = defineProps({
 }
 
 #education-area :deep(p) {
-    margin: 20px 0;
-    font-size: 1.1em;
+    margin: 20px;
+    font-size: 1.1rem;
     color: #555;
 }
 

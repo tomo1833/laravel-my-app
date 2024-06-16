@@ -33,12 +33,12 @@ const props = defineProps({
                         {{ props.anime.title }}
                     </h1>
 
-                    <div class="flex">
+                    <div class="flex justify-evenly">
                         <div class="flex items-center justify-center">
                             <img
                                 :src="`/storage/${props.anime.path}`"
                                 alt="props.anime.title"
-                                class="w-96"
+                                class="w-[426px]"
                             />
                         </div>
                     <div
@@ -68,7 +68,7 @@ const props = defineProps({
                                     </h3>
                                 </div>
                                 <div
-                                    class="relative w-[256px] h-[144px] mx-auto"
+                                    class="relative w-[426px] h-[240px] mx-auto"
                                 >
                                     <iframe
                                         class="absolute top-0 left-0 w-full h-full"
@@ -98,7 +98,7 @@ const props = defineProps({
                                     </h3>
                                 </div>
                                 <div
-                                    class="relative w-[256px] h-[144px] mx-auto"
+                                    class="relative w-[426px] h-[240px] mx-auto"
                                 >
                                     <iframe
                                         class="absolute top-0 left-0 w-full h-full"
@@ -133,7 +133,7 @@ const props = defineProps({
                                     </h3>
                                 </div>
                                 <div
-                                    class="relative w-[256px] h-[144px] mx-auto"
+                                    class="relative w-[426px] h-[240px] mx-auto"
                                 >
                                     <iframe
                                         class="absolute top-0 left-0 w-full h-full"
@@ -163,7 +163,7 @@ const props = defineProps({
                                     </h3>
                                 </div>
                                 <div
-                                    class="relative w-[256px] h-[144px] mx-auto"
+                                    class="relative w-[426px] h-[240px] mx-auto"
                                 >
                                     <iframe
                                         class="absolute top-0 left-0 w-full h-full"
