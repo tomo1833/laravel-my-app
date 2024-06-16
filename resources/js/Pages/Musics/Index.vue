@@ -56,55 +56,54 @@ const filteredMusics = computed(() => {
                 />
             </div>
         </div>
-        <div class="bg-[#FFFFFF] mx-0 sm:mx-2 2xl:mx-4 my-2">
-            <div class="overflow-y-auto h-[calc(100vh-250px)]">
-                <table
-                    class="table-auto w-full text-left whitespace-no-wrap text-gray-500"
-                >
-                    <thead class="text-xs text-gray-700 uppercase bg-[#F4F4F4]">
-                        <tr>
-                            <th scope="col" class="py-3 px-2 sm:px-4 2xl:px-6">
-                                タイトル
-                            </th>
-                            <th scope="col" class="py-3 px-2 sm:px-4 2xl:px-6">
-                                アーティスト
-                            </th>
-                            <th
-                                scope="col"
-                                class="py-3 px-2 sm:px-4 2xl:px-6"
-                            ></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr
-                            v-for="music in filteredMusics"
-                            :key="music.id"
-                            class="bg-white border-b"
+        <div class="mx-0 sm:mx-2 2xl:mx-4 my-1">
+            <div class="overflow-y-auto h-[calc(100vh-250px)] flex flex-wrap">
+                <template v-for="music in filteredMusics" :key="music.id">
+                    <div
+                        class="relative flex flex-col mx-2 mb-4 h-96 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-64"
+                    >
+                        <div
+                            class="relative h-32 mx-auto mt-4 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl"
                         >
-                            <td class="py-4 px-2 sm:px-4 2xl:px-6">
+                            <div class="relative w-[256px] h-[144px] mx-auto">
+                                <iframe
+                                    class="absolute top-0 left-0 w-full h-full"
+                                    :src="music.youtube_url"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen
+                                ></iframe>
+                            </div>
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h5
+                                class="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900"
+                            >
                                 {{ music.title }}
-                            </td>
-                            <td class="py-4 px-2 sm:px-4 2xl:px-6">
+                            </h5>
+                            <p
+                                class="block font-sans text-base antialiased font-light leading-relaxed text-inherit mb-2"
+                            ></p>
+                            <div class="mt-auto">
                                 {{ music.artist }}
-                            </td>
-                            <td class="py-4 px-2 sm:px-4 2xl:px-6">
+                            </div>
+                            <div class="mt-auto flex space-x-2">
                                 <CommonLinkButton
                                     routePath="music.show"
                                     text="詳細"
                                     styleType="table"
                                     :params="{ music: music.id }"
                                 />
-                                &nbsp;&nbsp;&nbsp;&nbsp;
                                 <CommonLinkButton
                                     routePath="music.edit"
                                     text="編集"
                                     styleType="table"
                                     :params="{ music: music.id }"
                                 />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                            </div>
+                        </div>
+                    </div>
+                </template>
             </div>
         </div>
     </AuthenticatedLayout>

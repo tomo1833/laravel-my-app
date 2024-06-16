@@ -7,11 +7,10 @@ import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy";
 import QuillEditor from "./Components/QuillEditor.vue";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
-
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 library.add(faEye);
 library.add(faEyeSlash);
@@ -27,7 +26,7 @@ createInertiaApp({
         ),
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
-            .component('font-awesome-icon', FontAwesomeIcon)
+            .component("font-awesome-icon", FontAwesomeIcon)
             .component("quill-editor", QuillEditor)
             .use(plugin)
             .use(ZiggyVue)

@@ -141,8 +141,16 @@ const updateWatched = async (anime: Anime) => {
                                         @click="updateWatched(anime)"
                                         class="text-xl"
                                     >
-                                        <font-awesome-icon v-if="anime.watched" icon="eye" class="text-green-500"/>
-                                        <font-awesome-icon v-else icon="eye-slash" class="text-gray-500"/>
+                                        <font-awesome-icon
+                                            v-if="anime.watched"
+                                            icon="eye"
+                                            class="text-green-500"
+                                        />
+                                        <font-awesome-icon
+                                            v-else
+                                            icon="eye-slash"
+                                            class="text-gray-500"
+                                        />
                                     </button>
                                 </div>
                             </div>
