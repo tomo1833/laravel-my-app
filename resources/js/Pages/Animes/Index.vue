@@ -1,19 +1,26 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { Head } from "@inertiajs/vue3";
+import { Head, usePage } from "@inertiajs/vue3";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 import FlashMessage from "@/Components/Atoms/CommonFlashMessage.vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import axios from "axios";
 
 interface Anime {
     id: number;
     title: string;
     genre_name: string;
     path: string;
+    watched: boolean; // 真偽値を使用
+}
+
+interface User {
+    id: number;
 }
 
 const props = defineProps<{
     animes: Anime[];
+    user: User; // ユーザー情報を受け取る
 }>();
 
 const searchQuery = ref<string>("");
@@ -28,6 +35,21 @@ const filteredAnimes = computed(() => {
         return title.includes(query);
     });
 });
+
+const updateWatched = async (anime: Anime) => {
+    try {
+        anime.watched = !anime.watched; // ローカル状態を先に更新
+        await axios.post("/api/anime-user/update", {
+            anime_id: anime.id,
+            watched: anime.watched,
+            user_id: props.user.id, // ユーザーIDを含める
+        });
+        console.log("視聴状況が更新されました");
+    } catch (error) {
+        anime.watched = !anime.watched; // エラー時に状態を元に戻す
+        console.error("視聴状況の更新に失敗しました", error);
+    }
+};
 </script>
 
 <template>
@@ -102,6 +124,21 @@ const filteredAnimes = computed(() => {
                                     styleType="table"
                                     :params="{ anime: anime.id }"
                                 />
+                                <div class="pl-4">
+                                    <button
+                                        @click="updateWatched(anime)"
+                                        class="text-xl"
+                                    >
+                                        <i
+                                            v-if="anime.watched"
+                                            class="fas fa-eye text-green-500"
+                                        ></i>
+                                        <i
+                                            v-else
+                                            class="far fa-eye-slash text-gray-500"
+                                        ></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

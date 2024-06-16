@@ -85,7 +85,6 @@ Route::resource('educationSmall', EducationSmallController::class)
 Route::resource('animeGenres', AnimeGenresController::class)
 ->middleware(['auth', 'verified']);
 
-
 Route::get('/image-upload', [ImageController::class, 'index'])->name('images.index');
 Route::post('/image-upload', [ImageController::class, 'store'])->name('images.store');
 

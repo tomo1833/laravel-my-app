@@ -6,6 +6,9 @@ use App\Http\Requests\StoreanimeRequest;
 use App\Http\Requests\UpdateanimeRequest;
 use App\Models\anime;
 
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
@@ -16,7 +19,15 @@ class AnimeController extends Controller
      */
     public function index()
     {
+
+        $userId = Auth::id();
+        $user = Auth::user();
+
         $animes = Anime::leftJoin('anime_genres', 'animes.genre', '=', 'anime_genres.id')
+        ->leftJoin('anime_users', function($join) use ($userId) {
+            $join->on('animes.id', '=', 'anime_users.anime_id')
+                 ->where('anime_users.user_id', '=', $userId);
+        })
         ->orderBy('animes.title', 'asc')
         ->select(
             'animes.id',
@@ -25,11 +36,17 @@ class AnimeController extends Controller
             'animes.path',
             'animes.body',
             'anime_genres.name as genre_name',
+            DB::raw('COALESCE(anime_users.watched, false) as watched'),
         )
-        ->get();
+        ->get()
+        ->map(function($anime) {
+            $anime->watched = (bool) $anime->watched; // 真偽値に変換
+            return $anime;
+        });
 
         return Inertia::render('Animes/Index', [
             'animes' => $animes,
+            'user' => $user,
         ]);
     }
 
@@ -78,6 +95,7 @@ class AnimeController extends Controller
         ->leftJoin('music as season_1_ending_music', 'animes.season_1_ending', '=', 'season_1_ending_music.id')
         ->leftJoin('music as season_2_opening_music', 'animes.season_2_opening', '=', 'season_2_opening_music.id')
         ->leftJoin('music as season_2_ending_music', 'animes.season_2_ending', '=', 'season_2_ending_music.id')
+
         ->where('animes.id', $anime->id)
         ->select(
             'animes.id',
@@ -103,7 +121,7 @@ class AnimeController extends Controller
 
         return Inertia::render('Animes/Show', [
             'anime' => $animeEdit,
-          ]);
+        ]);
     }
 
     /**

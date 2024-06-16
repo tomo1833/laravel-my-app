@@ -50,7 +50,7 @@ onMounted(() => {
         v-if="visible"
         :class="[
             statusClass,
-            'fixed inset-x-0 top-1/2 transform -translate-y-1/2 flex justify-center',
+            'fixed inset-x-0 top-1/2 transform -translate-y-1/2 flex justify-center z-10',
         ]"
     >
         <div class="w-auto max-w-lg p-8 text-white text-center rounded-lg">
