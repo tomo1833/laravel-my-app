@@ -97,7 +97,7 @@ const updateWatched = async (anime: Anime) => {
             </div>
         </div>
         <div class="mx-0 sm:mx-2 2xl:mx-4 my-1">
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-4 overflow-y-auto h-[calc(100vh-250px)]">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 overflow-y-auto h-[calc(100vh-250px)]">
                 <template v-for="anime in filteredAnimes" :key="anime.id">
                     <div
                         class="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
