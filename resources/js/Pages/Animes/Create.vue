@@ -6,7 +6,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 import CommonQuill from "@/Components/Atoms/CommonQuill.vue";
-import FormText from "@/Components/Molecuels/FormText.vue";
+import FormText from "@/Components/Molecules/FormText.vue";
 
 const imageUrl = ref<string | null>(null);
 const selectedFile = ref<File | null>(null);

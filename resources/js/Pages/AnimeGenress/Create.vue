@@ -3,7 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import { useForm } from "laravel-precognition-vue-inertia";
 import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
-import FormText from "@/Components/Molecuels/FormText.vue";
+import FormText from "@/Components/Molecules/FormText.vue";
 
 const form = useForm("post", "/animeGenres", {
     id: null,

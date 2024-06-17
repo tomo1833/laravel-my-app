@@ -43,7 +43,6 @@ const toggleVideo = (id: number) => {
 };
 </script>
 
-
 <template>
     <Head title="音楽" />
     <AuthenticatedLayout>
@@ -77,7 +76,9 @@ const toggleVideo = (id: number) => {
             </div>
         </div>
         <div class="mx-0 sm:mx-2 2xl:mx-4 my-1">
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 overflow-y-auto h-[calc(100vh-250px)]">
+            <div
+                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 overflow-y-auto h-[calc(100vh-250px)]"
+            >
                 <template v-for="music in filteredMusics" :key="music.id">
                     <div
                         class="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
