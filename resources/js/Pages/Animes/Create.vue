@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { Head } from "@inertiajs/vue3";
 import { useForm } from "laravel-precognition-vue-inertia";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import CommonBackLink from "@/Components/Atoms/CommonBackLink.vue";
 import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 import CommonQuill from "@/Components/Atoms/CommonQuill.vue";
@@ -53,11 +54,7 @@ const storeAnime = () => {
                     class="container px-5 py-8 mx-auto relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
                 >
                     <div class="pb-10">
-                        <CommonLinkButton
-                            routePath="anime.index"
-                            text="戻る"
-                            styleType="primary"
-                        />
+                        <CommonBackLink routePath="anime.index" />
                     </div>
                     <h1
                         class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900 text-center"

@@ -2,6 +2,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import { useForm } from "laravel-precognition-vue-inertia";
+import CommonBackLink from "@/Components/Atoms/CommonBackLink.vue";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
 import { QuillEditor } from "@vueup/vue-quill";
@@ -32,11 +33,7 @@ const storeMusic = () => {
                     class="container px-5 py-8 mx-auto relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
                 >
                     <div class="pb-10">
-                        <CommonLinkButton
-                            routePath="music.index"
-                            text="戻る"
-                            styleType="primary"
-                        />
+                        <CommonBackLink routePath="music.index" />
                     </div>
 
                     <h1

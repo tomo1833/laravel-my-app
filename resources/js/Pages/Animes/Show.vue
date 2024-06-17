@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head } from "@inertiajs/vue3";
+import { Head, Link } from "@inertiajs/vue3";
 import CommonArea from "@/Components/Atoms/CommonArea.vue";
+import CommonBackLink from "@/Components/Atoms/CommonBackLink.vue";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
+import CommonShowTitle from "@/Components/Atoms/CommonShowTitle.vue";
 
 const props = defineProps({
     anime: Object,
@@ -20,18 +22,10 @@ const props = defineProps({
                 class="container sm:px-1 px-5 py-8 h-full mx-auto relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
             >
                 <div class="px-4">
-                    <CommonLinkButton
-                        routePath="anime.index"
-                        text="戻る"
-                        styleType="primary"
-                    />
+                    <CommonBackLink routePath="anime.index" />
                 </div>
                 <div class="flex flex-col text-center w-full mb-12 h-full">
-                    <h1
-                        class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
-                    >
-                        {{ props.anime.title }}
-                    </h1>
+                    <CommonShowTitle :title="props.anime.title" />
                     <div class="flex items-center justify-center mb-4 md:mb-0">
                         <img
                             :src="`/storage/${props.anime.path}`"

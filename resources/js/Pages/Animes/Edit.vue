@@ -4,6 +4,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import { Inertia } from "@inertiajs/inertia";
 import { useForm } from "laravel-precognition-vue-inertia";
+import CommonBackLink from "@/Components/Atoms/CommonBackLink.vue";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
 import CommonQuill from "@/Components/Atoms/CommonQuill.vue";
@@ -80,11 +81,7 @@ const deleteAnime = (id) => {
                     class="container px-5 py-8 mx-auto relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
                 >
                     <div class="pb-10">
-                        <CommonLinkButton
-                            routePath="anime.index"
-                            text="戻る"
-                            styleType="primary"
-                        />
+                        <CommonBackLink routePath="anime.index" />
                     </div>
                     <div class="flex flex-col text-center w-full mb-12 h-full">
                         <h1

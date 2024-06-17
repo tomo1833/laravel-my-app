@@ -2,6 +2,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import CommonArea from "@/Components/Atoms/CommonArea.vue";
+import CommonBackLink from "@/Components/Atoms/CommonBackLink.vue";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 
 const props = defineProps({
@@ -20,11 +21,7 @@ const props = defineProps({
                 class="container px-5 py-8 mx-auto relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
             >
                 <div class="px-4">
-                    <CommonLinkButton
-                        routePath="music.index"
-                        text="戻る"
-                        styleType="primary"
-                    />
+                    <CommonBackLink routePath="music.index" />
                 </div>
                 <div class="flex flex-col text-center w-full mb-12 h-full">
                     <h1
