@@ -18,7 +18,7 @@ const props = defineProps({
             class="text-gray-600 body-font py-4 relative h-[calc(100vh-68px)]"
         >
             <div
-                class="container px-5 py-8 mx-auto relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
+                class="sm:container px-1 sm:px-5 py-8 mx-auto relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
             >
                 <div class="px-4">
                     <CommonBackLink routePath="education.index" />
