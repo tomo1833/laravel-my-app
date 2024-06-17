@@ -93,4 +93,48 @@ const props = defineProps({
     margin-top: 5px;
     padding: 5px 10px;
 }
+
+
+@media (max-width: 767px) {
+    #education-area :deep(h1),
+    #education-area :deep(h2),
+    #education-area :deep(h3),
+    #education-area :deep(h4),
+    #education-area :deep(h5),
+    #education-area :deep(h6) {
+        margin: 4px;
+    }
+
+    #education-area :deep(p) {
+        margin: 4px;
+        font-size: 1.0rem;
+        color: #555;
+    }
+
+    #education-area :deep(h1) {
+        font-size: 2em;
+    }
+
+    #education-area :deep(h2) {
+        font-size: 1.75em;
+    }
+
+    #education-area :deep(h3) {
+        font-size: 1.5em;
+    }
+
+    #education-area :deep(h4) {
+        font-size: 1.25em;
+    }
+
+    #education-area :deep(h5) {
+        font-size: 1em;
+    }
+
+    #education-area :deep(h6) {
+        font-size: 1em;
+    }
+
+}
+
 </style>
