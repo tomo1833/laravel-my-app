@@ -2,7 +2,6 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/vue3";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
-import LinkButton from "@/Components/Atoms/LinkButton.vue";
 defineProps({
     movies: Array<object>,
 });

@@ -3,9 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import { Inertia } from "@inertiajs/inertia";
 import { useForm } from "laravel-precognition-vue-inertia";
-import { QuillEditor } from "@vueup/vue-quill";
 import CommonBackLink from "@/Components/Atoms/CommonBackLink.vue";
-import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 import CommonQuill from "@/Components/Atoms/CommonQuill.vue";
 
 const props = defineProps({

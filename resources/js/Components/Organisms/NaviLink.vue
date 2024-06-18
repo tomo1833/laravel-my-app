@@ -22,6 +22,7 @@ const menuItems = ref<MenuItem[]>([
         isLink: false,
         children: [
             { text: "勤怠管理", routePath: "attendance.index", isLink: true },
+            { text: "スケジュール", routePath: "events.index", isLink: true },
         ],
     },
     {

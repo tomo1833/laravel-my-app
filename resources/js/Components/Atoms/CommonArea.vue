@@ -94,7 +94,6 @@ const props = defineProps({
     padding: 5px 10px;
 }
 
-
 @media (max-width: 767px) {
     #education-area :deep(h1),
     #education-area :deep(h2),
@@ -107,7 +106,7 @@ const props = defineProps({
 
     #education-area :deep(p) {
         margin: 4px;
-        font-size: 1.0rem;
+        font-size: 1rem;
         color: #555;
     }
 
@@ -134,7 +133,5 @@ const props = defineProps({
     #education-area :deep(h6) {
         font-size: 1em;
     }
-
 }
-
 </style>

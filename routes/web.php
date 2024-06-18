@@ -12,6 +12,7 @@ use App\Http\Controllers\EducationController;
 use App\Http\Controllers\EducationLargeController;
 use App\Http\Controllers\EducationMiddleController;
 use App\Http\Controllers\EducationSmallController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\MangaController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MusicController;
@@ -87,6 +88,9 @@ Route::resource('animeGenres', AnimeGenresController::class)
 
 Route::get('/image-upload', [ImageController::class, 'index'])->name('images.index');
 Route::post('/image-upload', [ImageController::class, 'store'])->name('images.store');
+
+Route::get('/events', [EventController::class, 'index'])->name('events.index');
+Route::post('/events', [EventController::class, 'store'])->name('events.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
