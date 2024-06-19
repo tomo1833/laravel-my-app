@@ -7,7 +7,7 @@ const props = defineProps({
 <template>
     <div
         id="education-area"
-        class="p-1 bg-white grow h-full overflow-y-auto"
+        class="p-1 bg-white grow h-full"
         v-html="props.body"
     ></div>
 </template>
