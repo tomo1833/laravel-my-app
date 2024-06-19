@@ -16,7 +16,7 @@ const props = defineProps({
 
     <AuthenticatedLayout>
         <section
-            class="text-gray-600 body-font py-2 relative h-[calc(100vh-92px)] overflow-y-auto"
+            class="text-gray-600 body-font py-2 relative h-[calc(100vh-68px)] overflow-y-auto"
         >
             <div
                 class="container sm:px-1 px-5 py-8 h-full mx-auto relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
@@ -167,8 +167,9 @@ const props = defineProps({
                     >
                         ジャンル : {{ props.anime.genre_name }}
                     </h2>
-                    <CommonArea :body="props.anime.body" />
+
                 </div>
+                <CommonArea :body="props.anime.body" />
             </div>
         </section>
     </AuthenticatedLayout>
