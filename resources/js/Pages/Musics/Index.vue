@@ -81,7 +81,7 @@ const toggleVideo = (id: number) => {
             >
                 <template v-for="music in filteredMusics" :key="music.id">
                     <div
-                        class="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
+                        class="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl h-96"
                     >
                         <div
                             class="relative h-32 mx-auto mt-4 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl"
