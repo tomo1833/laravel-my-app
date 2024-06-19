@@ -98,7 +98,6 @@ const calendarOptions = {
     selectable: true,
     initialView: "dayGridMonth",
     eventClick: handleEventClick,
-    editable: true,
     selectMirror: true,
     dayMaxEvents: true,
     weekends: true,
