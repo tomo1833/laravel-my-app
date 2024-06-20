@@ -52,8 +52,8 @@ watch(
 </script>
 
 <template>
-    <div>
-        <label :for="name" class="block mb-2">{{ label }}</label>
+    <div class="mb-4">
+        <label :for="name" class="block mb-2">{{ props.label }}</label>
         <input
             :type="type"
             :name="name"

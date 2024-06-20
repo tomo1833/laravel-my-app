@@ -5,9 +5,12 @@ import { Head } from "@inertiajs/vue3";
 import { Inertia } from "@inertiajs/inertia";
 import { useForm } from "laravel-precognition-vue-inertia";
 import CommonBackLink from "@/Components/Atoms/CommonBackLink.vue";
-import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
+import CommonDeleteButton from "@/Components/Atoms/CommonDeleteButton.vue";
 import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
 import CommonQuill from "@/Components/Atoms/CommonQuill.vue";
+
+import CommonTitle from "@/Components/Atoms/CommonTitle.vue";
+import FormText from "@/Components/Molecules/FormText.vue";
 
 const props = defineProps({
     anime: Object,
@@ -21,6 +24,7 @@ const selectedFile = ref<File | null>(null);
 const form = useForm("put", "/anime/" + props.anime.id, {
     id: props.anime.id,
     title: props.anime.title,
+    title_kana: props.anime.title_kana,
     genre: props.anime.genre,
     body: props.anime.body,
     path: props.anime.path,
@@ -46,8 +50,9 @@ const handleFileChange = (event: Event) => {
 
 const updateAnime = () => {
     const formData = new FormData();
-    formData.append("_method", "PUT"); // PUTメソッドを指定
+    formData.append("_method", "PUT");
     formData.append("title", form.title);
+    formData.append("title_kana", form.title_kana);
     formData.append("genre", form.genre);
     formData.append("season_1_opening", form.season_1_opening);
     formData.append("season_1_ending", form.season_1_ending);
@@ -65,9 +70,7 @@ const updateAnime = () => {
 };
 
 const deleteAnime = (id) => {
-    Inertia.delete(route("anime.destroy", { anime: id }), {
-        onBefore: () => confirm("削除しますか？"),
-    });
+    Inertia.delete(route("anime.destroy", { anime: id }));
 };
 </script>
 
@@ -83,26 +86,25 @@ const deleteAnime = (id) => {
                     <div class="pb-10">
                         <CommonBackLink routePath="anime.index" />
                     </div>
-                    <div class="flex flex-col text-center w-full mb-12 h-full">
-                        <h1
-                            class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
-                        >
-                            アニメ
-                        </h1>
-                    </div>
+                    <CommonTitle title="アニメ" />
 
-                    <div class="mb-4">
-                        <label class="block mb-2">タイトル</label>
-                        <input
-                            type="text"
-                            name="title"
-                            v-model="form.title"
-                            class="p-2 border rounded w-full"
-                        />
-                        <div v-if="form.invalid('title')" class="text-red-500">
-                            {{ form.errors.title }}
-                        </div>
-                    </div>
+                    <FormText
+                        label="タイトル"
+                        name="title"
+                        v-model:modelValue="form.title"
+                        :error="form.invalid('title') ? form.errors.title : ''"
+                    />
+
+                    <FormText
+                        label="タイトルカナ"
+                        name="title_kana"
+                        v-model:modelValue="form.title_kana"
+                        :error="
+                            form.invalid('title_kana')
+                                ? form.errors.title_kana
+                                : ''
+                        "
+                    />
 
                     <div class="mb-4">
                         <label class="block mb-2">画像</label>
@@ -117,18 +119,12 @@ const deleteAnime = (id) => {
                         <img v-if="imageUrl" :src="imageUrl" class="mt-4" />
                     </div>
 
-                    <div class="mb-4">
-                        <label class="block mb-2">ジャンル</label>
-                        <input
-                            type="text"
-                            name="genre"
-                            v-model="form.genre"
-                            class="p-2 border rounded w-full"
-                        />
-                        <div v-if="form.invalid('genre')" class="text-red-500">
-                            {{ form.errors.genre }}
-                        </div>
-                    </div>
+                    <FormText
+                        label="ジャンル"
+                        name="genre"
+                        v-model:modelValue="form.genre"
+                        :error="form.invalid('genre') ? form.errors.genre : ''"
+                    />
 
                     <div class="mb-4">
                         <label class="block mb-2">本文</label>
@@ -143,84 +139,70 @@ const deleteAnime = (id) => {
                         </div>
                     </div>
 
-                    <div class="mb-4">
-                        <label class="block mb-2">シーズン1:OP</label>
-                        <input
-                            type="text"
-                            name="season_1_opening"
-                            v-model="form.season_1_opening"
-                            class="p-2 border rounded w-full"
-                        />
-                        <div
-                            v-if="form.invalid('season_1_opening')"
-                            class="text-red-500"
-                        >
-                            {{ form.errors.season_1_opening }}
-                        </div>
-                    </div>
+                    <FormText
+                        label="シーズン1:OP"
+                        name="season_1_opening"
+                        v-model:modelValue="form.season_1_opening"
+                        :error="
+                            form.invalid('season_1_opening')
+                                ? form.errors.season_1_opening
+                                : ''
+                        "
+                    />
 
-                    <div class="mb-4">
-                        <label class="block mb-2">シーズン1:ED</label>
-                        <input
-                            type="text"
-                            name="season_1_ending"
-                            v-model="form.season_1_ending"
-                            class="p-2 border rounded w-full"
-                        />
-                        <div
-                            v-if="form.invalid('season_1_ending')"
-                            class="text-red-500"
-                        >
-                            {{ form.errors.season_1_ending }}
-                        </div>
-                    </div>
+                    <FormText
+                        label="シーズン1:ED"
+                        name="season_1_ending"
+                        v-model:modelValue="form.season_1_ending"
+                        :error="
+                            form.invalid('season_1_ending')
+                                ? form.errors.season_1_ending
+                                : ''
+                        "
+                    />
 
-                    <div class="mb-4">
-                        <label class="block mb-2">シーズン2:OP</label>
-                        <input
-                            type="text"
-                            name="season_2_opening"
-                            v-model="form.season_2_opening"
-                            class="p-2 border rounded w-full"
-                        />
-                        <div
-                            v-if="form.invalid('season_2_opening')"
-                            class="text-red-500"
-                        >
-                            {{ form.errors.season_2_opening }}
-                        </div>
-                    </div>
+                    <FormText
+                        label="シーズン2:OP"
+                        name="season_2_opening"
+                        v-model:modelValue="form.season_2_opening"
+                        :error="
+                            form.invalid('season_2_opening')
+                                ? form.errors.season_2_opening
+                                : ''
+                        "
+                    />
 
-                    <div class="mb-4">
-                        <label class="block mb-2">シーズン2:ED</label>
-                        <input
-                            type="text"
-                            name="season_2_ending"
-                            v-model="form.season_2_ending"
-                            class="p-2 border rounded w-full"
-                        />
-                        <div
-                            v-if="
-                                form.invalid('season_2_season_1_endingopening')
-                            "
-                            class="text-red-500"
-                        >
-                            {{ form.errors.season_2_ending }}
-                        </div>
-                    </div>
+                    <FormText
+                        label="シーズン2:OP"
+                        name="season_2_opening"
+                        v-model:modelValue="form.season_2_opening"
+                        :error="
+                            form.invalid('season_2_opening')
+                                ? form.errors.season_2_opening
+                                : ''
+                        "
+                    />
+
+                    <FormText
+                        label="シーズン2:ED"
+                        name="season_2_ending"
+                        v-model:modelValue="form.season_2_ending"
+                        :error="
+                            form.invalid('season_2_ending')
+                                ? form.errors.season_2_ending
+                                : ''
+                        "
+                    />
 
                     <div class="flex flex-row justify-evenly">
                         <div>
                             <CommonSubmitButton text="更新" />
                         </div>
                         <div>
-                            <button
-                                type="button"
+                            <CommonDeleteButton
+                                text="削除"
                                 @click="deleteAnime(form.id)"
-                                class="mx-auto text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg"
-                            >
-                                削除
-                            </button>
+                            />
                         </div>
                     </div>
                 </div>

@@ -167,7 +167,6 @@ const props = defineProps({
                     >
                         ジャンル : {{ props.anime.genre_name }}
                     </h2>
-
                 </div>
                 <CommonArea :body="props.anime.body" />
             </div>

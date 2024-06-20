@@ -1,17 +1,19 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import { Head } from "@inertiajs/vue3";
 import { useForm } from "laravel-precognition-vue-inertia";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+
 import CommonBackLink from "@/Components/Atoms/CommonBackLink.vue";
-import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
-import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 import CommonQuill from "@/Components/Atoms/CommonQuill.vue";
+import CommonTitle from "@/Components/Atoms/CommonTitle.vue";
+import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
+
 import FormText from "@/Components/Molecules/FormText.vue";
+import FormFileInput from "@/Components/Molecules/FormFileInput.vue";
 
-const imageUrl = ref<string | null>(null);
-const selectedFile = ref<File | null>(null);
-
+/**
+ * フォームの初期値を設定し、送信時の処理を定義
+ */
 const form = useForm("post", "/anime", {
     id: null,
     title: null,
@@ -25,18 +27,17 @@ const form = useForm("post", "/anime", {
     body: null,
 });
 
-const handleFileChange = (event: Event) => {
-    const file = (event.target as HTMLInputElement).files?.[0] || null;
-    if (file) {
-        selectedFile.value = file;
-        imageUrl.value = URL.createObjectURL(file);
-        form.image = file;
-    } else {
-        selectedFile.value = null;
-        imageUrl.value = null;
-    }
+/**
+ * ファイルが選択されたときの処理
+ * @param {File} file - 選択されたファイル
+ */
+const handleFileChange = (file: File) => {
+    form.image = file;
 };
 
+/**
+ * フォームを送信する処理
+ */
 const storeAnime = () => {
     form.submit({
         preserveScroll: true,
@@ -56,59 +57,38 @@ const storeAnime = () => {
                     <div class="pb-10">
                         <CommonBackLink routePath="anime.index" />
                     </div>
-                    <h1
-                        class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900 text-center"
-                    >
-                        アニメ
-                    </h1>
+                    <CommonTitle title="アニメ" />
 
-                    <div class="mb-4">
-                        <FormText
-                            label="タイトル"
-                            name="title"
-                            v-model:modelValue="form.title"
-                            :error="
-                                form.invalid('title') ? form.errors.title : ''
-                            "
-                        />
-                    </div>
+                    <FormText
+                        label="タイトル"
+                        name="title"
+                        v-model:modelValue="form.title"
+                        :error="form.invalid('title') ? form.errors.title : ''"
+                    />
 
-                    <div class="mb-4">
-                        <FormText
-                            label="タイトルカナ"
-                            name="title_kana"
-                            v-model:modelValue="form.title_kana"
-                            :error="
-                                form.invalid('title_kana')
-                                    ? form.errors.title_kana
-                                    : ''
-                            "
-                        />
-                    </div>
+                    <FormText
+                        label="タイトルカナ"
+                        name="title_kana"
+                        v-model:modelValue="form.title_kana"
+                        :error="
+                            form.invalid('title_kana')
+                                ? form.errors.title_kana
+                                : ''
+                        "
+                    />
 
-                    <div class="mb-4">
-                        <label class="block mb-2">画像</label>
-                        <input
-                            type="file"
-                            @change="handleFileChange"
-                            class="p-2 border rounded w-full"
-                        />
-                        <div v-if="form.invalid('image')" class="text-red-500">
-                            {{ form.errors.image }}
-                        </div>
-                        <img v-if="imageUrl" :src="imageUrl" class="mt-4" />
-                    </div>
+                    <FormFileInput
+                        label="画像"
+                        :error="form.invalid('image') ? form.errors.image : ''"
+                        :onFileChange="handleFileChange"
+                    />
 
-                    <div class="mb-4">
-                        <FormText
-                            label="ジャンル"
-                            name="genre"
-                            v-model:modelValue="form.genre"
-                            :error="
-                                form.invalid('genre') ? form.errors.genre : ''
-                            "
-                        />
-                    </div>
+                    <FormText
+                        label="ジャンル"
+                        name="genre"
+                        v-model:modelValue="form.genre"
+                        :error="form.invalid('genre') ? form.errors.genre : ''"
+                    />
 
                     <div class="mb-4">
                         <label class="block mb-2">本文</label>
@@ -123,57 +103,49 @@ const storeAnime = () => {
                         </div>
                     </div>
 
-                    <div class="mb-4">
-                        <FormText
-                            label="シーズン1:OP"
-                            name="season_1_opening"
-                            v-model:modelValue="form.season_1_opening"
-                            :error="
-                                form.invalid('season_1_opening')
-                                    ? form.errors.season_1_opening
-                                    : ''
-                            "
-                        />
-                    </div>
+                    <FormText
+                        label="シーズン1:OP"
+                        name="season_1_opening"
+                        v-model:modelValue="form.season_1_opening"
+                        :error="
+                            form.invalid('season_1_opening')
+                                ? form.errors.season_1_opening
+                                : ''
+                        "
+                    />
 
-                    <div class="mb-4">
-                        <FormText
-                            label="シーズン1:ED"
-                            name="season_1_ending"
-                            v-model:modelValue="form.season_1_ending"
-                            :error="
-                                form.invalid('season_1_ending')
-                                    ? form.errors.season_1_ending
-                                    : ''
-                            "
-                        />
-                    </div>
+                    <FormText
+                        label="シーズン1:ED"
+                        name="season_1_ending"
+                        v-model:modelValue="form.season_1_ending"
+                        :error="
+                            form.invalid('season_1_ending')
+                                ? form.errors.season_1_ending
+                                : ''
+                        "
+                    />
 
-                    <div class="mb-4">
-                        <FormText
-                            label="シーズン2:OP"
-                            name="season_2_opening"
-                            v-model:modelValue="form.season_2_opening"
-                            :error="
-                                form.invalid('season_2_opening')
-                                    ? form.errors.season_2_opening
-                                    : ''
-                            "
-                        />
-                    </div>
+                    <FormText
+                        label="シーズン2:OP"
+                        name="season_2_opening"
+                        v-model:modelValue="form.season_2_opening"
+                        :error="
+                            form.invalid('season_2_opening')
+                                ? form.errors.season_2_opening
+                                : ''
+                        "
+                    />
 
-                    <div class="mb-4">
-                        <FormText
-                            label="シーズン2:ED"
-                            name="season_2_ending"
-                            v-model:modelValue="form.season_2_ending"
-                            :error="
-                                form.invalid('season_2_ending')
-                                    ? form.errors.season_2_ending
-                                    : ''
-                            "
-                        />
-                    </div>
+                    <FormText
+                        label="シーズン2:ED"
+                        name="season_2_ending"
+                        v-model:modelValue="form.season_2_ending"
+                        :error="
+                            form.invalid('season_2_ending')
+                                ? form.errors.season_2_ending
+                                : ''
+                        "
+                    />
 
                     <div class="flex flex-row justify-evenly">
                         <div>

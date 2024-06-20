@@ -6,10 +6,10 @@ use App\Http\Requests\StoreanimeRequest;
 use App\Http\Requests\UpdateanimeRequest;
 use App\Models\anime;
 
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+
 use Inertia\Inertia;
 
 class AnimeController extends Controller
@@ -24,10 +24,11 @@ class AnimeController extends Controller
         $user = Auth::user();
 
         $animes = Anime::leftJoin('anime_genres', 'animes.genre', '=', 'anime_genres.id')
-        ->leftJoin('anime_users', function($join) use ($userId) {
+        ->leftJoin('anime_users', function ($join) use ($userId) {
             $join->on('animes.id', '=', 'anime_users.anime_id')
                  ->where('anime_users.user_id', '=', $userId);
         })
+        ->orderBy('animes.title_kana', 'asc')
         ->orderBy('animes.title', 'asc')
         ->select(
             'animes.id',
@@ -39,8 +40,8 @@ class AnimeController extends Controller
             DB::raw('COALESCE(anime_users.watched, false) as watched'),
         )
         ->get()
-        ->map(function($anime) {
-            $anime->watched = (bool) $anime->watched; // 真偽値に変換
+        ->map(function ($anime) {
+            $anime->watched = (bool) $anime->watched;
             return $anime;
         });
 
@@ -140,7 +141,7 @@ class AnimeController extends Controller
     public function update(UpdateanimeRequest $request, anime $anime)
     {
         $anime->title = $request->title;
-        if ($request->filled('title_kana')) {
+        if (!is_null($request->title_kana) && $request->title_kana !== 'null') {
             $anime->title_kana = $request->title_kana;
         }
         if (!is_null($request->genre) && $request->genre !== 'null') {
@@ -175,7 +176,7 @@ class AnimeController extends Controller
 
         return to_route('anime.index')->with([
             'message' => '更新しました。',
-            'status' => 'update',
+            'status' => 'create',
         ]);
 
     }
@@ -189,7 +190,7 @@ class AnimeController extends Controller
 
         return to_route('anime.index')->with([
            'message' => '削除しました。',
-           'status' => 'damger',
+           'status' => 'delete',
         ]);
 
     }
