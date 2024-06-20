@@ -14,12 +14,16 @@ use App\Http\Controllers\EducationMiddleController;
 use App\Http\Controllers\EducationSmallController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\MangaController;
+use App\Http\Controllers\MaximController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MusicController;
+use App\Http\Controllers\NovelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShougiController;
 use App\Http\Controllers\WikiController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\UdemyController;
+use App\Http\Controllers\TodoController;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -84,6 +88,18 @@ Route::resource('educationSmall', EducationSmallController::class)
 ->middleware(['auth', 'verified']);
 
 Route::resource('animeGenres', AnimeGenresController::class)
+->middleware(['auth', 'verified']);
+
+Route::resource('novel', NovelController::class)
+->middleware(['auth', 'verified']);
+
+Route::resource('udemy', UdemyController::class)
+->middleware(['auth', 'verified']);
+
+Route::resource('maxim', MaximController::class)
+->middleware(['auth', 'verified']);
+
+Route::resource('todo', TodoController::class)
 ->middleware(['auth', 'verified']);
 
 Route::get('/image-upload', [ImageController::class, 'index'])->name('images.index');

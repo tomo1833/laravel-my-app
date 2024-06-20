@@ -15,6 +15,7 @@ const menuItems = ref<MenuItem[]>([
         isLink: false,
         children: [
             { text: "ダッシュボード", routePath: "dashboard", isLink: true },
+            { text: "todo", routePath: "todo.index", isLink: true },
         ],
     },
     {
@@ -30,6 +31,7 @@ const menuItems = ref<MenuItem[]>([
         isLink: false,
         children: [
             { text: "教育管理", routePath: "education.index", isLink: true },
+            { text: "udemy", routePath: "udemy.index", isLink: true },
         ],
     },
     {
@@ -43,6 +45,8 @@ const menuItems = ref<MenuItem[]>([
             { text: "将棋", routePath: "shougi.index", isLink: true },
             { text: "漫画", routePath: "manga.index", isLink: true },
             { text: "映画", routePath: "movie.index", isLink: true },
+            { text: "小説", routePath: "novel.index", isLink: true },
+            { text: "名言", routePath: "maxim.index", isLink: true },
         ],
     },
     {
