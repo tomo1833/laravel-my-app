@@ -11,7 +11,6 @@ import CommonQuill from "@/Components/Atoms/CommonQuill.vue";
 
 import CommonTitle from "@/Components/Atoms/CommonTitle.vue";
 import FormText from "@/Components/Molecules/FormText.vue";
-
 import FormSelect from "@/Components/Molecules/FormSelect.vue";
 
 interface Option {
@@ -147,7 +146,6 @@ const deleteAnime = (id) => {
                         </div>
                     </div>
 
-                    
                     <FormSelect
                         label="シーズン1:OP"
                         name="season_1_opening"
@@ -172,7 +170,6 @@ const deleteAnime = (id) => {
                         "
                     />
 
-                    
                     <FormSelect
                         label="シーズン2:OP"
                         name="season_2_opening"

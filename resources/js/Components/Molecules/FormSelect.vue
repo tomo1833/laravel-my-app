@@ -6,10 +6,6 @@ interface Option {
     label: string;
 }
 
-/**
- * フォームフィールドのラベル
- * @type {string}
- */
 const props = defineProps<{
     label: string;
     name: string;
@@ -18,31 +14,34 @@ const props = defineProps<{
     error: string;
 }>();
 
-/**
- * v-modelによるバインディングの値を更新するイベント
- */
 const emit = defineEmits(["update:modelValue"]);
+
+const updateValue = (event: Event) => {
+    const value = (event.target as HTMLSelectElement).value;
+    emit("update:modelValue", value);
+};
 </script>
 
 <template>
     <div class="mb-4">
-        <label :for="name" class="block mb-2">{{ props.label }}</label>
+        <label :for="name" class="block mb-2">{{ label }}</label>
         <select
-            :id="props.name"
-            :name="props.name"
-            :v-model="props.modelValue"
+            :id="name"
+            :name="name"
+            :value="modelValue"
+            @change="updateValue"
             class="w-full border border-gray-300 rounded-md shadow-sm p-2"
         >
             <option
-                v-for="option in props.options"
+                v-for="option in options"
                 :key="option.value"
                 :value="option.value"
             >
                 {{ option.label }}
             </option>
         </select>
-        <div v-if="props.error" class="text-red-500">
-            {{ props.error }}
+        <div v-if="error" class="text-red-500">
+            {{ error }}
         </div>
     </div>
 </template>

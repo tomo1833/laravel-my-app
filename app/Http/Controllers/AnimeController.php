@@ -65,6 +65,8 @@ class AnimeController extends Controller
                 'label' => $music->title.' : '. $music->artist,  
             ];
         });
+        // 先頭に空白の要素を追加
+        $formattedMusics->prepend(['value' => 0, 'label' => '']);
         // $formattedMusicsを配列として取得
         $formattedMusicsArray = $formattedMusics->toArray();
 
@@ -152,6 +154,10 @@ class AnimeController extends Controller
                 'label' => $music->title.' : '. $music->artist,  
             ];
         });
+
+        // 先頭に空白の要素を追加
+        $formattedMusics->prepend(['value' => 0, 'label' => '']);
+
         // $formattedMusicsを配列として取得
         $formattedMusicsArray = $formattedMusics->toArray();
 
