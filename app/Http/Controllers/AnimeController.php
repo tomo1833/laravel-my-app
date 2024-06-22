@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreanimeRequest;
 use App\Http\Requests\UpdateanimeRequest;
 use App\Models\anime;
+use App\Models\music;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -56,7 +57,20 @@ class AnimeController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Animes/Create');
+        $musics = music::get();
+        // 取得したデータを変換
+        $formattedMusics = $musics->map(function ($music) {
+            return [
+                'value' => $music->id,
+                'label' => $music->title.' : '. $music->artist,  
+            ];
+        });
+        // $formattedMusicsを配列として取得
+        $formattedMusicsArray = $formattedMusics->toArray();
+
+        return Inertia::render('Animes/Create', [
+            'musicList' => $formattedMusicsArray,
+        ]);
     }
 
     /**
@@ -130,8 +144,20 @@ class AnimeController extends Controller
      */
     public function edit(anime $anime)
     {
+        $musics = music::get();
+        // 取得したデータを変換
+        $formattedMusics = $musics->map(function ($music) {
+            return [
+                'value' => $music->id,
+                'label' => $music->title.' : '. $music->artist,  
+            ];
+        });
+        // $formattedMusicsを配列として取得
+        $formattedMusicsArray = $formattedMusics->toArray();
+
         return Inertia::render('Animes/Edit', [
             'anime' => $anime,
+            'musicList' => $formattedMusicsArray,
           ]);
     }
 

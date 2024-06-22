@@ -10,6 +10,15 @@ import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
 
 import FormText from "@/Components/Molecules/FormText.vue";
 import FormFileInput from "@/Components/Molecules/FormFileInput.vue";
+import FormSelect from "@/Components/Molecules/FormSelect.vue";
+
+interface Option {
+    value: string | number;
+    label: string;
+}
+const props = defineProps({
+    musicList: Array<Option>,
+});
 
 /**
  * フォームの初期値を設定し、送信時の処理を定義
@@ -103,10 +112,11 @@ const storeAnime = () => {
                         </div>
                     </div>
 
-                    <FormText
+                    <FormSelect
                         label="シーズン1:OP"
                         name="season_1_opening"
                         v-model:modelValue="form.season_1_opening"
+                        :options="musicList"
                         :error="
                             form.invalid('season_1_opening')
                                 ? form.errors.season_1_opening
@@ -114,10 +124,11 @@ const storeAnime = () => {
                         "
                     />
 
-                    <FormText
+                    <FormSelect
                         label="シーズン1:ED"
                         name="season_1_ending"
                         v-model:modelValue="form.season_1_ending"
+                        :options="musicList"
                         :error="
                             form.invalid('season_1_ending')
                                 ? form.errors.season_1_ending
@@ -125,10 +136,12 @@ const storeAnime = () => {
                         "
                     />
 
-                    <FormText
+                    
+                    <FormSelect
                         label="シーズン2:OP"
                         name="season_2_opening"
                         v-model:modelValue="form.season_2_opening"
+                        :options="musicList"
                         :error="
                             form.invalid('season_2_opening')
                                 ? form.errors.season_2_opening
@@ -136,10 +149,11 @@ const storeAnime = () => {
                         "
                     />
 
-                    <FormText
+                    <FormSelect
                         label="シーズン2:ED"
                         name="season_2_ending"
                         v-model:modelValue="form.season_2_ending"
+                        :options="musicList"
                         :error="
                             form.invalid('season_2_ending')
                                 ? form.errors.season_2_ending

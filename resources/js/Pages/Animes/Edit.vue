@@ -12,8 +12,16 @@ import CommonQuill from "@/Components/Atoms/CommonQuill.vue";
 import CommonTitle from "@/Components/Atoms/CommonTitle.vue";
 import FormText from "@/Components/Molecules/FormText.vue";
 
+import FormSelect from "@/Components/Molecules/FormSelect.vue";
+
+interface Option {
+    value: string | number;
+    label: string;
+}
+
 const props = defineProps({
     anime: Object,
+    musicList: Array<Option>,
 });
 
 const imageUrl = ref<string | null>(
@@ -139,10 +147,12 @@ const deleteAnime = (id) => {
                         </div>
                     </div>
 
-                    <FormText
+                    
+                    <FormSelect
                         label="シーズン1:OP"
                         name="season_1_opening"
                         v-model:modelValue="form.season_1_opening"
+                        :options="musicList"
                         :error="
                             form.invalid('season_1_opening')
                                 ? form.errors.season_1_opening
@@ -150,10 +160,11 @@ const deleteAnime = (id) => {
                         "
                     />
 
-                    <FormText
+                    <FormSelect
                         label="シーズン1:ED"
                         name="season_1_ending"
                         v-model:modelValue="form.season_1_ending"
+                        :options="musicList"
                         :error="
                             form.invalid('season_1_ending')
                                 ? form.errors.season_1_ending
@@ -161,10 +172,12 @@ const deleteAnime = (id) => {
                         "
                     />
 
-                    <FormText
+                    
+                    <FormSelect
                         label="シーズン2:OP"
                         name="season_2_opening"
                         v-model:modelValue="form.season_2_opening"
+                        :options="musicList"
                         :error="
                             form.invalid('season_2_opening')
                                 ? form.errors.season_2_opening
@@ -172,21 +185,11 @@ const deleteAnime = (id) => {
                         "
                     />
 
-                    <FormText
-                        label="シーズン2:OP"
-                        name="season_2_opening"
-                        v-model:modelValue="form.season_2_opening"
-                        :error="
-                            form.invalid('season_2_opening')
-                                ? form.errors.season_2_opening
-                                : ''
-                        "
-                    />
-
-                    <FormText
+                    <FormSelect
                         label="シーズン2:ED"
                         name="season_2_ending"
                         v-model:modelValue="form.season_2_ending"
+                        :options="musicList"
                         :error="
                             form.invalid('season_2_ending')
                                 ? form.errors.season_2_ending
