@@ -105,8 +105,7 @@ Route::resource('todo', TodoController::class)
 Route::get('/image-upload', [ImageController::class, 'index'])->name('images.index');
 Route::post('/image-upload', [ImageController::class, 'store'])->name('images.store');
 
-Route::get('/events', [EventController::class, 'index'])->name('events.index');
-Route::post('/events', [EventController::class, 'store'])->name('events.store');
+Route::resource('events', EventController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

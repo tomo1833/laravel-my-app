@@ -6,6 +6,8 @@ use App\Http\Requests\StoretodoRequest;
 use App\Http\Requests\UpdatetodoRequest;
 use App\Models\todo;
 
+use Illuminate\Support\Facades\Auth;
+
 use Inertia\Inertia;
 
 class TodoController extends Controller
@@ -35,8 +37,13 @@ class TodoController extends Controller
      */
     public function store(StoretodoRequest $request)
     {
+        
+        $userId = Auth::id();
+
         Todo::create([	
-            'title' => $request->title,	
+            'title' => $request->title,
+            'status' => 0,
+            'user_id' => $userId,
             'body' => $request->body,	
         ]);	
 	

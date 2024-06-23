@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import { defineProps } from "vue";
-import { usePage } from "@inertiajs/inertia-vue3";
 import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -39,8 +38,8 @@ const showDetailModal = ref<boolean>(false);
 const selectedEvent = ref<Event | null>(null);
 
 // 日付クリックハンドラー
-const handleDateClick = (info: DateClickArg) => {
-    start.value = info.dateStr;
+const handleDateClick = (info: any) => {
+    start.value = removeTimezone(info.dateStr);
     showEventModal.value = true;
 };
 
@@ -49,23 +48,48 @@ const handleEventClick = (info: any) => {
     selectedEvent.value = {
         id: info.event.id,
         title: info.event.title,
-        start: info.event.startStr,
-        end: info.event.endStr,
+        start: removeTimezone(info.event.startStr),
+        end: info.event.endStr ? removeTimezone(info.event.endStr) : "",
         is_public: info.event.extendedProps.is_public,
     };
-    showDetailModal.value = true;
+    title.value = selectedEvent.value.title;
+    start.value = selectedEvent.value.start;
+    end.value = selectedEvent.value.end || "";
+    isPublic.value = selectedEvent.value.is_public;
+    showEventModal.value = true;
+};
+
+// タイムゾーン情報を削除する関数
+const removeTimezone = (dateTimeString: string | null | undefined) => {
+    if (!dateTimeString) return '';
+    return dateTimeString.replace(/([+-]\d{2}:\d{2}|Z)$/, '');
 };
 
 // フォーム送信ハンドラー
 const submit = async () => {
-    await axios.post("/events", {
+    const eventData = {
         title: title.value,
         start: start.value,
         end: end.value,
         is_public: isPublic.value,
-    });
+    };
 
+    if (selectedEvent.value) {
+        // イベントの更新
+        await axios.put(`/events/${selectedEvent.value.id}`, eventData);
+    } else {
+        // 新規イベントの追加
+        await axios.post("/events", eventData);
+    }
     window.location.reload();
+};
+
+// イベント削除ハンドラー
+const deleteEvent = async () => {
+    if (selectedEvent.value) {
+        await axios.delete(`/events/${selectedEvent.value.id}`);
+        window.location.reload();
+    }
 };
 
 // モーダルを閉じるハンドラー
@@ -75,10 +99,7 @@ const closeEventModal = () => {
     start.value = "";
     end.value = "";
     isPublic.value = false;
-};
-
-const closeDetailModal = () => {
-    showDetailModal.value = false;
+    selectedEvent.value = null;
 };
 
 // カレンダーオプション
@@ -102,7 +123,7 @@ const calendarOptions = {
     dayMaxEvents: true,
     weekends: true,
     select: handleDateClick,
-    events: props.events, // イベントデータを設定
+    events: props.events,
 };
 
 const events = computed(() => {
@@ -147,68 +168,79 @@ const events = computed(() => {
                 />
             </div>
 
-            <!-- イベント登録用モーダルウィンドウ -->
+            <!-- イベント登録/編集用モーダルウィンドウ -->
             <div
                 v-if="showEventModal"
                 class="fixed inset-0 flex items-center justify-center z-50"
             >
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <h2 class="text-xl font-bold mb-4">イベント登録</h2>
-                    <form @submit.prevent="submit">
-                        <input
-                            v-model="title"
-                            type="text"
-                            placeholder="イベント名"
-                        />
-                        <input
-                            v-model="start"
-                            type="datetime-local"
-                            placeholder="開始日時"
-                        />
-                        <input
-                            v-model="end"
-                            type="datetime-local"
-                            placeholder="終了日時"
-                        />
-                        <label>
-                            <input v-model="isPublic" type="checkbox" /> 公開
-                        </label>
-                        <button
-                            type="submit"
-                            class="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-                        >
-                            追加
-                        </button>
-                        <button
-                            @click="closeEventModal"
-                            class="mt-4 px-4 py-2 bg-gray-500 text-white rounded"
-                        >
-                            キャンセル
-                        </button>
-                    </form>
-                </div>
-            </div>
+                <div
+                    class="container px-5 py-8 mx-auto relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
+                >
+                    <h2 class="text-xl font-bold mb-4">
+                        {{ selectedEvent ? "イベント編集" : "イベント登録" }}
+                    </h2>
 
-            <!-- イベント詳細表示用モーダルウィンドウ -->
-            <div
-                v-if="showDetailModal"
-                class="fixed inset-0 flex items-center justify-center z-50"
-            >
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <h2 class="text-xl font-bold mb-4">イベント詳細</h2>
-                    <p><strong>タイトル:</strong> {{ selectedEvent?.title }}</p>
-                    <p><strong>開始日時:</strong> {{ selectedEvent?.start }}</p>
-                    <p><strong>終了日時:</strong> {{ selectedEvent?.end }}</p>
-                    <p>
-                        <strong>公開:</strong>
-                        {{ selectedEvent?.is_public ? "はい" : "いいえ" }}
-                    </p>
-                    <button
-                        @click="closeDetailModal"
-                        class="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-                    >
-                        閉じる
-                    </button>
+                    <form @submit.prevent="submit">
+                        <div class="flex flex-col">
+                            <div class="mb-4">
+                                <input
+                                    v-model="title"
+                                    type="text"
+                                    placeholder="イベント名"
+                                    class="p-2 border rounded w-full"
+                                />
+                            </div>
+                            <div class="mb-4">
+                                <input
+                                    v-model="start"
+                                    type="datetime-local"
+                                    placeholder="開始日時"
+                                    class="p-2 border rounded w-full"
+                                />
+                            </div>
+                            <div class="mb-4">
+                                <input
+                                    v-model="end"
+                                    type="datetime-local"
+                                    placeholder="終了日時"
+                                    class="p-2 border rounded w-full"
+                                />
+                            </div>
+                            <div class="mb-4">
+                                <label>
+                                    <input v-model="isPublic" type="checkbox" />
+                                    公開
+                                </label>
+                            </div>
+
+                            <div class="flex flex-row justify-evenly">
+                                <div>
+                                    <button
+                                        type="submit"
+                                        class="w-32 mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+                                    >
+                                        {{ selectedEvent ? "更新" : "追加" }}
+                                    </button>
+                                </div>
+                                <div>
+                                    <button
+                                        @click="closeEventModal"
+                                        class="w-32 mt-4 px-4 py-2 bg-gray-500 text-white rounded"
+                                    >
+                                        キャンセル
+                                    </button>
+                                </div>
+                                <div v-if="selectedEvent">
+                                    <button
+                                        @click="deleteEvent"
+                                        class="w-32 mt-4 px-4 py-2 bg-red-500 text-white rounded"
+                                    >
+                                        削除
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
