@@ -136,7 +136,6 @@ const storeAnime = () => {
                         "
                     />
 
-                    
                     <FormSelect
                         label="シーズン2:OP"
                         name="season_2_opening"

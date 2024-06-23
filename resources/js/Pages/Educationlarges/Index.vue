@@ -4,8 +4,14 @@ import { Head } from "@inertiajs/vue3";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 import CommonHeaderTitl from "@/Components/Atoms/CommonHeaderTitl.vue";
 import FlashMessage from "@/Components/Atoms/CommonFlashMessage.vue";
+
+interface EducationLarge {
+    id: number;
+    name: string;
+}
+
 defineProps({
-    educationLarges: Array<object>,
+    educationLarges: Array<EducationLarge>,
 });
 </script>
 
@@ -27,7 +33,7 @@ defineProps({
             <div class="p-4 2xl:px-64">
                 <CommonLinkButton
                     routePath="educationLarge.create"
-                    text="教育大項目"
+                    text="登録"
                     styleType="primary"
                 />
             </div>
@@ -51,7 +57,6 @@ defineProps({
                             {{ educationLarge.name }}
                         </td>
                         <td class="py-4 px-6">
-                            &nbsp;&nbsp;&nbsp;&nbsp;
                             <CommonLinkButton
                                 routePath="educationLarge.edit"
                                 text="編集"

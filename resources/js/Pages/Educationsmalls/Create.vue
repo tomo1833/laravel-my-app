@@ -4,6 +4,8 @@ import { Head, Link } from "@inertiajs/vue3";
 import { reactive } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import { useForm } from "laravel-precognition-vue-inertia";
+import CommonBackLink from "@/Components/Atoms/CommonBackLink.vue";
+import CommonTitle from "@/Components/Atoms/CommonTitle.vue";
 import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
 const form = useForm("post", "/educationSmall", {
     id: null,
@@ -26,11 +28,10 @@ const storeEducationsmall = () => {
                 <div
                     class="container px-5 py-8 mx-auto relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
                 >
-                    <h1
-                        class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
-                    >
-                        教育小項目
-                    </h1>
+                    <div class="pb-10">
+                        <CommonBackLink routePath="educationLarge.index" />
+                    </div>
+                    <CommonTitle title="教育小項目" />
 
                     <div class="mb-4">
                         <label class="block mb-2">名称</label>

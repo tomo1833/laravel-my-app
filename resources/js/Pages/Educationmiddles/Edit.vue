@@ -4,6 +4,9 @@ import { Head } from "@inertiajs/vue3";
 import { Inertia } from "@inertiajs/inertia";
 import { useForm } from "laravel-precognition-vue-inertia";
 
+import CommonBackLink from "@/Components/Atoms/CommonBackLink.vue";
+import CommonTitle from "@/Components/Atoms/CommonTitle.vue";
+
 const props = defineProps({
     educationMiddle: Object,
 });
@@ -37,13 +40,11 @@ const deleteEducationmiddle = (id) => {
                 <div
                     class="container px-5 py-8 mx-auto relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
                 >
-                    <div class="flex flex-col text-center w-full mb-12 h-full">
-                        <h1
-                            class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
-                        >
-                            教育中項目
-                        </h1>
+                    <div class="pb-10">
+                        <CommonBackLink routePath="educationMiddle.index" />
                     </div>
+
+                    <CommonTitle title="教育中項目" />
 
                     <div class="mb-4">
                         <label class="block mb-2">名称</label>

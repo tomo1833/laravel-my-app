@@ -4,6 +4,9 @@ import { Head } from "@inertiajs/vue3";
 import { Inertia } from "@inertiajs/inertia";
 import { useForm } from "laravel-precognition-vue-inertia";
 
+import CommonBackLink from "@/Components/Atoms/CommonBackLink.vue";
+import CommonTitle from "@/Components/Atoms/CommonTitle.vue";
+
 const props = defineProps({
     educationSmall: Object,
 });
@@ -35,15 +38,11 @@ const deleteEducationsmall = (id) => {
         <section class="text-gray-600 body-font py-24 relative">
             <form @submit.prevent="updateEducationsmall">
                 <div class="container px-5 py-8 mx-auto bg-white">
-                    <div
-                        class="container px-5 py-8 mx-auto relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
-                    >
-                        <h1
-                            class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
-                        >
-                            教育小項目
-                        </h1>
+                    <div class="pb-10">
+                        <CommonBackLink routePath="educationMiddle.index" />
                     </div>
+
+                    <CommonTitle title="教育小項目" />
 
                     <div class="mb-4">
                         <label class="block mb-2">名称</label>

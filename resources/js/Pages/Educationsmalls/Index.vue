@@ -4,8 +4,14 @@ import { Head } from "@inertiajs/vue3";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 import CommonHeaderTitl from "@/Components/Atoms/CommonHeaderTitl.vue";
 import FlashMessage from "@/Components/Atoms/CommonFlashMessage.vue";
+
+interface EducationSmall {
+    id: number;
+    name: string;
+}
+
 defineProps({
-    educationSmalls: Array<object>,
+    educationSmalls: Array<EducationSmall>,
 });
 </script>
 

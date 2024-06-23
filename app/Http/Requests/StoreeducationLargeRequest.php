@@ -22,7 +22,8 @@ class StoreeducationLargeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+            'order' => 'required',
         ];
     }
 }
