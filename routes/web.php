@@ -102,6 +102,8 @@ Route::resource('maxim', MaximController::class)
 Route::resource('todo', TodoController::class)
 ->middleware(['auth', 'verified']);
 
+Route::patch('/todo/{todo}/status', [TodoController::class, 'updateStatus'])->name('todo.updateStatus');
+
 Route::get('/image-upload', [ImageController::class, 'index'])->name('images.index');
 Route::post('/image-upload', [ImageController::class, 'store'])->name('images.store');
 

@@ -37,20 +37,20 @@ class TodoController extends Controller
      */
     public function store(StoretodoRequest $request)
     {
-        
+
         $userId = Auth::id();
 
-        Todo::create([	
+        Todo::create([
             'title' => $request->title,
             'status' => 0,
             'user_id' => $userId,
-            'body' => $request->body,	
-        ]);	
-	
-        return to_route('todo.index')->with([	
-             'message' => '登録しました。',	
-             'status' => 'sucess',	
-        ]);	
+            'body' => $request->body,
+        ]);
+
+        return to_route('todo.index')->with([
+             'message' => '登録しました。',
+             'status' => 'sucess',
+        ]);
     }
 
     /**
@@ -60,7 +60,7 @@ class TodoController extends Controller
     {
         return Inertia::render('Todos/Show', [
             'todo' => $todo,
-         ]); 
+         ]);
     }
 
     /**
@@ -70,7 +70,7 @@ class TodoController extends Controller
     {
         return Inertia::render('Todos/Edit', [
             'todo' => $todo,
-         ]); 
+         ]);
     }
 
     /**
@@ -99,5 +99,20 @@ class TodoController extends Controller
            'message' => '削除しました。',
            'status' => 'damger',
         ]);
+    }
+
+    /**
+     * 
+     */
+    public function updateStatus(UpdatetodoRequest $request, Todo $todo)
+    {
+        $request->validate([
+            'status' => 'required|string',
+        ]);
+
+        $todo->status = $request->status;
+        $todo->save();
+
+        return redirect()->back()->with('status', 'Todo status updated successfully!');
     }
 }
