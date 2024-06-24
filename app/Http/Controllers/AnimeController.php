@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreanimeRequest;
 use App\Http\Requests\UpdateanimeRequest;
+
 use App\Models\anime;
+use App\Models\animeGenres;
 use App\Models\music;
 
 use Illuminate\Support\Facades\Auth;
@@ -58,19 +60,27 @@ class AnimeController extends Controller
     public function create()
     {
         $musics = music::get();
-        // 取得したデータを変換
         $formattedMusics = $musics->map(function ($music) {
             return [
                 'value' => $music->id,
-                'label' => $music->title.' : '. $music->artist,  
+                'label' => $music->title.' : '. $music->artist,
             ];
         });
-        // 先頭に空白の要素を追加
         $formattedMusics->prepend(['value' => 0, 'label' => '']);
-        // $formattedMusicsを配列として取得
         $formattedMusicsArray = $formattedMusics->toArray();
 
+        $animeGenres = animeGenres::get();
+        $formattedAnimeGenres = $animeGenres->map(function ($animeGenres) {
+            return [
+                'value' => $animeGenres->id,
+                'label' => $animeGenres->name,
+            ];
+        });
+        $formattedAnimeGenres->prepend(['value' => 0, 'label' => '']);
+        $formattedAnimeGenresArray = $formattedAnimeGenres->toArray();
+
         return Inertia::render('Animes/Create', [
+            'animeGenresList' => $formattedAnimeGenresArray,
             'musicList' => $formattedMusicsArray,
         ]);
     }
@@ -147,24 +157,30 @@ class AnimeController extends Controller
     public function edit(anime $anime)
     {
         $musics = music::get();
-        // 取得したデータを変換
         $formattedMusics = $musics->map(function ($music) {
             return [
                 'value' => $music->id,
-                'label' => $music->title.' : '. $music->artist,  
+                'label' => $music->title.' : '. $music->artist,
             ];
         });
-
-        // 先頭に空白の要素を追加
         $formattedMusics->prepend(['value' => 0, 'label' => '']);
-
-        // $formattedMusicsを配列として取得
         $formattedMusicsArray = $formattedMusics->toArray();
+
+        $animeGenres = animeGenres::get();
+        $formattedAnimeGenres = $animeGenres->map(function ($animeGenres) {
+            return [
+                'value' => $animeGenres->id,
+                'label' => $animeGenres->name,
+            ];
+        });
+        $formattedAnimeGenres->prepend(['value' => 0, 'label' => '']);
+        $formattedAnimeGenresArray = $formattedAnimeGenres->toArray();
 
         return Inertia::render('Animes/Edit', [
             'anime' => $anime,
+            'animeGenresList' => $formattedAnimeGenresArray,
             'musicList' => $formattedMusicsArray,
-          ]);
+        ]);
     }
 
     /**

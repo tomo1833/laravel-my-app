@@ -17,6 +17,7 @@ interface Option {
     label: string;
 }
 const props = defineProps({
+    animeGenresList: Array<Option>,
     musicList: Array<Option>,
 });
 
@@ -92,10 +93,11 @@ const storeAnime = () => {
                         :onFileChange="handleFileChange"
                     />
 
-                    <FormText
+                    <FormSelect
                         label="ジャンル"
                         name="genre"
                         v-model:modelValue="form.genre"
+                        :options="animeGenresList"
                         :error="form.invalid('genre') ? form.errors.genre : ''"
                     />
 

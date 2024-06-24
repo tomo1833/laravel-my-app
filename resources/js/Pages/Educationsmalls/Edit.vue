@@ -39,7 +39,7 @@ const deleteEducationsmall = (id) => {
             <form @submit.prevent="updateEducationsmall">
                 <div class="container px-5 py-8 mx-auto bg-white">
                     <div class="pb-10">
-                        <CommonBackLink routePath="educationMiddle.index" />
+                        <CommonBackLink routePath="educationSmall.index" />
                     </div>
 
                     <CommonTitle title="教育小項目" />

@@ -61,8 +61,8 @@ const handleEventClick = (info: any) => {
 
 // タイムゾーン情報を削除する関数
 const removeTimezone = (dateTimeString: string | null | undefined) => {
-    if (!dateTimeString) return '';
-    return dateTimeString.replace(/([+-]\d{2}:\d{2}|Z)$/, '');
+    if (!dateTimeString) return "";
+    return dateTimeString.replace(/([+-]\d{2}:\d{2}|Z)$/, "");
 };
 
 // フォーム送信ハンドラー

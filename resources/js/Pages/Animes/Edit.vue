@@ -20,6 +20,7 @@ interface Option {
 
 const props = defineProps({
     anime: Object,
+    animeGenresList: Array<Option>,
     musicList: Array<Option>,
 });
 
@@ -126,10 +127,11 @@ const deleteAnime = (id) => {
                         <img v-if="imageUrl" :src="imageUrl" class="mt-4" />
                     </div>
 
-                    <FormText
+                    <FormSelect
                         label="ジャンル"
                         name="genre"
                         v-model:modelValue="form.genre"
+                        :options="animeGenresList"
                         :error="form.invalid('genre') ? form.errors.genre : ''"
                     />
 
