@@ -67,6 +67,7 @@ const storeAnime = () => {
                     <div class="pb-10">
                         <CommonBackLink routePath="anime.index" />
                     </div>
+
                     <CommonTitle title="アニメ" />
 
                     <FormText

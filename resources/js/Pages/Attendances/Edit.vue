@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { reactive } from "vue";
 import { Head } from "@inertiajs/vue3";
 import { Inertia } from "@inertiajs/inertia";
 import { useForm } from "laravel-precognition-vue-inertia";
+
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+
+import CommonBackLink from "@/Components/Atoms/CommonBackLink.vue";
+import CommonTitle from "@/Components/Atoms/CommonTitle.vue";
 
 const props = defineProps({
     attendance: Object,
@@ -52,13 +55,11 @@ const deleteAttendance = (id) => {
                 <div
                     class="container px-5 py-8 mx-auto relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
                 >
-                    <div class="flex flex-col text-center w-full mb-12">
-                        <h1
-                            class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
-                        >
-                            勤怠編集
-                        </h1>
+                    <div class="pb-10">
+                        <CommonBackLink routePath="attendance.index" />
                     </div>
+
+                    <CommonTitle title="勤怠登録" />
 
                     <div class="mb-4">
                         <label class="block mb-2">日付</label>
