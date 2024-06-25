@@ -14,14 +14,14 @@ const updateStatus = (todoId: number, newStatus: string) => {
         status: newStatus,
     });
 
-    form.patch(route('todo.updateStatus', { todo: todoId }), {
+    form.patch(route("todo.updateStatus", { todo: todoId }), {
         onSuccess: () => {
             // 成功した場合の処理
-            console.log('Status updated successfully');
+            console.log("Status updated successfully");
         },
         onError: (errors) => {
             // エラーが発生した場合の処理
-            console.log('Error updating status', errors);
+            console.log("Error updating status", errors);
         },
     });
 };
@@ -56,7 +56,10 @@ const updateStatus = (todoId: number, newStatus: string) => {
             >
                 <template v-for="todo in todos" :key="todo.id">
                     <div
-                        :class="{'bg-gray-400': todo.status === 2, 'bg-white': todo.status !== 2}"
+                        :class="{
+                            'bg-gray-400': todo.status === 2,
+                            'bg-white': todo.status !== 2,
+                        }"
                         class="relative flex flex-col text-gray-700 shadow-md bg-clip-border rounded-xl h-96"
                     >
                         <div
@@ -71,7 +74,15 @@ const updateStatus = (todoId: number, newStatus: string) => {
                             <p
                                 class="block font-sans text-base antialiased font-light leading-relaxed text-inherit mb-2"
                             >
-                                {{ todo.status === 0 ? '未実施' : todo.status === 1 ? '進行中' : todo.status === 2 ? '完了' : '' }}
+                                {{
+                                    todo.status === 0
+                                        ? "未実施"
+                                        : todo.status === 1
+                                          ? "進行中"
+                                          : todo.status === 2
+                                            ? "完了"
+                                            : ""
+                                }}
                             </p>
                             <div class="mt-auto flex space-x-2">
                                 <CommonLinkButton

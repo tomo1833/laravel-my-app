@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreattendanceRequest;
 use App\Http\Requests\UpdateattendanceRequest;
 use App\Models\attendance;
+use App\Models\Event;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -69,6 +70,14 @@ class AttendanceController extends Controller
             'check_out' => date('Y-m-d H:i:s', strtotime($request->date . ' ' . $request->check_out)),
             'rest_period' => $request->rest_period,
             'memo' => $request->memo,
+        ]);
+
+        Event::create([
+            'title' => '仕事',
+            'start' => date('Y-m-d H:i:s', strtotime($request->date . ' ' . $request->check_in)),
+            'end' => date('Y-m-d H:i:s', strtotime($request->date . ' ' . $request->check_out)),
+            'is_public' => false,
+            'user_id' => $request->user()->id,
         ]);
 
         return to_route('attendance.index')->with([

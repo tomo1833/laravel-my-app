@@ -13,7 +13,7 @@ interface Anime {
     title: string;
     genre_name: string;
     path: string;
-    watched: boolean; // 真偽値を使用
+    watched: boolean;
 }
 
 interface User {
@@ -22,11 +22,11 @@ interface User {
 
 const props = defineProps<{
     animes: Anime[];
-    user: User; // ユーザー情報を受け取る
+    user: User;
 }>();
 
 const searchQuery = ref<string>("");
-const watchedFilter = ref<string>("all"); // フィルタ用の変数
+const watchedFilter = ref<string>("all");
 
 const filteredAnimes = computed(() => {
     return props.animes.filter((anime) => {
@@ -44,15 +44,15 @@ const filteredAnimes = computed(() => {
 
 const updateWatched = async (anime: Anime) => {
     try {
-        anime.watched = !anime.watched; // ローカル状態を先に更新
+        anime.watched = !anime.watched;
         await axios.post("/api/anime-user/update", {
             anime_id: anime.id,
             watched: anime.watched,
-            user_id: props.user.id, // ユーザーIDを含める
+            user_id: props.user.id,
         });
         console.log("視聴状況が更新されました");
     } catch (error) {
-        anime.watched = !anime.watched; // エラー時に状態を元に戻す
+        anime.watched = !anime.watched;
         console.error("視聴状況の更新に失敗しました", error);
     }
 };
