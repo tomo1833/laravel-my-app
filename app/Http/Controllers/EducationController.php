@@ -6,6 +6,8 @@ use App\Http\Requests\StoreeducationRequest;
 use App\Http\Requests\UpdateeducationRequest;
 use App\Models\education;
 
+use Illuminate\Support\Facades\Auth;
+
 use Inertia\Inertia;
 
 class EducationController extends Controller
@@ -72,8 +74,13 @@ class EducationController extends Controller
      */
     public function show(education $education)
     {
+        $userId = Auth::id();
+        $user = Auth::user();
+
         return Inertia::render('Educations/Show', [
             'education' => $education,
+            'user' => $user,
+
         ]);
     }
 
