@@ -24,6 +24,8 @@ use App\Http\Controllers\WikiController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UdemyController;
 use App\Http\Controllers\TodoController;
+use App\Http\Controllers\FlowController;
+
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -108,6 +110,8 @@ Route::get('/image-upload', [ImageController::class, 'index'])->name('images.ind
 Route::post('/image-upload', [ImageController::class, 'store'])->name('images.store');
 
 Route::resource('events', EventController::class);
+
+Route::get('flow', [FlowController::class, 'index'])->name('flow.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

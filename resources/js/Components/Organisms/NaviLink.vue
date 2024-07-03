@@ -86,6 +86,7 @@ const menuItems = ref<MenuItem[]>([
         children: [
             { text: "カメラ", routePath: "camera.index", isLink: true },
             { text: "画像", routePath: "images.index", isLink: true },
+            { text: "FLOW", routePath: "flow.index", isLink: true },
         ],
     },
 ]);
