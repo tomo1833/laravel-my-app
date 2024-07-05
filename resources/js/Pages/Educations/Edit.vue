@@ -50,7 +50,6 @@ const deleteEducation = (id) => {
     <AuthenticatedLayout>
         <section class="text-gray-600 body-font py-24 relative">
             <form @submit.prevent="updateEduation">
-
                 <div
                     class="container px-5 py-8 mx-auto relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl"
                 >
@@ -159,7 +158,6 @@ const deleteEducation = (id) => {
                             削除
                         </button>
                     </div>
-
                 </div>
             </form>
         </section>

@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link } from "@inertiajs/vue3";
+import { Head } from "@inertiajs/vue3";
 import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
-import CommonHeaderTitl from "@/Components/Atoms/CommonHeaderTitl.vue";
+import CommonStarRating from "@/Components/Atoms/CommonStarRating.vue";
 import FlashMessage from "@/Components/Atoms/CommonFlashMessage.vue";
+
 import { ref, computed } from "vue";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -90,6 +91,7 @@ const toggleModal = () => {
                             <th scope="col" class="py-3 px-6">中項目</th>
                             <th scope="col" class="py-3 px-6">小項目</th>
                             <th scope="col" class="py-3 px-6">タイトル</th>
+                            <th scope="col" class="py-3 px-6">理解度</th>
                             <th scope="col" class="py-3 px-6">操作</th>
                         </tr>
                     </thead>
@@ -111,6 +113,10 @@ const toggleModal = () => {
                             <td class="py-2 px-2">
                                 {{ education.title }}
                             </td>
+                            <td class="py-2 px-2">
+                                <CommonStarRating v-model="education.score" />
+                            </td>
+
                             <td class="py-2 px-6">
                                 <div class="flex">
                                     <div class="px-2">

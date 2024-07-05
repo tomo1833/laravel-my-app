@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\educationLarge;
 use App\Models\educationMiddle;
 use App\Models\educationSmall;
+use App\Models\LearningProgress;
 
 use Inertia\Inertia;
 
@@ -26,6 +27,7 @@ class EducationController extends Controller
             'educations' => Education::leftJoin('education_larges', 'educations.large_kbn', '=', 'education_larges.id')
             ->leftJoin('education_middles', 'educations.middle_kbn', '=', 'education_middles.id')
             ->leftJoin('education_smalls', 'educations.small_kbn', '=', 'education_smalls.id')
+            ->leftJoin('learning_progress', 'educations.id', '=', 'learning_progress.education_id')
             ->orderBy('educations.order', 'asc')
             ->select(
                 'educations.id',
@@ -38,6 +40,7 @@ class EducationController extends Controller
                 'education_larges.name as large_name',
                 'education_middles.name as middle_name',
                 'education_smalls.name as small_name',
+                'learning_progress.score'
             )
             ->get(),
 
