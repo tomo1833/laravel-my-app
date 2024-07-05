@@ -8,6 +8,10 @@ use App\Models\education;
 
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\educationLarge;
+use App\Models\educationMiddle;
+use App\Models\educationSmall;
+
 use Inertia\Inertia;
 
 class EducationController extends Controller
@@ -45,7 +49,38 @@ class EducationController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Educations/Create');
+        $largeKbnList = educationLarge::get();
+        $formattedLargeKbns = $largeKbnList->map(function ($largeKbn) {
+            return [
+                'value' => $largeKbn->id,
+                'label' => $largeKbn->name,
+            ];
+        });
+        $formattedLargeKbns->prepend(['value' => 0, 'label' => '']);
+        $formattedLargeKbnArray = $formattedLargeKbns->toArray();
+
+        $middleKbnList = educationMiddle::get();
+        $formattedMiddleKbns = $middleKbnList->map(function ($middleKbn) {
+            return [
+                'value' => $middleKbn->id,
+                'label' => $middleKbn->name,
+            ];
+        });
+        $formattedMiddleKbns->prepend(['value' => 0, 'label' => '']);
+        $formattedMiddleKbnArray = $formattedMiddleKbns->toArray();
+
+        $smallKbnList = educationSmall::get();
+        $formattedSmallKbns = $smallKbnList->map(function ($smallKbn) {
+            return [
+                'value' => $smallKbn->id,
+                'label' => $smallKbn->name,
+            ];
+        });
+        $formattedSmallKbns->prepend(['value' => 0, 'label' => '']);
+        $formattedSmallKbnArray = $formattedSmallKbns->toArray();
+
+        return Inertia::render('Educations/Create', ['largeKbnList' => $formattedLargeKbnArray, 'middleKbnList' => $formattedMiddleKbnArray, 'smallKbnList' => $formattedSmallKbnArray]);
+
     }
 
     /**
@@ -89,8 +124,39 @@ class EducationController extends Controller
      */
     public function edit(education $education)
     {
+
+        $largeKbnList = educationLarge::get();
+        $formattedLargeKbns = $largeKbnList->map(function ($largeKbn) {
+            return [
+                'value' => $largeKbn->id,
+                'label' => $largeKbn->name,
+            ];
+        });
+        $formattedLargeKbns->prepend(['value' => 0, 'label' => '']);
+        $formattedLargeKbnArray = $formattedLargeKbns->toArray();
+
+        $middleKbnList = educationMiddle::get();
+        $formattedMiddleKbns = $middleKbnList->map(function ($middleKbn) {
+            return [
+                'value' => $middleKbn->id,
+                'label' => $middleKbn->name,
+            ];
+        });
+        $formattedMiddleKbns->prepend(['value' => 0, 'label' => '']);
+        $formattedMiddleKbnArray = $formattedMiddleKbns->toArray();
+
+        $smallKbnList = educationSmall::get();
+        $formattedSmallKbns = $smallKbnList->map(function ($smallKbn) {
+            return [
+                'value' => $smallKbn->id,
+                'label' => $smallKbn->name,
+            ];
+        });
+        $formattedSmallKbns->prepend(['value' => 0, 'label' => '']);
+        $formattedSmallKbnArray = $formattedSmallKbns->toArray();
+
         return Inertia::render('Educations/Edit', [
-            'education' => $education
+            'education' => $education, 'largeKbnList' => $formattedLargeKbnArray, 'middleKbnList' => $formattedMiddleKbnArray, 'smallKbnList' => $formattedSmallKbnArray
         ]);
     }
 

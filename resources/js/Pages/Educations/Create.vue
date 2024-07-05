@@ -3,9 +3,20 @@ import { Head } from "@inertiajs/vue3";
 import { useForm } from "laravel-precognition-vue-inertia";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import CommonBackLink from "@/Components/Atoms/CommonBackLink.vue";
-import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
 import CommonQuill from "@/Components/Atoms/CommonQuill.vue";
+import FormSelect from "@/Components/Molecules/FormSelect.vue";
+
+interface Option {
+    value: string | number;
+    label: string;
+}
+
+const props = defineProps({
+    largeKbnList: Array<Option>,
+    middleKbnList: Array<Option>,
+    smallKbnList: Array<Option>,
+});
 
 const form = useForm("post", "/education", {
     id: null,
@@ -46,51 +57,41 @@ const storeEducations = () => {
                         </h1>
                     </div>
                     <div class="mb-4 flex justify-between">
-                        <div>
-                            <label class="block mb-2">大項目</label>
-                            <input
-                                type="text"
-                                name="large_kbn"
-                                v-model="form.large_kbn"
-                                class="p-2 border rounded w-full"
-                            />
-                            <div
-                                v-if="form.invalid('large_kbn')"
-                                class="text-red-500"
-                            >
-                                {{ form.errors.large_kbn }}
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block mb-2">中項目</label>
-                            <input
-                                type="text"
-                                name="middle_kbn"
-                                v-model="form.middle_kbn"
-                                class="p-2 border rounded w-full"
-                            />
-                            <div
-                                v-if="form.invalid('middle_kbn')"
-                                class="text-red-500"
-                            >
-                                {{ form.errors.middle_kbn }}
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block mb-2">小項目</label>
-                            <input
-                                type="text"
-                                name="small_kbn"
-                                v-model="form.small_kbn"
-                                class="p-2 border rounded w-full"
-                            />
-                            <div
-                                v-if="form.invalid('small_kbn')"
-                                class="text-red-500"
-                            >
-                                {{ form.errors.small_kbn }}
-                            </div>
-                        </div>
+                        <FormSelect
+                            label="大項目"
+                            name="large_kbn"
+                            v-model:modelValue="form.large_kbn"
+                            :options="largeKbnList"
+                            :error="
+                                form.invalid('large_kbn')
+                                    ? form.errors.large_kbn
+                                    : ''
+                            "
+                        />
+
+                        <FormSelect
+                            label="中項目"
+                            name="middle_kbn"
+                            v-model:modelValue="form.middle_kbn"
+                            :options="middleKbnList"
+                            :error="
+                                form.invalid('middle_kbn')
+                                    ? form.errors.middle_kbn
+                                    : ''
+                            "
+                        />
+
+                        <FormSelect
+                            label="小項目"
+                            name="small_kbn"
+                            v-model:modelValue="form.small_kbn"
+                            :options="smallKbnList"
+                            :error="
+                                form.invalid('small_kbn')
+                                    ? form.errors.small_kbn
+                                    : ''
+                            "
+                        />
                     </div>
                     <div class="mb-4">
                         <label class="block mb-2">タイトル</label>

@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link } from "@inertiajs/vue3";
-import { reactive } from "vue";
-import { Inertia } from "@inertiajs/inertia";
+import { Head } from "@inertiajs/vue3";
 import { useForm } from "laravel-precognition-vue-inertia";
+
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+
+import CommonBackLink from "@/Components/Atoms/CommonBackLink.vue";
 import CommonSubmitButton from "@/Components/Atoms/CommonSubmitButton.vue";
+import CommonTitle from "@/Components/Atoms/CommonTitle.vue";
+
 const form = useForm("post", "/novel", {
     id: null,
     title: null,
@@ -19,16 +22,16 @@ const storeNovel = () => {
 </script>
 
 <template>
-    <Head title="なろう小説" />
+    <Head title="小説" />
     <AuthenticatedLayout>
         <section class="text-gray-600 body-font py-24 relative">
             <form @submit.prevent="storeNovel">
                 <div class="container px-5 py-8 mx-auto bg-white">
-                    <h1
-                        class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
-                    >
-                        なろう小説
-                    </h1>
+                    <div class="pb-10">
+                        <CommonBackLink routePath="novel.index" />
+                    </div>
+
+                    <CommonTitle title="なろう小説" />
 
                     <div class="mb-4">
                         <label class="block mb-2">名称</label>
@@ -42,6 +45,7 @@ const storeNovel = () => {
                             {{ form.errors.title }}
                         </div>
                     </div>
+
                     <div class="mb-4">
                         <label class="block mb-2">本文</label>
                         <input
@@ -54,7 +58,12 @@ const storeNovel = () => {
                             {{ form.errors.body }}
                         </div>
                     </div>
-                    <CommonSubmitButton text="登録" />
+
+                    <div class="flex flex-row justify-evenly">
+                        <div>
+                            <CommonSubmitButton text="登録" />
+                        </div>
+                    </div>
                 </div>
             </form>
         </section>
