@@ -7,6 +7,8 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CameraController;
 use App\Http\Controllers\ChatGPTController;
+use App\Http\Controllers\DataController;
+
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\EducationLargeController;
@@ -29,6 +31,7 @@ use App\Http\Controllers\FlowController;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+
 
 use Inertia\Inertia;
 
@@ -57,7 +60,7 @@ Route::resource('camera', CameraController::class)
 Route::post('/chatgpt', [ChatGPTController::class, 'chat']);
 
 Route::resource('anime', AnimeController::class)
-->middleware(['auth', 'verified']);
+->middleware(['auth', 'verified', 'role:member']);
 
 Route::resource('book', BookController::class)
 ->middleware(['auth', 'verified']);
@@ -81,16 +84,16 @@ Route::resource('movie', MovieController::class)
 ->middleware(['auth', 'verified']);
 
 Route::resource('educationLarge', EducationLargeController::class)
-->middleware(['auth', 'verified']);
+->middleware(['auth', 'verified', 'role:admin']);
 
 Route::resource('educationMiddle', EducationMiddleController::class)
-->middleware(['auth', 'verified']);
+->middleware(['auth', 'verified', 'role:admin']);
 
 Route::resource('educationSmall', EducationSmallController::class)
-->middleware(['auth', 'verified']);
+->middleware(['auth', 'verified', 'role:admin']);
 
 Route::resource('animeGenres', AnimeGenresController::class)
-->middleware(['auth', 'verified']);
+->middleware(['auth', 'verified', 'role:admin']);
 
 Route::resource('novel', NovelController::class)
 ->middleware(['auth', 'verified']);
@@ -112,6 +115,13 @@ Route::post('/image-upload', [ImageController::class, 'store'])->name('images.st
 Route::resource('events', EventController::class);
 
 Route::get('flow', [FlowController::class, 'index'])->name('flow.index');
+
+/**
+ *
+ */
+Route::get('data', [DataController::class, 'index'])->name('data.index');
+Route::get('/download-json', [DataController::class, 'downloadJson']);
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

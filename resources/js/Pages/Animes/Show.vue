@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link } from "@inertiajs/vue3";
+import { Head } from "@inertiajs/vue3";
 import CommonArea from "@/Components/Atoms/CommonArea.vue";
 import CommonBackLink from "@/Components/Atoms/CommonBackLink.vue";
-import CommonLinkButton from "@/Components/Atoms/CommonLinkButton.vue";
 import CommonShowTitle from "@/Components/Atoms/CommonShowTitle.vue";
 
 const props = defineProps({

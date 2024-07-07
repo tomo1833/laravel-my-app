@@ -19,6 +19,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        if (Auth::check()) {
+            $user = Auth::user();
+            \Log::info('User roles: ', $user->getRoleNames()->toArray());
+        }
+        
         $userId = Auth::id();
         $education = Education::count();
         $animeCount = Anime::count();

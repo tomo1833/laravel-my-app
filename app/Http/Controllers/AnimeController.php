@@ -18,7 +18,7 @@ use Inertia\Inertia;
 class AnimeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * リソースの一覧を表示する.
      */
     public function index()
     {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import type { Node, Edge } from "@vue-flow/core";
 import { VueFlow, Panel } from "@vue-flow/core";
 
@@ -9,14 +9,26 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 const nodes = ref<Node[]>([
     {
         id: "1",
-        position: { x: 50, y: 50 },
-        data: { label: "HTML" },
+        position: { x: 0, y: 0 },
+        data: { label: "Internet" },
         draggable: false,
     },
     {
         id: "2",
-        position: { x: 50, y: 150 },
-        data: { label: "HTML2" },
+        position: { x: 0, y: 150 },
+        data: { label: "HTML" },
+        draggable: false,
+    },
+    {
+        id: "3",
+        position: { x: 0, y: 300 },
+        data: { label: "CSS" },
+        draggable: false,
+    },
+    {
+        id: "4",
+        position: { x: 0, y: 450 },
+        data: { label: "JAVASCRIPT" },
         draggable: false,
     },
 ]);
@@ -26,7 +38,22 @@ const edges = ref<Edge[]>([
         id: "e1->2",
         source: "1",
         target: "2",
+        animated: true,
     },
+    {
+        id: "e2->3",
+        source: "2",
+        target: "3",
+        animated: true,
+    },
+    {
+        id: "e3->4",
+        source: "3",
+        target: "4",
+        animated: true,
+    },
+
+
 ]);
 function addNode() {
     const id = Date.now().toString();
