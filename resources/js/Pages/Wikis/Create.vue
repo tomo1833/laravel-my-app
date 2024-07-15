@@ -52,7 +52,12 @@ const storeWiki = () => {
                             {{ form.errors.body }}
                         </div>
                     </div>
-                    <CommonSubmitButton text="登録" />
+
+                    <div class="flex flex-row justify-evenly">
+                        <div>
+                            <CommonSubmitButton text="登録" />
+                        </div>
+                    </div>
                 </div>
             </form>
         </section>

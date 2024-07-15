@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import axios from 'axios';
+import axios from "axios";
 import { ref } from "vue";
 import { Head } from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
@@ -14,20 +14,23 @@ const props = defineProps({
     tableList: Array<Option>,
 });
 
-const selectedTable = ref<string>('');
+const selectedTable = ref<string>("");
 
 const downloadJson = async () => {
-  try {
-    const response = await axios.get(`/download-json?table=${selectedTable.value}`, { responseType: 'blob' });
-    const url = window.URL.createObjectURL(new Blob([response.data]));
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', `${selectedTable.value}.json`);
-    document.body.appendChild(link);
-    link.click();
-  } catch (error) {
-    console.error('Error downloading the JSON file:', error);
-  }
+    try {
+        const response = await axios.get(
+            `/download-json?table=${selectedTable.value}`,
+            { responseType: "blob" },
+        );
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", `${selectedTable.value}.json`);
+        document.body.appendChild(link);
+        link.click();
+    } catch (error) {
+        console.error("Error downloading the JSON file:", error);
+    }
 };
 </script>
 
@@ -48,14 +51,12 @@ const downloadJson = async () => {
             v-model="selectedTable"
             :options="tableList"
         />
-        
-        <button
-                @click="downloadJson"
-                class="mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-            >
-                ダウンロード JSON
-        </button>
 
+        <button
+            @click="downloadJson"
+            class="mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+        >
+            ダウンロード JSON
+        </button>
     </AuthenticatedLayout>
 </template>
-

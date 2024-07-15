@@ -102,6 +102,14 @@ const storeAnime = () => {
                         :error="form.invalid('genre') ? form.errors.genre : ''"
                     />
 
+                    <FormSelect
+                        label="放映年期"
+                        name="broadcast_period"
+                        v-model:modelValue="form.broadcast_period"
+                        :options="animeGenresList"
+                        :error="form.invalid('broadcast_period') ? form.errors.broadcast_period : ''"
+                    />
+
                     <div class="mb-4">
                         <label class="block mb-2">本文</label>
                         <CommonQuill

@@ -19,8 +19,18 @@ const menuItems = ref<MenuItem[]>([
         text: "ダッシュボード",
         isLink: false,
         children: [
-            { text: "ダッシュボード", routePath: "dashboard", isLink: true, roles: ["admin", "member"]},
-            { text: "todo", routePath: "todo.index", isLink: true, roles: ["admin", "member"] },
+            {
+                text: "ダッシュボード",
+                routePath: "dashboard",
+                isLink: true,
+                roles: ["admin", "member"],
+            },
+            {
+                text: "todo",
+                routePath: "todo.index",
+                isLink: true,
+                roles: ["admin", "member"],
+            },
         ],
         roles: ["admin", "member"],
     },
@@ -28,8 +38,18 @@ const menuItems = ref<MenuItem[]>([
         text: "勤怠管理",
         isLink: false,
         children: [
-            { text: "勤怠管理", routePath: "attendance.index", isLink: true, roles: ["admin", "member"] },
-            { text: "スケジュール", routePath: "events.index", isLink: true, roles: ["admin", "member"] },
+            {
+                text: "勤怠管理",
+                routePath: "attendance.index",
+                isLink: true,
+                roles: ["admin", "member"],
+            },
+            {
+                text: "スケジュール",
+                routePath: "events.index",
+                isLink: true,
+                roles: ["admin", "member"],
+            },
         ],
         roles: ["admin", "member"],
     },
@@ -37,8 +57,18 @@ const menuItems = ref<MenuItem[]>([
         text: "教育",
         isLink: false,
         children: [
-            { text: "教育管理", routePath: "education.index", isLink: true, roles: ["admin", "member"] },
-            { text: "udemy", routePath: "udemy.index", isLink: true, roles: ["admin", "member"] },
+            {
+                text: "教育管理",
+                routePath: "education.index",
+                isLink: true,
+                roles: ["admin", "member"],
+            },
+            {
+                text: "udemy",
+                routePath: "udemy.index",
+                isLink: true,
+                roles: ["admin", "member"],
+            },
         ],
         roles: ["admin", "member"],
     },
@@ -46,22 +76,74 @@ const menuItems = ref<MenuItem[]>([
         text: "趣味",
         isLink: false,
         children: [
-            { text: "アニメ", routePath: "anime.index", isLink: true, roles: ["admin", "member"] },
-            { text: "本", routePath: "book.index", isLink: true, roles: ["admin", "member"] },
-            { text: "ブログ", routePath: "blog.index", isLink: true, roles: ["admin", "member"] },
-            { text: "音楽", routePath: "music.index", isLink: true, roles: ["admin", "member"] },
-            { text: "将棋", routePath: "shougi.index", isLink: true, roles: ["admin", "member"] },
-            { text: "漫画", routePath: "manga.index", isLink: true, roles: ["admin", "member"] },
-            { text: "映画", routePath: "movie.index", isLink: true, roles: ["admin", "member"] },
-            { text: "小説", routePath: "novel.index", isLink: true, roles: ["admin", "member"] },
-            { text: "名言", routePath: "maxim.index", isLink: true, roles: ["admin", "member"] },
+            {
+                text: "アニメ",
+                routePath: "anime.index",
+                isLink: true,
+                roles: ["admin", "member"],
+            },
+            {
+                text: "本",
+                routePath: "book.index",
+                isLink: true,
+                roles: ["admin", "member"],
+            },
+            {
+                text: "ブログ",
+                routePath: "blog.index",
+                isLink: true,
+                roles: ["admin", "member"],
+            },
+            {
+                text: "音楽",
+                routePath: "music.index",
+                isLink: true,
+                roles: ["admin", "member"],
+            },
+            {
+                text: "将棋",
+                routePath: "shougi.index",
+                isLink: true,
+                roles: ["admin", "member"],
+            },
+            {
+                text: "漫画",
+                routePath: "manga.index",
+                isLink: true,
+                roles: ["admin", "member"],
+            },
+            {
+                text: "映画",
+                routePath: "movie.index",
+                isLink: true,
+                roles: ["admin", "member"],
+            },
+            {
+                text: "小説",
+                routePath: "novel.index",
+                isLink: true,
+                roles: ["admin", "member"],
+            },
+            {
+                text: "名言",
+                routePath: "maxim.index",
+                isLink: true,
+                roles: ["admin", "member"],
+            },
         ],
         roles: ["admin", "member"],
     },
     {
         text: "wiki",
         isLink: false,
-        children: [{ text: "ウィキ", routePath: "wiki.index", isLink: true, roles: ["admin", "member"] }],
+        children: [
+            {
+                text: "ウィキ",
+                routePath: "wiki.index",
+                isLink: true,
+                roles: ["admin", "member"],
+            },
+        ],
         roles: ["admin", "member"],
     },
     {
@@ -72,25 +154,37 @@ const menuItems = ref<MenuItem[]>([
                 text: "教育大項目",
                 routePath: "educationLarge.index",
                 isLink: true,
-                roles: ["admin"]
+                roles: ["admin"],
             },
             {
                 text: "教育中項目",
                 routePath: "educationMiddle.index",
                 isLink: true,
-                roles: ["admin"]
+                roles: ["admin"],
             },
             {
                 text: "教育小項目",
                 routePath: "educationSmall.index",
                 isLink: true,
-                roles: ["admin"]
+                roles: ["admin"],
             },
             {
                 text: "アニメジャンル",
                 routePath: "animeGenres.index",
                 isLink: true,
-                roles: ["admin"]
+                roles: ["admin"],
+            },
+            {
+                text: "放送年期",
+                routePath: "broadcast_period.index",
+                isLink: true,
+                roles: ["admin"],
+            },
+            {
+                text: "ユーザ管理",
+                routePath: "user.index",
+                isLink: true,
+                roles: ["admin"],
             },
         ],
         roles: ["admin"],
@@ -112,16 +206,16 @@ const hoverIndex = reactive({
     index: -1,
 });
 
-
-
 // 役割に基づいてメニューアイテムをフィルタリング
 const filteredMenuItems = computed(() => {
     return menuItems.value
-        .map(item => {
+        .map((item) => {
             if (item.children) {
-                const filteredChildren = item.children.filter(child => {
+                const filteredChildren = item.children.filter((child) => {
                     if (!child.roles) return true; // 役割が定義されていない場合は表示
-                    return child.roles.some(role => roles.value.includes(role));
+                    return child.roles.some((role) =>
+                        roles.value.includes(role),
+                    );
                 });
                 // 子要素が表示可能な場合のみ親要素を表示
                 if (filteredChildren.length > 0) {
@@ -129,9 +223,10 @@ const filteredMenuItems = computed(() => {
                 }
             }
             if (!item.roles) return item; // 役割が定義されていない場合は表示
-            if (item.roles.some(role => roles.value.includes(role))) return item; // 親要素が表示可能
+            if (item.roles.some((role) => roles.value.includes(role)))
+                return item; // 親要素が表示可能
         })
-        .filter(item => item !== undefined); // フィルタリングでundefinedになった要素を除去
+        .filter((item) => item !== undefined); // フィルタリングでundefinedになった要素を除去
 });
 </script>
 

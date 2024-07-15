@@ -3,8 +3,11 @@
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AnimeController;
 use App\Http\Controllers\AnimeGenresController;
+
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BroadcastPeriodController;
 use App\Http\Controllers\BlogController;
+
 use App\Http\Controllers\CameraController;
 use App\Http\Controllers\ChatGPTController;
 use App\Http\Controllers\DataController;
@@ -14,6 +17,7 @@ use App\Http\Controllers\EducationController;
 use App\Http\Controllers\EducationLargeController;
 use App\Http\Controllers\EducationMiddleController;
 use App\Http\Controllers\EducationSmallController;
+
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\MangaController;
 use App\Http\Controllers\MaximController;
@@ -27,11 +31,10 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UdemyController;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\FlowController;
-
+use App\Http\Controllers\UserController;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-
 
 use Inertia\Inertia;
 
@@ -83,6 +86,8 @@ Route::resource('manga', MangaController::class)
 Route::resource('movie', MovieController::class)
 ->middleware(['auth', 'verified']);
 
+
+// マスター関連
 Route::resource('educationLarge', EducationLargeController::class)
 ->middleware(['auth', 'verified', 'role:admin']);
 
@@ -94,6 +99,11 @@ Route::resource('educationSmall', EducationSmallController::class)
 
 Route::resource('animeGenres', AnimeGenresController::class)
 ->middleware(['auth', 'verified', 'role:admin']);
+
+Route::resource('broadcast_period', BroadcastPeriodController::class)
+->middleware(['auth', 'verified', 'role:admin']);
+
+
 
 Route::resource('novel', NovelController::class)
 ->middleware(['auth', 'verified']);
@@ -121,6 +131,11 @@ Route::get('flow', [FlowController::class, 'index'])->name('flow.index');
  */
 Route::get('data', [DataController::class, 'index'])->name('data.index');
 Route::get('/download-json', [DataController::class, 'downloadJson']);
+
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('user', UserController::class);
+});
 
 
 Route::middleware('auth')->group(function () {

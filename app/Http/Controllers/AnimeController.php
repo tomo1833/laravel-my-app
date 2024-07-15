@@ -7,7 +7,10 @@ use App\Http\Requests\UpdateanimeRequest;
 
 use App\Models\anime;
 use App\Models\animeGenres;
+use App\Models\broadcast_period;
+
 use App\Models\music;
+
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -79,9 +82,20 @@ class AnimeController extends Controller
         $formattedAnimeGenres->prepend(['value' => 0, 'label' => '']);
         $formattedAnimeGenresArray = $formattedAnimeGenres->toArray();
 
+        $broadcastPeriods = broadcast_period::get();
+        $formattedBroadcastPeriods = $broadcastPeriods->map(function ($broadcastPeriods) {
+            return [
+                'value' => $broadcastPeriods->id,
+                'label' => $broadcastPeriods->name,
+            ];
+        });
+        $formattedBroadcastPeriods->prepend(['value' => 0, 'label' => '']);
+        $formattedBroadcastPeriodsArray = $formattedBroadcastPeriods->toArray();
+
         return Inertia::render('Animes/Create', [
             'animeGenresList' => $formattedAnimeGenresArray,
             'musicList' => $formattedMusicsArray,
+            'broadcastPeriodList' => $formattedBroadcastPeriodsArray,
         ]);
     }
 
@@ -99,6 +113,7 @@ class AnimeController extends Controller
             'season_1_ending' => $request->season_1_ending,
             'season_2_opening' => $request->season_2_opening,
             'season_2_ending' => $request->season_2_ending,
+            'broadcast_period' => $request->broadcast_period,
             'path' => $path,
             'genre' => $request->genre,
             'body' => $request->body,
@@ -176,10 +191,21 @@ class AnimeController extends Controller
         $formattedAnimeGenres->prepend(['value' => 0, 'label' => '']);
         $formattedAnimeGenresArray = $formattedAnimeGenres->toArray();
 
+        $broadcastPeriods = broadcast_period::get();
+        $formattedBroadcastPeriods = $broadcastPeriods->map(function ($broadcastPeriods) {
+            return [
+                'value' => $broadcastPeriods->id,
+                'label' => $broadcastPeriods->name,
+            ];
+        });
+        $formattedBroadcastPeriods->prepend(['value' => 0, 'label' => '']);
+        $formattedBroadcastPeriodsArray = $formattedBroadcastPeriods->toArray();
+
         return Inertia::render('Animes/Edit', [
             'anime' => $anime,
             'animeGenresList' => $formattedAnimeGenresArray,
             'musicList' => $formattedMusicsArray,
+            'broadcastPeriodList' => $formattedBroadcastPeriodsArray,
         ]);
     }
 
@@ -206,6 +232,9 @@ class AnimeController extends Controller
         }
         if (!is_null($request->season_2_ending) && $request->season_2_ending !== 'null') {
             $anime->season_2_ending = $request->season_2_ending;
+        }
+        if (!is_null($request->broadcast_period) && $request->broadcast_period !== 'null') {
+            $anime->broadcast_period = $request->broadcast_period;
         }
 
         $anime->body = $request->body;
