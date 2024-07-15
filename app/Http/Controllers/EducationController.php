@@ -31,10 +31,9 @@ class EducationController extends Controller
             'educations' => Education::leftJoin('education_larges', 'educations.large_kbn', '=', 'education_larges.id')
             ->leftJoin('education_middles', 'educations.middle_kbn', '=', 'education_middles.id')
             ->leftJoin('education_smalls', 'educations.small_kbn', '=', 'education_smalls.id')
-            ->leftJoin('learning_progress', 'educations.id', '=', 'learning_progress.education_id')
-            ->leftJoin('learning_progress', function ($join) use ($userId) {
-                $join->on('educations.id', '=', 'learning_progress.education_id')
-                     ->where('learning_progress.user_id', '=', $userId);
+            ->leftJoin('learning_progress as lp', function ($join) use ($userId) {
+                $join->on('educations.id', '=', 'lp.education_id')
+                     ->where('lp.user_id', '=', $userId);
             })
             ->orderBy('educations.order', 'asc')
             ->select(
@@ -48,7 +47,7 @@ class EducationController extends Controller
                 'education_larges.name as large_name',
                 'education_middles.name as middle_name',
                 'education_smalls.name as small_name',
-                'learning_progress.score'
+                'lp.score'
             )
             ->get(),
 
