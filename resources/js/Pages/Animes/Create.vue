@@ -19,6 +19,7 @@ interface Option {
 const props = defineProps({
     animeGenresList: Array<Option>,
     musicList: Array<Option>,
+    broadcastPeriodList: Array<Option>,    
 });
 
 /**
@@ -106,7 +107,7 @@ const storeAnime = () => {
                         label="放映年期"
                         name="broadcast_period"
                         v-model:modelValue="form.broadcast_period"
-                        :options="animeGenresList"
+                        :options="broadcastPeriodList"
                         :error="form.invalid('broadcast_period') ? form.errors.broadcast_period : ''"
                     />
 

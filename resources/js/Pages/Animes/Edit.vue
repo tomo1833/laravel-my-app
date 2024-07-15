@@ -22,6 +22,7 @@ const props = defineProps({
     anime: Object,
     animeGenresList: Array<Option>,
     musicList: Array<Option>,
+    broadcastPeriodList: Array<Option>,  
 });
 
 const imageUrl = ref<string | null>(
@@ -34,6 +35,7 @@ const form = useForm("put", "/anime/" + props.anime.id, {
     title: props.anime.title,
     title_kana: props.anime.title_kana,
     genre: props.anime.genre,
+    broadcast_period: props.anime.broadcast_period,
     body: props.anime.body,
     path: props.anime.path,
     season_1_opening: props.anime.season_1_opening,
@@ -62,6 +64,7 @@ const updateAnime = () => {
     formData.append("title", form.title);
     formData.append("title_kana", form.title_kana);
     formData.append("genre", form.genre);
+    formData.append("broadcast_period", form.broadcast_period);
     formData.append("season_1_opening", form.season_1_opening);
     formData.append("season_1_ending", form.season_1_ending);
     formData.append("season_2_opening", form.season_2_opening);
@@ -134,6 +137,14 @@ const deleteAnime = (id) => {
                         v-model:modelValue="form.genre"
                         :options="animeGenresList"
                         :error="form.invalid('genre') ? form.errors.genre : ''"
+                    />
+
+                    <FormSelect
+                        label="放送年期"
+                        name="broadcast_period"
+                        v-model:modelValue="form.broadcast_period"
+                        :options="broadcastPeriodList"
+                        :error="form.invalid('genre') ? form.errors.broadcast_period : ''"
                     />
 
                     <div class="mb-4">
