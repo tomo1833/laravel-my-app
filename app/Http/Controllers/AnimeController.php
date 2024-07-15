@@ -137,6 +137,7 @@ class AnimeController extends Controller
         ->leftJoin('music as season_1_ending_music', 'animes.season_1_ending', '=', 'season_1_ending_music.id')
         ->leftJoin('music as season_2_opening_music', 'animes.season_2_opening', '=', 'season_2_opening_music.id')
         ->leftJoin('music as season_2_ending_music', 'animes.season_2_ending', '=', 'season_2_ending_music.id')
+        ->leftJoin('broadcast_period as broadcast_period', 'animes.broadcast_period', '=', 'broadcast_period.id')
 
         ->where('animes.id', $anime->id)
         ->select(
@@ -146,6 +147,7 @@ class AnimeController extends Controller
             'animes.path',
             'animes.body',
             'anime_genres.name as genre_name',
+            'broadcast_period.name as broadcast_period_name',
             'season_1_opening_music.title as season_1_opening_title',
             'season_1_opening_music.artist as season_1_opening_artist',
             'season_1_opening_music.youtube_url as season_1_opening_youtube_url',

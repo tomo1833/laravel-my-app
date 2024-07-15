@@ -166,6 +166,11 @@ const props = defineProps({
                     >
                         ジャンル : {{ props.anime.genre_name }}
                     </h2>
+                    <h2
+                        class="sm:text-xl text-2xl py-8 text-left text-gray-900 p-[20px]"
+                    >
+                        放送年期 : {{ props.anime.broadcast_period_name }}
+                    </h2>
                 </div>
                 <CommonArea :body="props.anime.body" />
             </div>
