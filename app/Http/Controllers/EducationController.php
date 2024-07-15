@@ -22,12 +22,18 @@ class EducationController extends Controller
      */
     public function index()
     {
+
+        $userId = Auth::id();
+        $user = Auth::user();
+
         return Inertia::render('Educations/Index', [
+
 
             'educations' => Education::leftJoin('education_larges', 'educations.large_kbn', '=', 'education_larges.id')
             ->leftJoin('education_middles', 'educations.middle_kbn', '=', 'education_middles.id')
             ->leftJoin('education_smalls', 'educations.small_kbn', '=', 'education_smalls.id')
             ->leftJoin('learning_progress', 'educations.id', '=', 'learning_progress.education_id')
+            ->where('learning_progress.user_id', '=', $userId)
             ->orderBy('educations.order', 'asc')
             ->select(
                 'educations.id',
