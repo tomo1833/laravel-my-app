@@ -51,24 +51,25 @@ defineProps({
                             {{ broadcast_period.name }}
                         </td>
                         <td class="py-4 px-6">
+                            <div class="mt-auto flex space-x-2">
+                                <CommonLinkButton
+                                    routePath="broadcast_period.show"
+                                    text="詳細"
+                                    styleType="table"
+                                    :params="{
+                                        broadcast_period: broadcast_period.id,
+                                    }"
+                                />
 
-                            <CommonLinkButton
-                                routePath="broadcast_period.show"
-                                text="詳細"
-                                styleType="table"
-                                :params="{
-                                    broadcast_period: broadcast_period.id,
-                                }"
-                            />
-
-                            <CommonLinkButton
-                                routePath="broadcast_period.edit"
-                                text="編集"
-                                styleType="table"
-                                :params="{
-                                    broadcast_period: broadcast_period.id,
-                                }"
-                            />
+                                <CommonLinkButton
+                                    routePath="broadcast_period.edit"
+                                    text="編集"
+                                    styleType="table"
+                                    :params="{
+                                        broadcast_period: broadcast_period.id,
+                                    }"
+                                />
+                            </div>
                         </td>
                     </tr>
                 </tbody>
