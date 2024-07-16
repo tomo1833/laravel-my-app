@@ -47,7 +47,6 @@ const props = defineProps<{
                 <table
                     class="table-auto w-full text-left whitespace-no-wrap text-gray-500"
                 >
-
                     <thead class="text-xs text-gray-700 uppercase bg-[#F4F4F4]">
                         <tr>
                             <th class="py-3 px-6">名前</th>
@@ -78,7 +77,6 @@ const props = defineProps<{
                             </td>
                         </tr>
                     </tbody>
-
                 </table>
             </div>
         </div>

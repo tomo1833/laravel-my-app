@@ -29,5 +29,4 @@ import CommonResNaviLink from "@/Components/Atoms/CommonResNaviLink.vue";
     <CommonResNaviLink routePath="educationSmall.index" text="教育小項目" />
     <CommonResNaviLink routePath="animeGenres.index" text="アニメジャンル" />
     <CommonResNaviLink routePath="broadcast_period.index" text="放送年期" />
-
 </template>

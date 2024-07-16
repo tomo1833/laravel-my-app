@@ -22,7 +22,7 @@ const props = defineProps({
     anime: Object,
     animeGenresList: Array<Option>,
     musicList: Array<Option>,
-    broadcastPeriodList: Array<Option>,  
+    broadcastPeriodList: Array<Option>,
 });
 
 const imageUrl = ref<string | null>(
@@ -144,7 +144,11 @@ const deleteAnime = (id) => {
                         name="broadcast_period"
                         v-model:modelValue="form.broadcast_period"
                         :options="broadcastPeriodList"
-                        :error="form.invalid('genre') ? form.errors.broadcast_period : ''"
+                        :error="
+                            form.invalid('genre')
+                                ? form.errors.broadcast_period
+                                : ''
+                        "
                     />
 
                     <div class="mb-4">
